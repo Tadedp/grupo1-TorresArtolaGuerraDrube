@@ -1,4 +1,8 @@
 /env
 .env
 __pycache__/*
+<<<<<<< HEAD
 */__pycache__/*
+=======
+*/__pycache__/*
+>>>>>>> e47d859 (Resolución TP2.)
