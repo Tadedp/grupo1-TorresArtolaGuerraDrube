@@ -9,11 +9,6 @@ def create_app():
     app = Flask(__name__)
     load_dotenv()
     
-<<<<<<< HEAD
-    api.add_resource(resources.AnimalesResources, "/animales")
-    
-    api.add_resource(resources.AnimalResources, "/animal/<id>")
-=======
     api.add_resource(resources.LibrosResource, "/libros")
     api.add_resource(resources.LibroResource, "/libro/<id>")
     api.add_resource(resources.ValoracionResource, "/valoracion/<id>")
@@ -26,22 +21,7 @@ def create_app():
     api.add_resource(resources.NotificacionResource, "/notificacion/<id>")
     api.add_resource(resources.PrestamosResource, "/prestamos")
     api.add_resource(resources.PrestamoResource, "/prestamo/<id>")    
->>>>>>> e47d859 (Resolución TP2.)
     
     api.init_app(app)
     
     return app
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> e47d859 (Resolución TP2.)

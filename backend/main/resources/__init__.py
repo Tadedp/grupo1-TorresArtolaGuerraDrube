@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-from .animal import Animal as AnimalResources
-from .animal import Animales as AnimalesResources
-=======
 from .libro import Libro as LibroResource
 from .libro import Libros as LibrosResource
 from .opinionLibro import Valoracion as ValoracionResource
@@ -14,4 +10,3 @@ from .configuracion import Configuracion as ConfiguracionResource
 from .notificacion import Notificacion as NotificacionResource
 from .prestamos import Prestamos as PrestamosResource
 from .prestamos import Prestamo as PrestamoResource
->>>>>>> e47d859 (Resolución TP2.)
