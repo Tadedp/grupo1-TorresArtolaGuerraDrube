@@ -10,3 +10,5 @@ from .configuracion import Configuracion as ConfiguracionResource
 from .notificacion import Notificacion as NotificacionResource
 from .prestamos import Prestamos as PrestamosResource
 from .prestamos import Prestamo as PrestamoResource
+from .autor import Autor as AutorResource
+from .autor import Autores as AutoresResource
