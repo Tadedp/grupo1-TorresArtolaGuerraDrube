@@ -1,40 +1,35 @@
 from flask_restful import Resource
-from flask import request
-
-AUTORES = {
-    1:{"nombre":"Celina", "apellido":"Guerra Díaz"},
-    2:{"nombre":"Victoria","apellido":"Torres"},
-}
+from flask import request, jsonify
+from main.models import AutorModel
+from main.__init__ import db
 
 class Autores(Resource):
     def get(self):
-        return AUTORES, 200
-
+        autores = db.session.query(AutorModel).all()
+        return jsonify([autor.to_json() for autor in autores])
+    
     def post(self):
-        autor = request.get_json()
-        id = int(max(AUTORES.keys())) + 1
-        AUTORES[id] = autor
-        return AUTORES[id], 201
+        autor = AutorModel.from_json(request.get_json())
+        db.session.add(autor)
+        db.session.commit()
+        return autor.to_json(), 201
 
 class Autor(Resource):
     def get(self,id):
-        if int(id) in AUTORES:
-            return AUTORES[int(id)], 200
-        
-        return "No existe el id", 404
+        autor = db.session.query(AutorModel).get_or_404(id)
+        return autor.to_json()
 
     def put(self,id):
-        if int(id) in AUTORES:
-            usuario = AUTORES[int(id)]
-            data = request.get_json()
-            usuario.update(data)
-            return "El autor se edito correctamente", 201
-        
-        return "No existe el id", 404
+        autor = db.session.query(AutorModel).get_or_404(id)
+        data = request.get_json().items()
+        for key, value in data:
+            setattr(autor, key, value)
+        db.session.add(autor)
+        db.session.commit()
+        return autor.to_json() , 201
 
     def delete(self,id):
-        if int(id) in AUTORES:
-            del AUTORES[int(id)]
-            return "El autor se ha eliminado correctamente", 200
-        
-        return "No existe el id", 404
+        autor = db.session.query(AutorModel).get_or_404(id)
+        db.session.delete(autor)
+        db.session.commit()
+        return autor.to_json(), 204

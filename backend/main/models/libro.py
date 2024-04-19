@@ -6,7 +6,7 @@ class Libro(db.Model):
     titulo = db.Column(db.String(100), nullable=False)
     genero = db.Column(db.String(100), nullable=False)
     editorial = db.Column(db.String(100), nullable=False)
-    estado = db.Column(db.Boolean)
+    estado = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Integer)
     isbn = db.Column(db.String(100), nullable=False)
     
@@ -19,7 +19,7 @@ class Libro(db.Model):
             'titulo': str(self.titulo),
             'genero': str(self.genero),
             'editorial': str(self.editorial),
-            'estado': self.estado,
+            'estado': str(self.estado),
             'cantidad': self.cantidad,
             'isbn': str(self.isbn)
         }

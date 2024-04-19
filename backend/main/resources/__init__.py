@@ -1,7 +1,6 @@
 from .libro import Libro as LibroResource
 from .libro import Libros as LibrosResource
-from .opinionLibro import Valoracion as ValoracionResource
-from .opinionLibro import Comentario as ComentarioResource 
+from .opinionLibro import Reseña as ReseñaResource
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource
 from .signin_login import Sign_in as Sign_inResource
