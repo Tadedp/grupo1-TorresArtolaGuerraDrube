@@ -4,7 +4,7 @@ from datetime import datetime
 
 class Notificacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    fecha = db.Column(db.DateTime, nullable=False)
+    fecha = db.Column(db.String(20), nullable=False)
     mensaje = db.Column(db.String(250), nullable=False)
     
     def __repr__(self):
