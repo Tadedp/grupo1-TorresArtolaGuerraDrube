@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request
 from main.models import NotificacionModel
-from main.__init__ import db
+from .. import db
 
 class Notificacion(Resource):
     def post(self):

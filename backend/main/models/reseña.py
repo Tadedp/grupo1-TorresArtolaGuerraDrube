@@ -1,5 +1,4 @@
-from main.__init__ import db
-import json
+from .. import db
 from datetime import datetime
 
 class Reseña(db.Model):

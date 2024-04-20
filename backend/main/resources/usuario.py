@@ -7,7 +7,7 @@ USUARIOS = {
 
 from flask_restful import Resource
 from flask import request, jsonify
-from main.__init__ import db
+from .. import db
 from main.models import UsuarioModel
 
 

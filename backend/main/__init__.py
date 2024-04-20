@@ -2,11 +2,12 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
 import os
-import main.resources as resources
 from flask_sqlalchemy import SQLAlchemy
 
 api = Api()
 db = SQLAlchemy()
+
+import main.resources as resources
 
 def create_app():
     app = Flask(__name__)

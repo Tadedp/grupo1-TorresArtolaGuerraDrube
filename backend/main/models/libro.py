@@ -1,5 +1,4 @@
-from main.__init__ import db
-import json
+from .. import db
 
 class Libro(db.Model):
     id = db.Column(db.Integer, primary_key=True)

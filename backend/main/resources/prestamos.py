@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from main.models import PrestamoModel
-from main.__init__ import db
+from .. import db
 
 
 class Prestamos(Resource):
@@ -9,7 +9,7 @@ class Prestamos(Resource):
     def get(self): #obtener prestamo
         prestamos = db.session.query(PrestamoModel).all()
         return jsonify([prestamo.to_json() for prestamo in prestamos])
-       
+
 
     
     def post(self):  #crear un libro
