@@ -1,40 +1,43 @@
 from flask_restful import Resource
-from flask import request
+from flask import request, jsonify
+from main.models import PrestamoModel
+from .. import db
 
-PRESTAMOS = {
-    1:{"nombre":"Juan", "apellido":"Lopez", "libro":"La vida es bella"},
-    2:{"nombre":"Carlos", "apellido":"Gomez", "libro":"Harry Potter"}
-}
 
 class Prestamos(Resource):
-    def get(self): #GET: Obtener todos los préstamos 
-        return PRESTAMOS, 200
 
-    def post(self): #bien POST: Crear un prestamo
-        prestamo = request.get_json()
-        id = int(max(PRESTAMOS.keys())) + 1
-        PRESTAMOS[id] = prestamo
-        return PRESTAMOS[id], 201
+    def get(self): #obtener prestamo
+        prestamos = db.session.query(PrestamoModel).all()
+        return jsonify([prestamo.to_json() for prestamo in prestamos])
+
+
+    
+    def post(self):  #crear un libro
+        prestamo = PrestamoModel.from_json(request.get_json())
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 201
+    
             
 class Prestamo(Resource):
-    def get(self, id):
-        if int(id) in PRESTAMOS:
-            return PRESTAMOS[int(id)], 200
-        
-        return "No existe el id", 404
 
-    def put(self, id):#PUT: Modificar préstamo 
-        if int(id) in PRESTAMOS:
-            prestamo = PRESTAMOS[int(id)]
-            data = request.get_json()
-            prestamo.update(data)
-            return "El prestamo se edito correctamente", 201
-        
-        return "No existe el id", 404
+    def get(self,id):  #obtener listado prestamos
+        prestamos = db.session.query(PrestamoModel).get_or_404(id)
+        return prestamos.to_json()
+    
+    
+    def put(self, id):  #editar prestamo
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        data = request.get_json().items()
+        for key, value in data:
+            setattr(prestamo, key, value)
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json() , 201 
 
-    def delete(self, id): #DELETE: Eliminar préstamo 
-        if int(id) in PRESTAMOS:
-            del PRESTAMOS[int(id)]
-            return "El prestamo se ha elminado correctamente", 200
-        
-        return "No existe el id", 404
+    
+    def delete(self, id):  #borrar libro
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        db.session.delete(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 204
