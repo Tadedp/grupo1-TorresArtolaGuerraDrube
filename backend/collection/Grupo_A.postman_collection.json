@@ -39,7 +39,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{\n        \"nombre\": \"Tadeo\",\n        \"apellido\": \"Drube Perez\",\n        \"mail\": \"t.drube@gmail.com\",\n        \"telefono\": \"2616846942\"\n    }",
+=======
+							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122000,\n        \"rol\": \"Bibliotecario\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -125,7 +129,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\"\n    }",
+=======
+							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122516,\n        \"rol\": \"Bibliotecario\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -184,7 +192,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{   \n        \"titulo\": \"El jardin de los venenos\",\n        \"autor\": \"Cristina Bajo\",\n        \"genero\": \"Drama historico\"\n    }",
+=======
+							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 10,\n        \"isbn\": \"9788437625386\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -214,7 +226,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
+<<<<<<< HEAD
 							"raw": "http://127.0.0.1:5000/libro/15",
+=======
+							"raw": "http://127.0.0.1:5000/libro/1",
+>>>>>>> main
 							"protocol": "http",
 							"host": [
 								"127",
@@ -225,7 +241,11 @@
 							"port": "5000",
 							"path": [
 								"libro",
+<<<<<<< HEAD
 								"15"
+=======
+								"1"
+>>>>>>> main
 							]
 						}
 					},
@@ -246,7 +266,11 @@
 							}
 						},
 						"url": {
+<<<<<<< HEAD
 							"raw": "http://127.0.0.1:5000/libro/10",
+=======
+							"raw": "http://127.0.0.1:5000/libro/1",
+>>>>>>> main
 							"protocol": "http",
 							"host": [
 								"127",
@@ -257,7 +281,11 @@
 							"port": "5000",
 							"path": [
 								"libro",
+<<<<<<< HEAD
 								"10"
+=======
+								"1"
+>>>>>>> main
 							]
 						}
 					},
@@ -270,7 +298,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\"\n    }",
+=======
+							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 5,\n        \"isbn\": \"9788437625386\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,7 +310,11 @@
 							}
 						},
 						"url": {
+<<<<<<< HEAD
 							"raw": "http://127.0.0.1:5000/libro/15",
+=======
+							"raw": "http://127.0.0.1:5000/libro/1",
+>>>>>>> main
 							"protocol": "http",
 							"host": [
 								"127",
@@ -289,7 +325,11 @@
 							"port": "5000",
 							"path": [
 								"libro",
+<<<<<<< HEAD
 								"15"
+=======
+								"1"
+>>>>>>> main
 							]
 						}
 					},
@@ -298,15 +338,26 @@
 			]
 		},
 		{
+<<<<<<< HEAD
 			"name": "Opinion",
 			"item": [
 				{
 					"name": "valoracion/get/<id>",
+=======
+			"name": "Reseña",
+			"item": [
+				{
+					"name": "reseña/get",
+>>>>>>> main
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
+<<<<<<< HEAD
 							"raw": "http://127.0.0.1:5000/valoracion/2",
+=======
+							"raw": "http://127.0.0.1:5000/reseña",
+>>>>>>> main
 							"protocol": "http",
 							"host": [
 								"127",
@@ -316,21 +367,33 @@
 							],
 							"port": "5000",
 							"path": [
+<<<<<<< HEAD
 								"valoracion",
 								"2"
+=======
+								"reseña"
+>>>>>>> main
 							]
 						}
 					},
 					"response": []
 				},
 				{
+<<<<<<< HEAD
 					"name": "valoracion/post/<id>",
+=======
+					"name": "reseña/post",
+>>>>>>> main
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "0.5",
+=======
+							"raw": "{\n    \"valoracion\": 4,\n    \"comentario\": \"Muy bueno\",\n    \"fecha\": \"24/11/2020\"\n}",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,7 +401,11 @@
 							}
 						},
 						"url": {
+<<<<<<< HEAD
 							"raw": "http://127.0.0.1:5000/valoracion/2",
+=======
+							"raw": "http://127.0.0.1:5000/reseña",
+>>>>>>> main
 							"protocol": "http",
 							"host": [
 								"127",
@@ -348,6 +415,7 @@
 							],
 							"port": "5000",
 							"path": [
+<<<<<<< HEAD
 								"valoracion",
 								"2"
 							]
@@ -417,6 +485,9 @@
 							"path": [
 								"comentario",
 								"1"
+=======
+								"reseña"
+>>>>>>> main
 							]
 						}
 					},
@@ -456,7 +527,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{\n        \"nombre\": \"Maria\",\n        \"apellido\": \"Becerra\",\n        \"libro\": \"Cien años de soledad\"\n    }",
+=======
+							"raw": "{\n        \"fecha_inicio\": \"13/10/2024\",\n        \"fecha_fin\": \"15/10/2024\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -542,7 +617,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Gomez\",\n        \"libro\": \"Dracula\"\n    }",
+=======
+							"raw": "{\n        \"fecha_inicio\": \"20/10/2024\",\n        \"fecha_fin\": \"23/10/2024\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -705,13 +784,21 @@
 			"name": "Notificacion",
 			"item": [
 				{
+<<<<<<< HEAD
 					"name": "notificacion/post/<id>",
+=======
+					"name": "notificacion/post",
+>>>>>>> main
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{\n   \"mensaje\": \"Libro entregado\",\n   \"fecha\": \"hoy\"\n}",
+=======
+							"raw": "{\n   \"mensaje\": \"Libro entregado\",\n   \"fecha\": \"23/12/2002\"\n}",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -719,7 +806,11 @@
 							}
 						},
 						"url": {
+<<<<<<< HEAD
 							"raw": "http://127.0.0.1:5000/notificacion/1",
+=======
+							"raw": "http://127.0.0.1:5000/notificacion",
+>>>>>>> main
 							"protocol": "http",
 							"host": [
 								"127",
@@ -729,7 +820,149 @@
 							],
 							"port": "5000",
 							"path": [
+<<<<<<< HEAD
 								"notificacion",
+=======
+								"notificacion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autor",
+			"item": [
+				{
+					"name": "autores/get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/autores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autores/post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Gabriel\",\n    \"apellido\": \"Garcia Marquez\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/autores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autor/get/<id>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/autor/get/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autor",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autor/delete/<id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/autor/delete/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autor",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autor/put/<id>",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Cristina\",\n    \"apellido\": \"Bajo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/autor/put/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autor",
+								"put",
+>>>>>>> main
 								"1"
 							]
 						}
