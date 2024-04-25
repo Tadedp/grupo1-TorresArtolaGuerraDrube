@@ -1,11 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from main.models import LibroModel
-<<<<<<< HEAD
-from main.__init__ import db
-=======
 from .. import db
->>>>>>> main
 
 class Libros(Resource):
     def get(self):
