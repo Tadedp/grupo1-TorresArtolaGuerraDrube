@@ -22,7 +22,11 @@ def create_app():
 
     api.add_resource(resources.LibrosResource, "/libros")
     api.add_resource(resources.LibroResource, "/libro/<id>")
+<<<<<<< HEAD
+    api.add_resource(resources.ReseñaResource, "/reseña>")
+=======
     api.add_resource(resources.ReseñaResource, "/reseña")
+>>>>>>> main
     api.add_resource(resources.UsuariosResource, "/usuarios")
     api.add_resource(resources.UsuarioResource, "/usuario/<id>")
     api.add_resource(resources.Sign_inResource, "/sign_in")

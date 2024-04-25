@@ -39,7 +39,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
+							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122000,\n        \"rol\": \"Bibliotecario\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
+=======
 							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"dni\": 44122000,\n        \"telefono\": \"2615332269\",\n        \"rol\": \"Bibliotecario\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -184,7 +188,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
+							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 10,\n        \"isbn\": \"9788437625386\"\n    }",
+=======
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 10,\n        \"isbn\": \"9788437625386\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -270,7 +278,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
+							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 5,\n        \"isbn\": \"9788437625386\"\n    }",
+=======
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 5,\n        \"isbn\": \"9788437625386\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -329,7 +341,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
+							"raw": "{\n    \"valoracion\": 4,\n    \"comentario\": \"Muy bueno\",\n    \"fecha\": \"24/11/2020\"\n}",
+=======
 							"raw": "{\n    \"comentario\": \"Muy bueno\",\n    \"valoracion\": 4,\n    \"fecha\": \"2020-01-24\"\n}",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -387,7 +403,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
+							"raw": "{\n        \"fecha_inicio\": \"13/10/2024\",\n        \"fecha_fin\": \"15/10/2024\"\n    }",
+=======
 							"raw": "{\n        \"fecha_inicio\": \"2024-10-13\",\n        \"fecha_fin\": \"2024-10-15\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -473,7 +493,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
+							"raw": "{\n        \"fecha_inicio\": \"20/10/2024\",\n        \"fecha_fin\": \"23/10/2024\"\n    }",
+=======
 							"raw": "{\n        \"fecha_inicio\": \"2024-10-13\",\n        \"fecha_fin\": \"2024-10-20\"\n    }",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
@@ -642,7 +666,11 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
+							"raw": "{\n   \"mensaje\": \"Libro entregado\",\n   \"fecha\": \"23/12/2002\"\n}",
+=======
 							"raw": "{\n    \"fecha\": \"2002-12-23\",\n    \"mensaje\": \"Libro entregado\"\n}",
+>>>>>>> main
 							"options": {
 								"raw": {
 									"language": "json"
