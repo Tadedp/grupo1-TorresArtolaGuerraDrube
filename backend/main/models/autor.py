@@ -1,6 +1,7 @@
 from .. import db
 
 class Autor(db.Model):
+    __tablename__ = "autores"
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
@@ -9,6 +10,7 @@ class Autor(db.Model):
         return '<Autor> nombre:%r apellido:%r' % (self.nombre, self.apellido)
 
     def to_json(self):
+
         autor_json = {
             'id': self.id,
             'nombre': str(self.nombre),
