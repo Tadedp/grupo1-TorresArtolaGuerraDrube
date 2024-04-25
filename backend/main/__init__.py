@@ -2,11 +2,12 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
 import os
-import main.resources as resources
 from flask_sqlalchemy import SQLAlchemy
 
 api = Api()
 db = SQLAlchemy()
+
+import main.resources as resources
 
 def create_app():
     app = Flask(__name__)
@@ -21,7 +22,11 @@ def create_app():
 
     api.add_resource(resources.LibrosResource, "/libros")
     api.add_resource(resources.LibroResource, "/libro/<id>")
+<<<<<<< HEAD
     api.add_resource(resources.ReseñaResource, "/reseña>")
+=======
+    api.add_resource(resources.ReseñaResource, "/reseña")
+>>>>>>> main
     api.add_resource(resources.UsuariosResource, "/usuarios")
     api.add_resource(resources.UsuarioResource, "/usuario/<id>")
     api.add_resource(resources.Sign_inResource, "/sign_in")

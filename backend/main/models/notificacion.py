@@ -1,8 +1,8 @@
-from main.__init__ import db
-import json
+from .. import db
 from datetime import datetime
 
 class Notificacion(db.Model):
+    __tablename__ = "notificaciones"
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.DateTime, nullable=False)
     mensaje = db.Column(db.String(250), nullable=False)
@@ -13,7 +13,7 @@ class Notificacion(db.Model):
     def to_json(self):
         notificacion_json = {
             'id': self.id,
-            'fecha': str(self.fecha.strftime("%d-%m-%Y")),
+            'fecha': str(self.fecha.strftime('%Y-%m-%d')),
             'mensaje': str(self.mensaje)
         }
         return notificacion_json
@@ -27,7 +27,7 @@ class Notificacion(db.Model):
     @staticmethod
     def from_json(notificacion_json):
         id = notificacion_json.get('id')
-        fecha = datetime.strptime(notificacion_json.get('fecha'), "%d-%m-%Y")
+        fecha = datetime.strptime(notificacion_json.get('fecha'), '%Y-%m-%d')
         mensaje = notificacion_json.get('mensaje')
 
         return Notificacion(id=id,
