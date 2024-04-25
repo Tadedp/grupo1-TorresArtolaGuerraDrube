@@ -19,7 +19,7 @@ class Libro(db.Model):
             'titulo': str(self.titulo),
             'genero': str(self.genero),
             'editorial': str(self.editorial),
-            'estado': self.estado,
+            'estado': str(self.estado),
             'cantidad': self.cantidad,
             'isbn': str(self.isbn)
         }
