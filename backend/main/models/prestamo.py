@@ -26,11 +26,18 @@ class Prestamo(db.Model):
         return prestamo_json
 
     @staticmethod
+    def from_json_attr(prestamo_json):
+        if prestamo_json.get('fecha_inicio') != None:
+            prestamo_json['fecha_inicio'] = datetime.strptime(prestamo_json.get('fecha_inicio'), '%Y-%m-%d')
+        if prestamo_json.get('fecha_fin') != None:
+            prestamo_json['fecha_fin'] = datetime.strptime(prestamo_json.get('fecha_fin'), '%Y-%m-%d')
+        return prestamo_json
+
+    @staticmethod
     def from_json(prestamo_json):
         id = prestamo_json.get('id')
         fecha_inicio = datetime.strptime(prestamo_json.get('fecha_inicio'), '%Y-%m-%d')
         fecha_fin = datetime.strptime(prestamo_json.get('fecha_fin'), '%Y-%m-%d')
-
 
         return Prestamo(id = id,
                         fecha_inicio = fecha_inicio,
