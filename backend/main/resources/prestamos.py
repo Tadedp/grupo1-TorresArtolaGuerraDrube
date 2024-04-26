@@ -12,23 +12,21 @@ class Prestamos(Resource):
         prestamo = PrestamoModel.from_json(request.get_json())
         db.session.add(prestamo)
         db.session.commit()
-        return prestamo.to_json(), 201
-    
+        return prestamo.to_json(), 201 
             
 class Prestamo(Resource):
     def get(self,id):  #obtener listado prestamos
         prestamos = db.session.query(PrestamoModel).get_or_404(id)
         return prestamos.to_json()
     
-    
-    def put(self, id):  #editar prestamo
+    def put(self, id):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
-        data = request.get_json().items()
+        data = PrestamoModel.from_json_attr(request.get_json()).items()
         for key, value in data:
             setattr(prestamo, key, value)
         db.session.add(prestamo)
         db.session.commit()
-        return prestamo.to_json() , 201 
+        return prestamo.to_json(), 201
     
     def delete(self, id):  #borrar libro
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
