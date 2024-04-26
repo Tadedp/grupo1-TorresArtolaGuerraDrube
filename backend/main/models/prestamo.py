@@ -1,22 +1,45 @@
 from .. import db
+from . import UsuarioModel
 from datetime import datetime
+
+libros_prestamos = db.Table("libros_prestamos",
+    db.Column("id_libro",db.Integer,db.ForeignKey("libro.id"),primary_key=True),
+    db.Column("id_prestamo",db.Integer,db.ForeignKey("prestamo.id"),primary_key=True)
+    )
 
 class Prestamo(db.Model):
     __tablename__ = "prestamos"
     id = db.Column(db.Integer, primary_key=True)
     fecha_inicio = db.Column(db.DateTime, nullable=False)
     fecha_fin = db.Column(db.DateTime, nullable=False)
-    
+    id_usuario = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False)
+    usuario = db.relationship("Usuario", back_populates="prestamos",cascade="all, delete-orphan")
+    libros = db.relationship('Libro', secondary=libros_prestamos, backref=db.backref('prestamos', lazy='dynamic'))
+
     def __repr__(self):
         return '<Prestamo> id:%r' % (self.id)
 
     def to_json(self):
+        self.usuario = db.session.query(UsuarioModel).get_or_404(self.id_usuario)
         prestamo_json = {
             'id': self.id,
             'fecha_inicio': str(self.fecha_inicio.strftime('%Y-%m-%d')),
-            'fecha_fin': str(self.fecha_fin.strftime('%Y-%m-%d'))
+            'fecha_fin': str(self.fecha_fin.strftime('%Y-%m-%d')),
+            'usuario': self.usuario.to_json()
         }
         return prestamo_json
+    
+    def to_json_complete(self):
+        self.usuario = db.session.query(UsuarioModel).get_or_404(self.id_usuario)
+        libros = [libro.to_json() for libro in self.libros]
+        libro_json = {
+            'id': self.id,
+            'fecha_inicio': str(self.fecha_inicio.strftime('%Y-%m-%d')),
+            'fecha_fin': str(self.fecha_fin.strftime('%Y-%m-%d')),
+            'usuario': self.usuario.to_json(),
+            'libros': libros            
+        }
+        return libro_json
 
     def to_json_short(self):
         prestamo_json = {
@@ -37,8 +60,10 @@ class Prestamo(db.Model):
         id = prestamo_json.get('id')
         fecha_inicio = datetime.strptime(prestamo_json.get('fecha_inicio'), '%Y-%m-%d')
         fecha_fin = datetime.strptime(prestamo_json.get('fecha_fin'), '%Y-%m-%d')
-
+        id_usuario = prestamo_json.get('id_usuario')
+        
         return Prestamo(id = id,
                         fecha_inicio = fecha_inicio,
-                        fecha_fin = fecha_fin
+                        fecha_fin = fecha_fin,
+                        id_usuario = id_usuario
                     )
