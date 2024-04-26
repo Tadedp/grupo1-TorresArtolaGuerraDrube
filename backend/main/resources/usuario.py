@@ -19,16 +19,22 @@ class Usuarios(Resource):
             db.session.add(usuario)
             db.session.commit()
         except:
-            return "Formato incorrecto", 400
+            return "Formato de datos incorrecto.", 400
         return usuario.to_json(), 201
 
 class Usuario(Resource):
-    def get(self,id): 
-        usuarios = db.session.query(UsuarioModel).get_or_404(id)
+    def get(self, id): 
+        try:
+            usuarios = db.session.query(UsuarioModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         return usuarios.to_json_complete()
 
     def put(self, id):
-        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        try:
+            usuario = db.session.query(UsuarioModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         data = request.get_json().items()
         for key, value in data:
             setattr(usuario, key, value)
@@ -37,7 +43,10 @@ class Usuario(Resource):
         return usuario.to_json() , 201    
     
     def delete(self, id):
-        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        try:
+            usuario = db.session.query(UsuarioModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         db.session.delete(usuario)
         db.session.commit()
         return usuario.to_json(), 204

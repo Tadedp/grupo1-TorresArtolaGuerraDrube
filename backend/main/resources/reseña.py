@@ -14,5 +14,5 @@ class Reseña(Resource):
             db.session.add(reseña)
             db.session.commit()
         except:
-            return "Formato incorrecto", 400
+            return "Formato de datos incorrecto.", 400
         return reseña.to_json(), 201

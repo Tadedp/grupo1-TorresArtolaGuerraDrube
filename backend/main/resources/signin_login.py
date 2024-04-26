@@ -16,4 +16,4 @@ class Login(Resource):
         for usuario_id, usuario_info in USUARIOS.items():
             if usuario_info["nombre"] == usuario:
                 return {'usuario_id':usuario_id}, 200
-        return "no existe el id", 404
+        return "ID inexistente.", 404

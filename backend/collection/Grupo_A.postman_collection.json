@@ -270,7 +270,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 20,\n        \"isbn\": \"9788437625386\"\n    }",
+							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 8,\n        \"isbn\": \"9788437625386\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,7 +278,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/libro/1",
+							"raw": "http://127.0.0.1:5000/libro/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -289,7 +289,7 @@
 							"port": "5000",
 							"path": [
 								"libro",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -387,7 +387,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"fecha_inicio\": \"2024-11-13\",\n        \"fecha_fin\": \"2024-11-15\",\n        \"id_usuario\": 1,\n        \"libros\": [2]\n    }",
+							"raw": "{\n        \"fecha_inicio\": \"2024-11-13\",\n        \"fecha_fin\": \"2024-11-15\",\n        \"id_usuario\": 1,\n        \"libros\": [1, 2]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -777,7 +777,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Ernesto\",\n    \"apellido\": \"Sábato\"\n}",
+							"raw": "{\n    \"nombre\": \"Julio\",\n    \"apellido\": \"Cortázar\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

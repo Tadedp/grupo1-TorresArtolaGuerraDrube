@@ -65,6 +65,7 @@ class Libro(db.Model):
         genero = libro_json.get('genero')
         editorial = libro_json.get('editorial')
         estado = libro_json.get('estado')
+        cantidad = libro_json.get('cantidad')
         isbn = libro_json.get('isbn')
 
         return Libro(id=id,
@@ -72,5 +73,6 @@ class Libro(db.Model):
                     genero = genero,
                     editorial = editorial,
                     estado = estado,
+                    cantidad = cantidad,
                     isbn = isbn
                     )
