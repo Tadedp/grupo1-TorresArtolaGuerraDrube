@@ -69,7 +69,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/2",
+							"raw": "http://127.0.0.1:5000/usuario/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -80,7 +80,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -101,7 +101,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/1",
+							"raw": "http://127.0.0.1:5000/usuario/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -112,7 +112,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122516,\n        \"rol\": \"Bibliotecario\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
+							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122200,\n        \"rol\": \"Admin\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -184,7 +184,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 10,\n        \"isbn\": \"9788437625386\"\n    }",
+							"raw": "{   \n        \"titulo\": \"EL Jardin De Los Venenos\",\n        \"genero\": \"Novela\",\n        \"editorial\": \"SUDAMERICANA\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 8,\n        \"isbn\": \"2222222222222\",\n        \"autores\": [2]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -270,7 +270,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 5,\n        \"isbn\": \"9788437625386\"\n    }",
+							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 20,\n        \"isbn\": \"9788437625386\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -329,7 +329,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comentario\": \"Muy bueno\",\n    \"valoracion\": 4,\n    \"fecha\": \"2020-01-24\"\n}",
+							"raw": "{\n    \"comentario\": \"Muy bueno\",\n    \"valoracion\": 4,\n    \"fecha\": \"2020-01-24\",\n    \"id_usuario\": 2,\n    \"id_libro\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -387,7 +387,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"fecha_inicio\": \"2024-10-13\",\n        \"fecha_fin\": \"2024-10-15\"\n    }",
+							"raw": "{\n        \"fecha_inicio\": \"2024-11-13\",\n        \"fecha_fin\": \"2024-11-15\",\n        \"id_usuario\": 1,\n        \"libros\": [2]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -417,7 +417,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamo/2",
+							"raw": "http://127.0.0.1:5000/prestamo/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -428,7 +428,7 @@
 							"port": "5000",
 							"path": [
 								"prestamo",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -481,7 +481,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamo/2",
+							"raw": "http://127.0.0.1:5000/prestamo/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -492,7 +492,7 @@
 							"port": "5000",
 							"path": [
 								"prestamo",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -642,7 +642,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"fecha\": \"2002-12-23\",\n    \"mensaje\": \"Libro entregado\"\n}",
+							"raw": "{\n    \"fecha\": \"2002-12-23\",\n    \"mensaje\": \"Libro entregado\",\n    \"id_usuario\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -700,7 +700,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Gabriel\",\n    \"apellido\": \"Garcia Marquez\"\n}",
+							"raw": "{\n    \"nombre\": \"Cristina\",\n    \"apellido\": \"Bajo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -777,7 +777,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Cristina\",\n    \"apellido\": \"Bajo\"\n}",
+							"raw": "{\n    \"nombre\": \"Ernesto\",\n    \"apellido\": \"Sábato\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

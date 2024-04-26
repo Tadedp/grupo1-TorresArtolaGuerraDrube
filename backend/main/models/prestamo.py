@@ -2,19 +2,13 @@ from .. import db
 from . import UsuarioModel
 from datetime import datetime
 
-libros_prestamos = db.Table("libros_prestamos",
-    db.Column("id_libro",db.Integer,db.ForeignKey("libro.id"),primary_key=True),
-    db.Column("id_prestamo",db.Integer,db.ForeignKey("prestamo.id"),primary_key=True)
-    )
-
 class Prestamo(db.Model):
     __tablename__ = "prestamos"
     id = db.Column(db.Integer, primary_key=True)
     fecha_inicio = db.Column(db.DateTime, nullable=False)
     fecha_fin = db.Column(db.DateTime, nullable=False)
-    id_usuario = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False)
-    usuario = db.relationship("Usuario", back_populates="prestamos",cascade="all, delete-orphan")
-    libros = db.relationship('Libro', secondary=libros_prestamos, backref=db.backref('prestamos', lazy='dynamic'))
+    id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=False)
+    usuario = db.relationship("Usuario", back_populates="prestamos", uselist=False, single_parent=True)
 
     def __repr__(self):
         return '<Prestamo> id:%r' % (self.id)

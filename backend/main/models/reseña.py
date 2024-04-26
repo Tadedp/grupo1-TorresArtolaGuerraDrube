@@ -9,10 +9,10 @@ class Reseña(db.Model):
     comentario = db.Column(db.String(250), nullable = True)
     valoracion = db.Column(db.Integer, nullable = False)
     fecha = db.Column(db.DateTime, nullable = False)
-    id_usuario = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False)
-    id_libro = db.Column(db.Integer, db.ForeignKey("libro.id"), nullable=False)
-    usuario = db.relationship("Usuario", back_populates="reseñas",cascade="all, delete-orphan")
-    libro = db.relationship("Libro", back_populates="reseñas",cascade="all, delete-orphan")
+    id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=False)
+    id_libro = db.Column(db.Integer, db.ForeignKey("libros.id"), nullable=False)
+    usuario = db.relationship("Usuario", back_populates="reseñas", uselist=False, single_parent=True)
+    libro = db.relationship("Libro", back_populates="reseñas", uselist=False, single_parent=True)
     
     def __repr__(self):
         return '<Reseña> id:%r, valoracion:%r, comentario:%r' % (self.id, self.valoracion, self.comentario)
