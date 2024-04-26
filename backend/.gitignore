@@ -2,7 +2,11 @@
 .env
 __pycache__/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 */__pycache__/*
 =======
 */__pycache__/*
 >>>>>>> e47d859 (Resolución TP2.)
+=======
+*/__pycache__/*
+>>>>>>> main
