@@ -5,9 +5,8 @@ class Autor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
-    libro = db.relationship("Libro", back_populates="autor",cascade="all, delete-orphan")
+    libros = db.relationship("Libro", back_populates="autores",cascade="all, delete-orphan")
 
-    
     def __repr__(self):
         return '<Autor> nombre:%r apellido:%r' % (self.nombre, self.apellido)
 
@@ -18,6 +17,17 @@ class Autor(db.Model):
             'nombre': str(self.nombre),
             'apellido': str(self.apellido)
         }
+        return autor_json
+    
+    def to_json_complete(self):
+        libros = [libro.to_json() for libro in self.libros]
+        autor_json = {
+            'id': self.id,
+            'nombre': str(self.nombre),
+            'apellido': str(self.apellido),
+            'libros': libros
+        }
+
         return autor_json
 
     def to_json_short(self):

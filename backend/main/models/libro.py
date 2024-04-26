@@ -14,10 +14,9 @@ class Libro(db.Model):
     estado = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Integer)
     isbn = db.Column(db.String(100), nullable=False)
-    reseña = db.relationship("Reseña", back_populates="libro",cascade="all, delete-orphan")
-    autor = db.relationship("Autor", back_populates="libro",cascade="all, delete-orphan")
+    reseñas = db.relationship("Reseña", back_populates="libro",cascade="all, delete-orphan")
+    autores = db.relationship("Autor", secondary=libros_autores, backref=db.backref('libros', lazy='dynamic'))
 
-    
     def __repr__(self):
         return '<Libro> titulo:%r' % (self.titulo)
 
@@ -32,6 +31,24 @@ class Libro(db.Model):
             'isbn': str(self.isbn)
         }
         return libro_json
+    
+    def to_json_complete(self):
+        reseñas = [reseña.to_json() for reseña in self.reseñas]
+        autores = [autor.to_json() for autor in self.autores]   
+        libro_json = {
+            'id': self.id,
+            'titulo': str(self.titulo),
+            'genero': str(self.genero),
+            'editorial': str(self.editorial),
+            'estado': str(self.estado),
+            'cantidad': self.cantidad,
+            'isbn': str(self.isbn),
+            'reseñas':reseñas,
+            'autores': autores
+        }
+
+        return libro_json
+
 
     def to_json_short(self):
         libro_json = {
