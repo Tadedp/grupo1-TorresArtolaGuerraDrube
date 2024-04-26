@@ -15,21 +15,29 @@ class Prestamos(Resource):
         if libros_ids:
             libros = LibroModel.query.filter(LibroModel.id.in_(libros_ids)).all()
             prestamo.libros.extend(libros)
+        else:
+            return "Formato de datos incorrecto.", 400
         
         try:
             db.session.add(prestamo)
             db.session.commit()
         except:
-            return "Formato incorrecto", 400
+            return "Formato de datos incorrecto.", 400
         return prestamo.to_json(), 201 
             
 class Prestamo(Resource):
     def get(self, id):
-        prestamos = db.session.query(PrestamoModel).get_or_404(id)
+        try:
+            prestamos = db.session.query(PrestamoModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         return prestamos.to_json_complete()
     
     def put(self, id):
-        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        try:
+            prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         data = PrestamoModel.from_json_attr(request.get_json()).items()
         for key, value in data:
             setattr(prestamo, key, value)
@@ -38,7 +46,10 @@ class Prestamo(Resource):
         return prestamo.to_json(), 201
     
     def delete(self, id):
-        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        try:
+            prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         db.session.delete(prestamo)
         db.session.commit()
         return "", 204

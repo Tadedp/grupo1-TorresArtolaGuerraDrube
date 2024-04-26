@@ -10,5 +10,5 @@ class Notificacion(Resource):
             db.session.add(notificacion)
             db.session.commit()
         except:
-            return "Formato incorrecto", 400
+            return "Formato de datos incorrecto.", 400
         return notificacion.to_json(), 201
