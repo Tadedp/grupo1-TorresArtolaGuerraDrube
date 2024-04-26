@@ -5,6 +5,8 @@ class Autor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
+    libro = db.relationship("Libro", back_populates="autor",cascade="all, delete-orphan")
+
     
     def __repr__(self):
         return '<Autor> nombre:%r apellido:%r' % (self.nombre, self.apellido)

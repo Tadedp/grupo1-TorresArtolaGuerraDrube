@@ -11,6 +11,11 @@ class Usuario(db.Model):
     rol = db.Column(db.String(100),nullable = False)
     alias = db.Column(db.String,nullable = False)
     contraseña = db.Column(db.String,nullable = False)
+    reseña = db.relationship("Reseña", back_populates="usuario",cascade="all, delete-orphan")
+    prestamo = db.relationship("Prestamo", back_populates="usuario",cascade="all, delete-orphan")
+    notificacion = db.relationship("Notificacion", back_populates="usuario",cascade="all, delete-orphan")
+
+
 
     def __repr__(self):
         return '<Usuario> id:%r, nombre:%r, apellido:%r' % (self.id, self.nombre, self.apellido)

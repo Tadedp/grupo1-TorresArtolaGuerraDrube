@@ -1,5 +1,10 @@
 from .. import db
 
+libros_autores = db.Table("libros_autores",
+    db.Column("id_libro",db.Integer,db.ForeignKey("libro.id"),primary_key=True),
+    db.Column("id_autor",db.Integer,db.ForeignKey("autor.id"),primary_key=True)
+    )
+
 class Libro(db.Model):
     __tablename__ = "libros"
     id = db.Column(db.Integer, primary_key=True)
@@ -9,6 +14,9 @@ class Libro(db.Model):
     estado = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Integer)
     isbn = db.Column(db.String(100), nullable=False)
+    reseña = db.relationship("Reseña", back_populates="libro",cascade="all, delete-orphan")
+    autor = db.relationship("Autor", back_populates="libro",cascade="all, delete-orphan")
+
     
     def __repr__(self):
         return '<Libro> titulo:%r' % (self.titulo)

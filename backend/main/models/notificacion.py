@@ -6,7 +6,9 @@ class Notificacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.DateTime, nullable=False)
     mensaje = db.Column(db.String(250), nullable=False)
-    
+    id_usuario = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False)
+    usuario = db.relationship("Usuario", back_populates="notificacion",cascade="all, delete-orphan")
+
     def __repr__(self):
         return '<Notificacion> id:%r, mensaje:%r' % (self.id, self.mensaje)
 
