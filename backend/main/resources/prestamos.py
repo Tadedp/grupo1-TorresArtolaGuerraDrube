@@ -4,18 +4,18 @@ from main.models import PrestamoModel
 from .. import db
 
 class Prestamos(Resource):
-    def get(self): #obtener prestamo
+    def get(self):
         prestamos = db.session.query(PrestamoModel).all()
         return jsonify([prestamo.to_json() for prestamo in prestamos])
     
-    def post(self):  #crear un libro
+    def post(self):
         prestamo = PrestamoModel.from_json(request.get_json())
         db.session.add(prestamo)
         db.session.commit()
         return prestamo.to_json(), 201 
             
 class Prestamo(Resource):
-    def get(self,id):  #obtener listado prestamos
+    def get(self,id):
         prestamos = db.session.query(PrestamoModel).get_or_404(id)
         return prestamos.to_json()
     
@@ -28,7 +28,7 @@ class Prestamo(Resource):
         db.session.commit()
         return prestamo.to_json(), 201
     
-    def delete(self, id):  #borrar libro
+    def delete(self, id):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
         db.session.delete(prestamo)
         db.session.commit()

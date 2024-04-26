@@ -17,7 +17,6 @@ class Reseña(db.Model):
             'comentario': str(self.comentario),
             'valoracion': self.valoracion,
             'fecha': str(self.fecha.strftime('%Y-%m-%d'))
-            
         }
         return reseña_json
 

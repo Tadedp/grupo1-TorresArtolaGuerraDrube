@@ -7,7 +7,6 @@ class Prestamo(db.Model):
     fecha_inicio = db.Column(db.DateTime, nullable=False)
     fecha_fin = db.Column(db.DateTime, nullable=False)
     
-    
     def __repr__(self):
         return '<Prestamo> id:%r' % (self.id)
 

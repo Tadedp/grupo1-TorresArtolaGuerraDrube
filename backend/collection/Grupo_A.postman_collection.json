@@ -3,8 +3,8 @@
 		"_postman_id": "8220fb7f-106e-4473-af9a-284de317a1fb",
 		"name": "Grupo_A",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33999300",
-		"_collection_link": "https://grupo-a.postman.co/workspace/New-Team-Workspace~7c0e0ca0-9e44-4398-803d-14afca9ea3e9/collection/33904100-8220fb7f-106e-4473-af9a-284de317a1fb?action=share&source=collection_link&creator=33999300"
+		"_exporter_id": "33904100",
+		"_collection_link": "https://grupo-a.postman.co/workspace/New-Team-Workspace~7c0e0ca0-9e44-4398-803d-14afca9ea3e9/collection/33904100-8220fb7f-106e-4473-af9a-284de317a1fb?action=share&source=collection_link&creator=33904100"
 	},
 	"item": [
 		{
@@ -473,7 +473,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"fecha_inicio\": \"2024-10-13\",\n        \"fecha_fin\": \"2024-10-20\"\n    }",
+							"raw": "{\n        \"fecha_inicio\": \"2024-10-01\",\n        \"fecha_fin\": \"2024-10-25\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -730,7 +730,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/autor/get/1",
+							"raw": "http://127.0.0.1:5000/autor/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -741,7 +741,6 @@
 							"port": "5000",
 							"path": [
 								"autor",
-								"get",
 								"1"
 							]
 						}
@@ -754,7 +753,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/autor/delete/1",
+							"raw": "http://127.0.0.1:5000/autor/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -765,7 +764,6 @@
 							"port": "5000",
 							"path": [
 								"autor",
-								"delete",
 								"1"
 							]
 						}
@@ -787,7 +785,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/autor/put/1",
+							"raw": "http://127.0.0.1:5000/autor/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -798,7 +796,6 @@
 							"port": "5000",
 							"path": [
 								"autor",
-								"put",
 								"1"
 							]
 						}
