@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from main.models import LibroModel
+from main.models import LibroModel, AutorModel, PrestamoModel
 from .. import db
 
 class Libros(Resource):
@@ -9,15 +9,24 @@ class Libros(Resource):
         return jsonify([libro.to_json() for libro in libros])
     
     def post(self): 
+        autores_ids = request.get_json().get('autores')
         libro = LibroModel.from_json(request.get_json())
-        db.session.add(libro)
-        db.session.commit()
+        
+        if autores_ids:
+            autores = AutorModel.query.filter(AutorModel.id.in_(autores_ids)).all()
+            libro.autores.extend(autores)
+        
+        try:
+            db.session.add(libro)
+            db.session.commit()
+        except:
+            return "Formato incorrecto", 400
         return libro.to_json(), 201
 
 class Libro(Resource):
     def get(self,id): 
         libro = db.session.query(LibroModel).get_or_404(id)
-        return libro.to_json()
+        return libro.to_json_complete()
     
     def delete(self, id):
         libro = db.session.query(LibroModel).get_or_404(id)

@@ -10,14 +10,17 @@ class Autores(Resource):
     
     def post(self):
         autor = AutorModel.from_json(request.get_json())
-        db.session.add(autor)
-        db.session.commit()
+        try:
+            db.session.add(autor)
+            db.session.commit()
+        except:
+            return "Formato incorrecto", 400
         return autor.to_json(), 201
 
 class Autor(Resource):
     def get(self,id):
         autor = db.session.query(AutorModel).get_or_404(id)
-        return autor.to_json()
+        return autor.to_json_complete()
 
     def put(self,id):
         autor = db.session.query(AutorModel).get_or_404(id)

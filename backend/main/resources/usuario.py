@@ -15,14 +15,17 @@ class Usuarios(Resource):
 
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
-        db.session.add(usuario)
-        db.session.commit()
+        try:
+            db.session.add(usuario)
+            db.session.commit()
+        except:
+            return "Formato incorrecto", 400
         return usuario.to_json(), 201
 
 class Usuario(Resource):
     def get(self,id): 
         usuarios = db.session.query(UsuarioModel).get_or_404(id)
-        return usuarios.to_json()
+        return usuarios.to_json_complete()
 
     def put(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
