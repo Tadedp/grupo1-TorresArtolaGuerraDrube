@@ -3,8 +3,8 @@
 		"_postman_id": "8220fb7f-106e-4473-af9a-284de317a1fb",
 		"name": "Grupo_A",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33999300",
-		"_collection_link": "https://grupo-a.postman.co/workspace/New-Team-Workspace~7c0e0ca0-9e44-4398-803d-14afca9ea3e9/collection/33904100-8220fb7f-106e-4473-af9a-284de317a1fb?action=share&source=collection_link&creator=33999300"
+		"_exporter_id": "33904100",
+		"_collection_link": "https://grupo-a.postman.co/workspace/New-Team-Workspace~7c0e0ca0-9e44-4398-803d-14afca9ea3e9/collection/33904100-8220fb7f-106e-4473-af9a-284de317a1fb?action=share&source=collection_link&creator=33904100"
 	},
 	"item": [
 		{
@@ -77,7 +77,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/2",
+							"raw": "http://127.0.0.1:5000/usuario/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -88,7 +88,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -109,7 +109,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/1",
+							"raw": "http://127.0.0.1:5000/usuario/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -120,7 +120,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -134,9 +134,13 @@
 						"body": {
 							"mode": "raw",
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\"\n    }",
 =======
 							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122516,\n        \"rol\": \"Bibliotecario\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
+>>>>>>> main
+=======
+							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122200,\n        \"rol\": \"Admin\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -198,12 +202,16 @@
 							"mode": "raw",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "{   \n        \"titulo\": \"El jardin de los venenos\",\n        \"autor\": \"Cristina Bajo\",\n        \"genero\": \"Drama historico\"\n    }",
 =======
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 10,\n        \"isbn\": \"9788437625386\"\n    }",
 >>>>>>> main
 =======
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 10,\n        \"isbn\": \"9788437625386\"\n    }",
+>>>>>>> main
+=======
+							"raw": "{   \n        \"titulo\": \"EL Jardin De Los Venenos\",\n        \"genero\": \"Novela\",\n        \"editorial\": \"SUDAMERICANA\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 8,\n        \"isbn\": \"2222222222222\",\n        \"autores\": [2]\n    }",
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -308,12 +316,16 @@
 							"mode": "raw",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\"\n    }",
 =======
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"autor\": \"Ernesto Sabato\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 5,\n        \"isbn\": \"9788437625386\"\n    }",
 >>>>>>> main
 =======
 							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 5,\n        \"isbn\": \"9788437625386\"\n    }",
+>>>>>>> main
+=======
+							"raw": "{   \n        \"titulo\": \"El Tunel\",\n        \"genero\": \"Novela Psicologica\",\n        \"editorial\": \"Catedra\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 8,\n        \"isbn\": \"9788437625386\"\n    }",
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -323,9 +335,13 @@
 						},
 						"url": {
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "http://127.0.0.1:5000/libro/15",
 =======
 							"raw": "http://127.0.0.1:5000/libro/1",
+>>>>>>> main
+=======
+							"raw": "http://127.0.0.1:5000/libro/3",
 >>>>>>> main
 							"protocol": "http",
 							"host": [
@@ -338,9 +354,13 @@
 							"path": [
 								"libro",
 <<<<<<< HEAD
+<<<<<<< HEAD
 								"15"
 =======
 								"1"
+>>>>>>> main
+=======
+								"3"
 >>>>>>> main
 							]
 						}
@@ -403,12 +423,16 @@
 							"mode": "raw",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "0.5",
 =======
 							"raw": "{\n    \"valoracion\": 4,\n    \"comentario\": \"Muy bueno\",\n    \"fecha\": \"24/11/2020\"\n}",
 >>>>>>> main
 =======
 							"raw": "{\n    \"comentario\": \"Muy bueno\",\n    \"valoracion\": 4,\n    \"fecha\": \"2020-01-24\"\n}",
+>>>>>>> main
+=======
+							"raw": "{\n    \"comentario\": \"Muy bueno\",\n    \"valoracion\": 4,\n    \"fecha\": \"2020-01-24\",\n    \"id_usuario\": 2,\n    \"id_libro\": 2\n}",
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -545,12 +569,16 @@
 							"mode": "raw",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "{\n        \"nombre\": \"Maria\",\n        \"apellido\": \"Becerra\",\n        \"libro\": \"Cien años de soledad\"\n    }",
 =======
 							"raw": "{\n        \"fecha_inicio\": \"13/10/2024\",\n        \"fecha_fin\": \"15/10/2024\"\n    }",
 >>>>>>> main
 =======
 							"raw": "{\n        \"fecha_inicio\": \"2024-10-13\",\n        \"fecha_fin\": \"2024-10-15\"\n    }",
+>>>>>>> main
+=======
+							"raw": "{\n        \"fecha_inicio\": \"2024-11-13\",\n        \"fecha_fin\": \"2024-11-15\",\n        \"id_usuario\": 1,\n        \"libros\": [1, 2]\n    }",
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -581,7 +609,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamo/2",
+							"raw": "http://127.0.0.1:5000/prestamo/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -592,7 +620,7 @@
 							"port": "5000",
 							"path": [
 								"prestamo",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -639,12 +667,16 @@
 							"mode": "raw",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "{\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Gomez\",\n        \"libro\": \"Dracula\"\n    }",
 =======
 							"raw": "{\n        \"fecha_inicio\": \"20/10/2024\",\n        \"fecha_fin\": \"23/10/2024\"\n    }",
 >>>>>>> main
 =======
 							"raw": "{\n        \"fecha_inicio\": \"2024-10-13\",\n        \"fecha_fin\": \"2024-10-20\"\n    }",
+>>>>>>> main
+=======
+							"raw": "{\n        \"fecha_inicio\": \"2024-10-01\",\n        \"fecha_fin\": \"2024-10-25\"\n    }",
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -653,7 +685,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamo/2",
+							"raw": "http://127.0.0.1:5000/prestamo/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -664,7 +696,7 @@
 							"port": "5000",
 							"path": [
 								"prestamo",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -820,12 +852,16 @@
 							"mode": "raw",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 							"raw": "{\n   \"mensaje\": \"Libro entregado\",\n   \"fecha\": \"hoy\"\n}",
 =======
 							"raw": "{\n   \"mensaje\": \"Libro entregado\",\n   \"fecha\": \"23/12/2002\"\n}",
 >>>>>>> main
 =======
 							"raw": "{\n    \"fecha\": \"2002-12-23\",\n    \"mensaje\": \"Libro entregado\"\n}",
+>>>>>>> main
+=======
+							"raw": "{\n    \"fecha\": \"2002-12-23\",\n    \"mensaje\": \"Libro entregado\",\n    \"id_usuario\": 1\n}",
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -891,7 +927,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Gabriel\",\n    \"apellido\": \"Garcia Marquez\"\n}",
+							"raw": "{\n    \"nombre\": \"Cristina\",\n    \"apellido\": \"Bajo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -921,7 +957,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/autor/get/1",
+							"raw": "http://127.0.0.1:5000/autor/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -932,7 +968,6 @@
 							"port": "5000",
 							"path": [
 								"autor",
-								"get",
 								"1"
 							]
 						}
@@ -945,7 +980,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/autor/delete/1",
+							"raw": "http://127.0.0.1:5000/autor/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -956,7 +991,6 @@
 							"port": "5000",
 							"path": [
 								"autor",
-								"delete",
 								"1"
 							]
 						}
@@ -970,7 +1004,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Cristina\",\n    \"apellido\": \"Bajo\"\n}",
+							"raw": "{\n    \"nombre\": \"Julio\",\n    \"apellido\": \"Cortázar\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -978,7 +1012,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/autor/put/1",
+							"raw": "http://127.0.0.1:5000/autor/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -989,7 +1023,10 @@
 							"port": "5000",
 							"path": [
 								"autor",
+<<<<<<< HEAD
 								"put",
+>>>>>>> main
+=======
 >>>>>>> main
 								"1"
 							]
