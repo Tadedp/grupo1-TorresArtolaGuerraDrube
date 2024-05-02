@@ -10,6 +10,9 @@ class Reseña(Resource):
     
     def post(self):
         reseña = ReseñaModel.from_json(request.get_json())
-        db.session.add(reseña)
-        db.session.commit()
+        try:
+            db.session.add(reseña)
+            db.session.commit()
+        except:
+            return "Formato de datos incorrecto.", 400
         return reseña.to_json(), 201

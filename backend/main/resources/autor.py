@@ -10,17 +10,26 @@ class Autores(Resource):
     
     def post(self):
         autor = AutorModel.from_json(request.get_json())
-        db.session.add(autor)
-        db.session.commit()
+        try:
+            db.session.add(autor)
+            db.session.commit()
+        except:
+            return "Formato de datos incorrecto.", 400
         return autor.to_json(), 201
 
 class Autor(Resource):
     def get(self,id):
-        autor = db.session.query(AutorModel).get_or_404(id)
-        return autor.to_json()
+        try:
+            autor = db.session.query(AutorModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
+        return autor.to_json_complete()
 
     def put(self,id):
-        autor = db.session.query(AutorModel).get_or_404(id)
+        try:
+            autor = db.session.query(AutorModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         data = request.get_json().items()
         for key, value in data:
             setattr(autor, key, value)
@@ -29,7 +38,10 @@ class Autor(Resource):
         return autor.to_json() , 201
 
     def delete(self,id):
-        autor = db.session.query(AutorModel).get_or_404(id)
+        try:
+            autor = db.session.query(AutorModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
         db.session.delete(autor)
         db.session.commit()
         return autor.to_json(), 204

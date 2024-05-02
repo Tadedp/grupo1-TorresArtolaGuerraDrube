@@ -7,8 +7,8 @@ class Notificacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.DateTime, nullable=False)
     mensaje = db.Column(db.String(250), nullable=False)
-    id_usuario = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False)
-    usuario = db.relationship("Usuario", back_populates="notificaciones",cascade="all, delete-orphan")
+    id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable=False)
+    usuario = db.relationship("Usuario", back_populates="notificaciones", uselist=False, single_parent=True)
 
     def __repr__(self):
         return '<Notificacion> id:%r, mensaje:%r' % (self.id, self.mensaje)
@@ -34,8 +34,10 @@ class Notificacion(db.Model):
         id = notificacion_json.get('id')
         fecha = datetime.strptime(notificacion_json.get('fecha'), '%Y-%m-%d')
         mensaje = notificacion_json.get('mensaje')
+        id_usuario = notificacion_json.get('id_usuario')
 
         return Notificacion(id=id,
                     fecha = fecha,
-                    mensaje = mensaje
+                    mensaje = mensaje,
+                    id_usuario = id_usuario
                     )
