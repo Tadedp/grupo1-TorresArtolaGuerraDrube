@@ -2,10 +2,6 @@ from .. import db
 from . import UsuarioModel
 from datetime import datetime
 
-libros_prestamos = db.Table("libros_prestamos",
-    db.Column("id_libro",db.Integer,db.ForeignKey("libro.id"),primary_key=True),
-    db.Column("id_prestamo",db.Integer,db.ForeignKey("prestamo.id"),primary_key=True)
-    )
 
 class Prestamo(db.Model):
     __tablename__ = "prestamos"
