@@ -15,55 +15,76 @@ class Usuarios(Resource):
         per_page = 10
         usuarios = db.session.query(UsuarioModel)
         
-        if request.args.get('page'):
-            page = int(request.args.get('page'))
-        if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))
+        if list(request.args.keys()) == []:
+            page = 1
+        
+        elif request.args.get('page'):
+            try:
+                page = int(request.args.get('page'))
+            except:
+                return "URL inexistente.", 404
+                 
+        elif request.args.get('per_page'):
+            try:
+                per_page = int(request.args.get('per_page'))
+            except:
+                return "URL inexistente.", 404
             
-        if request.args.get('id'):
+        elif request.args.get('id'):
             usuarios=usuarios.filter(UsuarioModel.id.like("%"+request.args.get('id')+"%"))
                              
-        if request.args.get('rol'):
+        elif request.args.get('rol'):
             usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('rol')+"%"))
                          
-        if request.args.get('nombre'):
+        elif request.args.get('nombre'):
             usuarios=usuarios.filter(UsuarioModel.nombre.like("%"+request.args.get('nombre')+"%"))
                     
-        if request.args.get('apellido'):
+        elif request.args.get('apellido'):
             usuarios=usuarios.filter(UsuarioModel.apellido.like("%"+request.args.get('apellido')+"%"))
                     
-        if request.args.get('dni'):
+        elif request.args.get('dni'):
             usuarios=usuarios.filter(UsuarioModel.dni.like("%"+request.args.get('dni')+"%"))
                     
-        if request.args.get('mail'):
+        elif request.args.get('mail'):
             usuarios=usuarios.filter(UsuarioModel.mail.like("%"+request.args.get('mail')+"%"))
                     
-        if request.args.get('telefono'):
+        elif request.args.get('telefono'):
             usuarios=usuarios.filter(UsuarioModel.telefono.like("%"+request.args.get('telefono')+"%"))
         
-        if request.args.get('sortby_apellido'):
+        elif request.args.get('sortby_apellido'):
             if request.args.get('sortby_apellido') == "asc":
                 usuarios=usuarios.order_by(asc(UsuarioModel.apellido))
-            if request.args.get('sortby_apellido') == "desc":
+            elif request.args.get('sortby_apellido') == "desc":
                 usuarios=usuarios.order_by(desc(UsuarioModel.apellido))
-        
-        if request.args.get('sortby_nombre'):
+            else:
+                return "URL inexistente.", 404
+            
+        elif request.args.get('sortby_nombre'):
             if request.args.get('sortby_nombre') == "asc":
                 usuarios=usuarios.order_by(asc(UsuarioModel.nombre))
-            if request.args.get('sortby_nombre') == "desc":
+            elif request.args.get('sortby_nombre') == "desc":
                 usuarios=usuarios.order_by(desc(UsuarioModel.nombre))
+            else:
+                return "URL inexistente.", 404
                 
-        if request.args.get('sortby_nrPrestamos'):
+        elif request.args.get('sortby_nrPrestamos'):
             if request.args.get('sortby_nrPrestamos') == "asc":
                 usuarios=usuarios.outerjoin(UsuarioModel.prestamos).group_by(UsuarioModel.id).order_by(func.count(PrestamoModel.id).asc())
-            if request.args.get('sortby_nrPrestamos') == "desc":
+            elif request.args.get('sortby_nrPrestamos') == "desc":
                 usuarios=usuarios.outerjoin(UsuarioModel.prestamos).group_by(UsuarioModel.id).order_by(func.count(PrestamoModel.id).desc())
-        
-        if request.args.get('sortby_nrReseñas'):
+            else:
+                return "URL inexistente.", 404
+             
+        elif request.args.get('sortby_nrReseñas'):
             if request.args.get('sortby_nrReseñas') == "asc":
                 usuarios=usuarios.outerjoin(UsuarioModel.reseñas).group_by(UsuarioModel.id).order_by(func.count(ReseñaModel.id).asc())
-            if request.args.get('sortby_nrReseñas') == "desc":
+            elif request.args.get('sortby_nrReseñas') == "desc":
                 usuarios=usuarios.outerjoin(UsuarioModel.reseñas).group_by(UsuarioModel.id).order_by(func.count(ReseñaModel.id).desc())
+            else:
+                return "URL inexistente.", 404
+            
+        else:
+            return "URL inexistente.", 404
         
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=True)
     

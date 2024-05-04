@@ -10,40 +10,59 @@ class Prestamos(Resource):
         per_page = 10
         prestamos = db.session.query(PrestamoModel)
         
-        if request.args.get('page'):
-            page = int(request.args.get('page'))
-        if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))
+        if list(request.args.keys()) == []:
+            page = 1
         
-        if request.args.get('id'):
+        elif request.args.get('page'):
+            try:
+                page = int(request.args.get('page'))
+            except:
+                return "URL inexistente.", 404
+        
+        elif request.args.get('per_page'):
+            try:
+                per_page = int(request.args.get('per_page'))
+            except:
+                return "URL inexistente.", 404
+        
+        elif request.args.get('id'):
             prestamos=prestamos.filter(PrestamoModel.id.like("%"+request.args.get('id')+"%"))
                 
-        if request.args.get('fecha_inicio'):
+        elif request.args.get('fecha_inicio'):
             prestamos=prestamos.filter(PrestamoModel.fecha_inicio.like("%"+request.args.get('fecha_inicio')+"%"))
                     
-        if request.args.get('fecha_fin'):
+        elif request.args.get('fecha_fin'):
             prestamos=prestamos.filter(PrestamoModel.fecha_fin.like("%"+request.args.get('fecha_fin')+"%"))
                     
-        if request.args.get('id_usuario'):
+        elif request.args.get('id_usuario'):
             prestamos=prestamos.filter(PrestamoModel.id_usuario.like("%"+request.args.get('id_usuario')+"%"))
 
-        if request.args.get('sortby_fecha_inicio'):
+        elif request.args.get('sortby_fecha_inicio'):
             if request.args.get('sortby_fecha_inicio') == "asc":
                 prestamos=prestamos.order_by(asc(PrestamoModel.fecha_inicio))
-            if request.args.get('sortby_fecha_inicio') == "desc":
+            elif request.args.get('sortby_fecha_inicio') == "desc":
                 prestamos=prestamos.order_by(desc(PrestamoModel.fecha_inicio))
+            else:
+                return "URL inexistente.", 404
                 
-        if request.args.get('sortby_fecha_fin'):
+        elif request.args.get('sortby_fecha_fin'):
             if request.args.get('sortby_fecha_fin') == "asc":
                 prestamos=prestamos.order_by(asc(PrestamoModel.fecha_fin))
-            if request.args.get('sortby_fecha_fin') == "desc":
+            elif request.args.get('sortby_fecha_fin') == "desc":
                 prestamos=prestamos.order_by(desc(PrestamoModel.fecha_fin))
-        
-        if request.args.get('sortby_nrLibros'):
+            else:
+                return "URL inexistente.", 404
+            
+        elif request.args.get('sortby_nrLibros'):
             if request.args.get('sortby_nrLibros') == "asc":
                 prestamos=prestamos.outerjoin(PrestamoModel.libros).group_by(PrestamoModel.id).order_by(func.count(LibroModel.id).asc())
-            if request.args.get('sortby_nrLibros') == "desc":
+            elif request.args.get('sortby_nrLibros') == "desc":
                 prestamos=prestamos.outerjoin(PrestamoModel.libros).group_by(PrestamoModel.id).order_by(func.count(LibroModel.id).desc())
+            else:
+                return "URL inexistente.", 404
+        
+        else:
+            return "URL inexistente.", 404              
 
         prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
     
