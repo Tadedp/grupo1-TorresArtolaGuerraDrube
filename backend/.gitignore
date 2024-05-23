@@ -1,4 +1,5 @@
 /env
 .env
-__pycache__/*
 */__pycache__/*
+/main/resources/__pycache__/*
+/main/models/__pycache__/*

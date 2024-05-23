@@ -11,12 +11,297 @@
 			"name": "Usuario",
 			"item": [
 				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Busqueda por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?id=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por rol",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?rol=Usuario",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "rol",
+											"value": "Usuario"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por nombre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?nombre=Tadeo",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "nombre",
+											"value": "Tadeo"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por dni",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?dni=44100200",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "dni",
+											"value": "44100200"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por telefono",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?telefono=2615332269",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "telefono",
+											"value": "2615332269"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por mail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?mail=mvb.torres@gmail.com",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "mail",
+											"value": "mvb.torres@gmail.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por nombre(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?sortby_nombre=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "sortby_nombre",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por apellido(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?sortby_apellido=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "sortby_apellido",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad de prestamos(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?sortby_nrPrestamos=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "sortby_nrPrestamos",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad de reseñas(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/usuarios?sortby_nrReseñas=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "sortby_nrReseñas",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "usuarios/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuarios",
+							"raw": "http://127.0.0.1:5000/usuarios?page=1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -27,6 +312,12 @@
 							"port": "5000",
 							"path": [
 								"usuarios"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -69,7 +360,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/1",
+							"raw": "http://127.0.0.1:5000/usuario/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -80,7 +371,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -125,7 +416,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"nombre\": \"Victoria\",\n        \"apellido\": \"Torres Burgos\",\n        \"mail\": \"mvb.torres@gmail.com\",\n        \"telefono\": \"2615332269\",\n        \"dni\": 44122200,\n        \"rol\": \"Admin\",\n        \"alias\": \"vickyy\",\n        \"contraseña\": \"juanca\"\n    }",
+							"raw": "{\n    \"alias\": \"tadedp\",\n    \"apellido\": \"Drube\",\n    \"contraseña\": \"123456\",\n    \"dni\": 44122610,\n    \"id\": 1,\n    \"mail\": \"t.drube@gmail.com\",\n    \"nombre\": \"Tadeo\",\n    \"rol\": \"Usuario\",\n    \"telefono\": 2616816942\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -133,7 +424,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/2",
+							"raw": "http://127.0.0.1:5000/usuario/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -144,7 +435,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -156,12 +447,297 @@
 			"name": "Libro",
 			"item": [
 				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Busqueda por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?id=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por titulo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?titulo=El Tunel",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "titulo",
+											"value": "El Tunel"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por genero",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?genero=Novela Psicologica",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "genero",
+											"value": "Novela Psicologica"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por estado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?estado=Disponible",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "estado",
+											"value": "Disponible"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por ISBN",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?ISBN=9788437625386",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "ISBN",
+											"value": "9788437625386"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por titulo(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?sortby_titulo=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "sortby_titulo",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?sortby_cantidad=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "sortby_cantidad",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad de prestamos(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?sortby_nrPrestamos=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "sortby_nrPrestamos",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad de reseñas(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?sortby_nrReseñas=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "sortby_nrReseñas",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad de autores(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/libros?sortby_nrAutores=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"libros"
+									],
+									"query": [
+										{
+											"key": "sortby_nrAutores",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "libros/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/libros",
+							"raw": "http://127.0.0.1:5000/libros?page=1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -172,6 +748,12 @@
 							"port": "5000",
 							"path": [
 								"libros"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -184,7 +766,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \n        \"titulo\": \"EL Jardin De Los Venenos\",\n        \"genero\": \"Novela\",\n        \"editorial\": \"SUDAMERICANA\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 8,\n        \"isbn\": \"2222222222222\",\n        \"autores\": [2]\n    }",
+							"raw": "{   \n        \"titulo\": \"EL Jardin De Los Venenos\",\n        \"genero\": \"Novela\",\n        \"editorial\": \"SUDAMERICANA\",\n        \"estado\": \"Disponible\",\n        \"cantidad\": 8,\n        \"isbn\": \"2222222222222\",\n        \"autores\": [1,2]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -246,7 +828,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/libro/1",
+							"raw": "http://127.0.0.1:5000/libro/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -257,7 +839,7 @@
 							"port": "5000",
 							"path": [
 								"libro",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -278,7 +860,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/libro/3",
+							"raw": "http://127.0.0.1:5000/libro/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -289,7 +871,7 @@
 							"port": "5000",
 							"path": [
 								"libro",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -301,12 +883,213 @@
 			"name": "Reseña",
 			"item": [
 				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Busqueda por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/reseña?id=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"reseña"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por valoracion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/reseña?valoracion=4",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"reseña"
+									],
+									"query": [
+										{
+											"key": "valoracion",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por fecha",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/reseña?fecha=2020-01-24",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"reseña"
+									],
+									"query": [
+										{
+											"key": "fecha",
+											"value": "2020-01-24"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por ID de usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/reseña?id_usuario=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"reseña"
+									],
+									"query": [
+										{
+											"key": "id_usuario",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por ID de libro",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/reseña?id_libro=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"reseña"
+									],
+									"query": [
+										{
+											"key": "id_libro",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por valoración(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/reseña?sortby_valoracion=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"reseña"
+									],
+									"query": [
+										{
+											"key": "sortby_valoracion",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por fecha(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/reseña?sortby_fecha=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"reseña"
+									],
+									"query": [
+										{
+											"key": "sortby_fecha",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "reseña/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/reseña",
+							"raw": "http://127.0.0.1:5000/reseña?page=1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -317,6 +1100,12 @@
 							"port": "5000",
 							"path": [
 								"reseña"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -359,12 +1148,213 @@
 			"name": "Prestamo",
 			"item": [
 				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Busqueda por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/prestamos?id=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"prestamos"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por fecha de inicio",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/prestamos?fecha_inicio=2024-10-01",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"prestamos"
+									],
+									"query": [
+										{
+											"key": "fecha_inicio",
+											"value": "2024-10-01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por fecha de fin",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/prestamos?fecha_fin=2020-05-25",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"prestamos"
+									],
+									"query": [
+										{
+											"key": "fecha_fin",
+											"value": "2020-05-25"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por ID de usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/prestamos?id_usuario=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"prestamos"
+									],
+									"query": [
+										{
+											"key": "id_usuario",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por fecha de inicio(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/prestamos?sortby_fecha_inicio=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_fecha_inicio",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por fecha de fin(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/prestamos?sortby_fecha_fin=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_fecha_fin",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad de libros(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/prestamos?sortby_nrLibros=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_nrLibros",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "prestamos/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamos",
+							"raw": "http://127.0.0.1:5000/prestamos?page=1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -375,6 +1365,12 @@
 							"port": "5000",
 							"path": [
 								"prestamos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -387,7 +1383,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"fecha_inicio\": \"2024-11-13\",\n        \"fecha_fin\": \"2024-11-15\",\n        \"id_usuario\": 1,\n        \"libros\": [1, 2]\n    }",
+							"raw": "{\n        \"fecha_inicio\": \"2024-11-13\",\n        \"fecha_fin\": \"2024-11-15\",\n        \"id_usuario\": 2,\n        \"libros\": [1, 2]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -417,7 +1413,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamo/1",
+							"raw": "http://127.0.0.1:5000/prestamo/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -428,7 +1424,7 @@
 							"port": "5000",
 							"path": [
 								"prestamo",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -672,12 +1668,185 @@
 			"name": "Autor",
 			"item": [
 				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Busqueda por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/autores?id=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"autores"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por nombre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/autores?nombre=Gabriel",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"autores"
+									],
+									"query": [
+										{
+											"key": "nombre",
+											"value": "Gabriel"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Busqueda por apellido",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/autores?apellido=Sábato",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"autores"
+									],
+									"query": [
+										{
+											"key": "apellido",
+											"value": "Sábato"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por nombre(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/autores?sortby_nombre=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"autores"
+									],
+									"query": [
+										{
+											"key": "sortby_nombre",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por apellido(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/autores?sortby_apellido=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"autores"
+									],
+									"query": [
+										{
+											"key": "sortby_apellido",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ordenar por cantidad de libros(asc/desc)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/autores?sortby_nrLibros=asc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"autores"
+									],
+									"query": [
+										{
+											"key": "sortby_nrLibros",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "autores/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/autores",
+							"raw": "http://127.0.0.1:5000/autores?page=1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -688,6 +1857,12 @@
 							"port": "5000",
 							"path": [
 								"autores"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -730,7 +1905,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/autor/1",
+							"raw": "http://127.0.0.1:5000/autor/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -741,7 +1916,7 @@
 							"port": "5000",
 							"path": [
 								"autor",
-								"1"
+								"2"
 							]
 						}
 					},
