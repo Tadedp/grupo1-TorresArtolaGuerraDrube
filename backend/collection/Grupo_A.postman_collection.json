@@ -3,301 +3,26 @@
 		"_postman_id": "8220fb7f-106e-4473-af9a-284de317a1fb",
 		"name": "Grupo_A",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33904100",
-		"_collection_link": "https://grupo-a.postman.co/workspace/New-Team-Workspace~7c0e0ca0-9e44-4398-803d-14afca9ea3e9/collection/33904100-8220fb7f-106e-4473-af9a-284de317a1fb?action=share&source=collection_link&creator=33904100"
+		"_exporter_id": "33999300",
+		"_collection_link": "https://grupo-a.postman.co/workspace/New-Team-Workspace~7c0e0ca0-9e44-4398-803d-14afca9ea3e9/collection/33904100-8220fb7f-106e-4473-af9a-284de317a1fb?action=share&source=collection_link&creator=33999300"
 	},
 	"item": [
 		{
 			"name": "Usuario",
 			"item": [
 				{
-					"name": "Filtros",
-					"item": [
-						{
-							"name": "Busqueda por ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?id=2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por rol",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?rol=Usuario",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "rol",
-											"value": "Usuario"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por nombre",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?nombre=Tadeo",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "nombre",
-											"value": "Tadeo"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por dni",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?dni=44100200",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "dni",
-											"value": "44100200"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por telefono",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?telefono=2615332269",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "telefono",
-											"value": "2615332269"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por mail",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?mail=mvb.torres@gmail.com",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "mail",
-											"value": "mvb.torres@gmail.com"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por nombre(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?sortby_nombre=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "sortby_nombre",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por apellido(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?sortby_apellido=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "sortby_apellido",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad de prestamos(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?sortby_nrPrestamos=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "sortby_nrPrestamos",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad de reseñas(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/usuarios?sortby_nrReseñas=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"usuarios"
-									],
-									"query": [
-										{
-											"key": "sortby_nrReseñas",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "usuarios/get",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNzAzMDk4NSwianRpIjoiNzFlMGUzYTctMzdkOC00MTI1LTlmY2MtZDljMDNhMTA4ZjI4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzE3MDMwOTg1LCJjc3JmIjoiMTFhNDQxYWUtZGVkZi00OTg1LWJlYzItYWIzYWEwNjNkOGI4Iiwicm9sIjoiQmlibGlvdGVjYXJpbyIsImlkIjozLCJtYWlsIjoidmFsZWFydG9sYUBnbWFpbC5jb20ifQ.x6TC8Z9MsPOak4L7qEyczeBJIQo5pIjg9I_4m3NNC9o",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -317,6 +42,56 @@
 								{
 									"key": "page",
 									"value": "1"
+								},
+								{
+									"key": "rol",
+									"value": "Usuario",
+									"disabled": true
+								},
+								{
+									"key": "nombre",
+									"value": "Tadeo",
+									"disabled": true
+								},
+								{
+									"key": "dni",
+									"value": "44100200",
+									"disabled": true
+								},
+								{
+									"key": "telefono",
+									"value": "2615332269",
+									"disabled": true
+								},
+								{
+									"key": "mail",
+									"value": "mvb.torres@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "sortby_nombre",
+									"value": "asc",
+									"disabled": true
+								},
+								{
+									"key": "sortby_apellido",
+									"value": "asc",
+									"disabled": true
+								},
+								{
+									"key": "sortby_nrPrestamos",
+									"value": "asc",
+									"disabled": true
+								},
+								{
+									"key": "sortby_nrReseñas",
+									"value": "asc",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "5",
+									"disabled": true
 								}
 							]
 						}
@@ -326,6 +101,16 @@
 				{
 					"name": "usuarios/post",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNzAzMjU0NiwianRpIjoiZDQxMDRiMjEtZTIyMi00OGRkLTljMzgtYTVhNzdhM2NiYTc5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzE3MDMyNTQ2LCJjc3JmIjoiMzg1YjhmZTgtODA1Ny00NmE1LWE2MWEtNGY1ZDQ5Y2ZhZGFiIiwicm9sIjoiQWRtaW4iLCJpZCI6NCwibWFpbCI6InRhZGVkcEBnbWFpbC5jb20ifQ.jmPyx0nc35vuaKy6_WXm_s5mWUzKcGslv-qdHGJIwLg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -357,10 +142,20 @@
 				{
 					"name": "usuario/get/<id>",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNzAzNzU1NSwianRpIjoiZWU0OGQ1NTQtNTYyNS00ZDY2LThlNTktNjZjZmJmMjc1MDg0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzE3MDM3NTU1LCJjc3JmIjoiOTAwNzU4NDctYjE2ZC00MjVmLThhMzItNGQxYzVmZDc4NzIwIiwicm9sIjoiQmlibGlvdGVjYXJpbyIsImlkIjozLCJtYWlsIjoidmFsZWFydG9sYUBnbWFpbC5jb20ifQ.wHWTOAm2XePjDCl3BLU16rQnNPoJUQ_rKbn1bBSJlVk",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/2",
+							"raw": "http://127.0.0.1:5000/usuario/4",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -371,7 +166,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -380,6 +175,16 @@
 				{
 					"name": "usuario/delete/<id>",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNzAzMzMwMSwianRpIjoiNTBlNmRmNGEtNjU2OC00NmM3LWJlZDItNDNlYmM3NmFjMzJhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzE3MDMzMzAxLCJjc3JmIjoiYTQ3OGZjMzQtNjkwMy00YTgwLWFmZWYtMTE3MmMyYmEyMzBkIiwicm9sIjoiQmlibGlvdGVjYXJpbyIsImlkIjozLCJtYWlsIjoidmFsZWFydG9sYUBnbWFpbC5jb20ifQ.F6T_Kq74ZXTZRd-Uzp9_jJi03b4hEgI6Sc-cUiVyjWo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -392,7 +197,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/2",
+							"raw": "http://127.0.0.1:5000/usuario/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -403,7 +208,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -412,11 +217,21 @@
 				{
 					"name": "usuario/put/<id>",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNzAzNDkyNSwianRpIjoiZGVmNWRjNmUtYjA4Ni00YzJhLWE1ZmEtZTU5ZjZkZWM0NTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzE3MDM0OTI1LCJjc3JmIjoiN2I1OGJkMTktZmMwZi00NTE0LWE4YTQtNzM2YjU4YTZjODY5Iiwicm9sIjoiQmlibGlvdGVjYXJpbyIsImlkIjozLCJtYWlsIjoidmFsZWFydG9sYUBnbWFpbC5jb20ifQ.YZwUnkybdAkK0hlOLWrQus5zAcn487QnvJgXKpht3Y0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"alias\": \"tadedp\",\n    \"apellido\": \"Drube\",\n    \"contraseña\": \"123456\",\n    \"dni\": 44122610,\n    \"id\": 1,\n    \"mail\": \"t.drube@gmail.com\",\n    \"nombre\": \"Tadeo\",\n    \"rol\": \"Usuario\",\n    \"telefono\": 2616816942\n        }",
+							"raw": "{\n    \"alias\": \"tadedp\",\n    \"apellido\": \"Drube\",\n    \"dni\": 44122610,\n    \"mail\": \"tadeodp@gmail.com\",\n    \"nombre\": \"Tadeo\",\n    \"rol\": \"Usuario\",\n    \"telefono\": 2616816942\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -424,7 +239,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario/1",
+							"raw": "http://127.0.0.1:5000/usuario/5",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -435,7 +250,7 @@
 							"port": "5000",
 							"path": [
 								"usuario",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -447,297 +262,12 @@
 			"name": "Libro",
 			"item": [
 				{
-					"name": "Filtros",
-					"item": [
-						{
-							"name": "Busqueda por ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?id=1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por titulo",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?titulo=El Tunel",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "titulo",
-											"value": "El Tunel"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por genero",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?genero=Novela Psicologica",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "genero",
-											"value": "Novela Psicologica"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por estado",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?estado=Disponible",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "estado",
-											"value": "Disponible"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por ISBN",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?ISBN=9788437625386",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "ISBN",
-											"value": "9788437625386"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por titulo(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?sortby_titulo=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "sortby_titulo",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?sortby_cantidad=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "sortby_cantidad",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad de prestamos(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?sortby_nrPrestamos=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "sortby_nrPrestamos",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad de reseñas(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?sortby_nrReseñas=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "sortby_nrReseñas",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad de autores(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/libros?sortby_nrAutores=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"libros"
-									],
-									"query": [
-										{
-											"key": "sortby_nrAutores",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "libros/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/libros?page=1",
+							"raw": "http://127.0.0.1:5000/libros?page=1&id=1&titulo=El Tunel&genero=Novela Psicologica&estado=Disponible&ISBN=9788437625386&sortby_titulo=asc&sortby_cantidad=asc&sortby_nrPrestamos=asc&sortby_nrReseñas=asc&sortby_nrAutores=asc",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -753,6 +283,46 @@
 								{
 									"key": "page",
 									"value": "1"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "titulo",
+									"value": "El Tunel"
+								},
+								{
+									"key": "genero",
+									"value": "Novela Psicologica"
+								},
+								{
+									"key": "estado",
+									"value": "Disponible"
+								},
+								{
+									"key": "ISBN",
+									"value": "9788437625386"
+								},
+								{
+									"key": "sortby_titulo",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_cantidad",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_nrPrestamos",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_nrReseñas",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_nrAutores",
+									"value": "asc"
 								}
 							]
 						}
@@ -883,213 +453,12 @@
 			"name": "Reseña",
 			"item": [
 				{
-					"name": "Filtros",
-					"item": [
-						{
-							"name": "Busqueda por ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/reseña?id=2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"reseña"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por valoracion",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/reseña?valoracion=4",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"reseña"
-									],
-									"query": [
-										{
-											"key": "valoracion",
-											"value": "4"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por fecha",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/reseña?fecha=2020-01-24",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"reseña"
-									],
-									"query": [
-										{
-											"key": "fecha",
-											"value": "2020-01-24"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por ID de usuario",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/reseña?id_usuario=2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"reseña"
-									],
-									"query": [
-										{
-											"key": "id_usuario",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por ID de libro",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/reseña?id_libro=1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"reseña"
-									],
-									"query": [
-										{
-											"key": "id_libro",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por valoración(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/reseña?sortby_valoracion=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"reseña"
-									],
-									"query": [
-										{
-											"key": "sortby_valoracion",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por fecha(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/reseña?sortby_fecha=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"reseña"
-									],
-									"query": [
-										{
-											"key": "sortby_fecha",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "reseña/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/reseña?page=1",
+							"raw": "http://127.0.0.1:5000/reseña?page=1&id=2&valoracion=4&fecha=2020-01-24&id_usuario=2&id_libro=1&sortby_valoracion=asc&sortby_fecha=asc",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1105,6 +474,34 @@
 								{
 									"key": "page",
 									"value": "1"
+								},
+								{
+									"key": "id",
+									"value": "2"
+								},
+								{
+									"key": "valoracion",
+									"value": "4"
+								},
+								{
+									"key": "fecha",
+									"value": "2020-01-24"
+								},
+								{
+									"key": "id_usuario",
+									"value": "2"
+								},
+								{
+									"key": "id_libro",
+									"value": "1"
+								},
+								{
+									"key": "sortby_valoracion",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_fecha",
+									"value": "asc"
 								}
 							]
 						}
@@ -1148,213 +545,12 @@
 			"name": "Prestamo",
 			"item": [
 				{
-					"name": "Filtros",
-					"item": [
-						{
-							"name": "Busqueda por ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/prestamos?id=1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"prestamos"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por fecha de inicio",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/prestamos?fecha_inicio=2024-10-01",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"prestamos"
-									],
-									"query": [
-										{
-											"key": "fecha_inicio",
-											"value": "2024-10-01"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por fecha de fin",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/prestamos?fecha_fin=2020-05-25",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"prestamos"
-									],
-									"query": [
-										{
-											"key": "fecha_fin",
-											"value": "2020-05-25"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por ID de usuario",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/prestamos?id_usuario=2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"prestamos"
-									],
-									"query": [
-										{
-											"key": "id_usuario",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por fecha de inicio(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/prestamos?sortby_fecha_inicio=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"prestamos"
-									],
-									"query": [
-										{
-											"key": "sortby_fecha_inicio",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por fecha de fin(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/prestamos?sortby_fecha_fin=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"prestamos"
-									],
-									"query": [
-										{
-											"key": "sortby_fecha_fin",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad de libros(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/prestamos?sortby_nrLibros=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"prestamos"
-									],
-									"query": [
-										{
-											"key": "sortby_nrLibros",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "prestamos/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamos?page=1",
+							"raw": "http://127.0.0.1:5000/prestamos?page=1&id=1&fecha_inicio=2024-10-01&fecha_fin=2020-05-25&id_usuario=2&sortby_fecha_inicio=asc&sortby_fecha_fin=asc&sortby_nrLibros=asc",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1370,6 +566,34 @@
 								{
 									"key": "page",
 									"value": "1"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "fecha_inicio",
+									"value": "2024-10-01"
+								},
+								{
+									"key": "fecha_fin",
+									"value": "2020-05-25"
+								},
+								{
+									"key": "id_usuario",
+									"value": "2"
+								},
+								{
+									"key": "sortby_fecha_inicio",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_fecha_fin",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_nrLibros",
+									"value": "asc"
 								}
 							]
 						}
@@ -1497,78 +721,6 @@
 			]
 		},
 		{
-			"name": "Sign_in",
-			"item": [
-				{
-					"name": "sign_in/post",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"nombre\": \"Tadeo\",\n        \"apellido\": \"Drube Perez\",\n        \"mail\": \"t.drube@gmail.com\",\n        \"telefono\": \"2616846942\"\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/sign_in",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"sign_in"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Login",
-			"item": [
-				{
-					"name": "login/post",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Victoria\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/login",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Configuracion",
 			"item": [
 				{
@@ -1668,185 +820,12 @@
 			"name": "Autor",
 			"item": [
 				{
-					"name": "Filtros",
-					"item": [
-						{
-							"name": "Busqueda por ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/autores?id=1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"autores"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por nombre",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/autores?nombre=Gabriel",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"autores"
-									],
-									"query": [
-										{
-											"key": "nombre",
-											"value": "Gabriel"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Busqueda por apellido",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/autores?apellido=Sábato",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"autores"
-									],
-									"query": [
-										{
-											"key": "apellido",
-											"value": "Sábato"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por nombre(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/autores?sortby_nombre=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"autores"
-									],
-									"query": [
-										{
-											"key": "sortby_nombre",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por apellido(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/autores?sortby_apellido=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"autores"
-									],
-									"query": [
-										{
-											"key": "sortby_apellido",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ordenar por cantidad de libros(asc/desc)",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:5000/autores?sortby_nrLibros=asc",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "5000",
-									"path": [
-										"autores"
-									],
-									"query": [
-										{
-											"key": "sortby_nrLibros",
-											"value": "asc"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "autores/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/autores?page=1",
+							"raw": "http://127.0.0.1:5000/autores?page=1&id=1&nombre=Gabriel&apellido=Sábato&sortby_nombre=asc&sortby_apellido=asc&sortby_nrLibros=asc",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1862,6 +841,30 @@
 								{
 									"key": "page",
 									"value": "1"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "nombre",
+									"value": "Gabriel"
+								},
+								{
+									"key": "apellido",
+									"value": "Sábato"
+								},
+								{
+									"key": "sortby_nombre",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_apellido",
+									"value": "asc"
+								},
+								{
+									"key": "sortby_nrLibros",
+									"value": "asc"
 								}
 							]
 						}
@@ -1972,6 +975,75 @@
 							"path": [
 								"autor",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"tadedp@gmail.com\",\n    \"contraseña\": \"trixiteamo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nombre\": \"Tadeo\",\n        \"apellido\": \"Drube Perez\",\n        \"mail\": \"t.drubep@gmail.com\",\n        \"dni\": 44122610,\n        \"telefono\": \"2616816942\",\n        \"rol\": \"Admin\",\n        \"alias\": \"tade\",\n        \"contraseña\": \"teamotrixi\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"register"
 							]
 						}
 					},
