@@ -3,13 +3,11 @@ from flask import request, jsonify
 from .. import db
 from main.models import UsuarioModel, PrestamoModel, ReseñaModel
 from sqlalchemy import func, desc, asc
-
-USUARIOS = {
-    1:{"nombre":"Celina", "apellido":"Guerra Díaz", "mail":"cad.guerra@gmail.com", "telefono":"2615482516"},
-    2:{"nombre":"Victoria","apellido":"Torres","mail":"mvb.torres@gmail.com", "telefono":"2615332269"},
-}
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import role_required
 
 class Usuarios(Resource):
+    @role_required(roles = ["Admin"])
     def get(self):
         page = 1
         per_page = 10
@@ -93,7 +91,8 @@ class Usuarios(Resource):
                   'pages': usuarios.pages,
                   'page': page
                 })
-
+        
+    @role_required(roles = ["Admin"])
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
         try:
@@ -104,13 +103,20 @@ class Usuarios(Resource):
         return usuario.to_json(), 201
 
 class Usuario(Resource):
+    @jwt_required(optional=True)
     def get(self, id): 
         try:
-            usuarios = db.session.query(UsuarioModel).get_or_404(id)
+            usuario = db.session.query(UsuarioModel).get_or_404(id)
         except:
             return "ID inexistente.", 404
-        return usuarios.to_json_complete()
-
+        
+        if get_jwt_identity():
+            current_identity = get_jwt_identity()
+            if int(current_identity) == int(id):
+                return usuario.to_json_complete()
+        return usuario.to_json()
+        
+    @jwt_required()
     def put(self, id):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
@@ -123,6 +129,7 @@ class Usuario(Resource):
         db.session.commit()
         return usuario.to_json() , 201    
     
+    @role_required(roles = ["Admin","Bibliotecario","Usuario"])
     def delete(self, id):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
