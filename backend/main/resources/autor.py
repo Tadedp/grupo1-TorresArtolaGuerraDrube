@@ -8,67 +8,49 @@ class Autores(Resource):
     def get(self):
         page = 1
         per_page = 10
-        autores = db.session.query(AutorModel)       
-
-        if list(request.args.keys()) == []:
-            page = 1
-
-        elif request.args.get('page'):
-            try:
-                page = int(request.args.get('page'))
-            except:
-                return "URL inexistente.", 404
+        autores = db.session.query(AutorModel)
         
-        elif request.args.get('per_page'):
-            try:
-                per_page = int(request.args.get('per_page'))
-            except:
-                return "URL inexistente.", 404
-          
-        elif request.args.get('id'):
-            autores=autores.filter(AutorModel.id.like("%"+request.args.get('id')+"%"))
-                                                    
-        elif request.args.get('nombre'):
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))
+
+
+        if request.args.get('nombre'):
             autores=autores.filter(AutorModel.nombre.like("%"+request.args.get('nombre')+"%"))
-                 
-        elif request.args.get('apellido'):
+                    
+        if request.args.get('apellido'):
             autores=autores.filter(AutorModel.apellido.like("%"+request.args.get('apellido')+"%"))
-                   
-        elif request.args.get('sortby_apellido'):
+                    
+        if request.args.get('id'):
+            autores=autores.filter(AutorModel.id.like("%"+request.args.get('id')+"%"))
+                                                
+        if request.args.get('sortby_apellido'):
             if request.args.get('sortby_apellido') == "asc":
                 autores=autores.order_by(asc(AutorModel.apellido))
-            elif request.args.get('sortby_apellido') == "desc":
+            if request.args.get('sortby_apellido') == "desc":
                 autores=autores.order_by(desc(AutorModel.apellido))
-            else:
-                return "URL inexistente.", 404
-            
-        elif request.args.get('sortby_nombre'):
+        
+        if request.args.get('sortby_nombre'):
             if request.args.get('sortby_nombre') == "asc":
                 autores=autores.order_by(asc(AutorModel.nombre))
-            elif request.args.get('sortby_nombre') == "desc":
+            if request.args.get('sortby_nombre') == "desc":
                 autores=autores.order_by(desc(AutorModel.nombre))
-            else:
-                return "URL inexistente.", 404
-                  
-        elif request.args.get('sortby_nrLibros'):
-            if request.args.get('sortby_nrLibros') == "asc":
+                
+        if request.args.get('sortby_cantLibros'):
+            if request.args.get('sortby_cantLibros') == "asc":
                 autores=autores.outerjoin(AutorModel.libros).group_by(AutorModel.id).order_by(func.count(LibroModel.id).asc())
-            elif request.args.get('sortby_nrLibros') == "desc":
-                autores=autores.outerjoin(AutorModel.libros).group_by(AutorModel.id).order_by(func.count(LibroModel.id).desc())       
-            else:
-                return "URL inexistente.", 404
-            
-        else: 
-            return "URL inexistente.", 404
-         
+            if request.args.get('sortby_cantLibros') == "desc":
+                autores=autores.outerjoin(AutorModel.libros).group_by(AutorModel.id).order_by(func.count(LibroModel.id).desc())
+                
         autores = autores.paginate(page=page, per_page=per_page, error_out=True)
-
-        return jsonify({'autores': [autor.to_json() for autor in autores],
+    
+        return jsonify({'autores': [usuario.to_json() for usuario in autores],
                   'total': autores.total,
                   'pages': autores.pages,
                   'page': page
                 })
-
+  
     def post(self):
         autor = AutorModel.from_json(request.get_json())
         try:
