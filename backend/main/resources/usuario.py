@@ -92,15 +92,21 @@ class Usuarios(Resource):
                   'page': page
                 })
         
-    @role_required(roles = ["Admin"])
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
-        try:
-            db.session.add(usuario)
-            db.session.commit()
-        except:
-            return "Formato de datos incorrecto.", 400
-        return usuario.to_json(), 201
+        
+        jwt_identity = get_jwt_identity()
+        current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)
+        if current_user.rol == "Bibliotecario" and (usuario.rol == "Admin"):
+            return "Permiso denegado.", 403
+        else:
+            try:
+                db.session.add(usuario)
+                db.session.commit()
+            except:
+                return "Formato de datos incorrecto.", 400
+            return usuario.to_json(), 201
 
 class Usuario(Resource):
     @jwt_required(optional=True)
@@ -129,12 +135,18 @@ class Usuario(Resource):
         db.session.commit()
         return usuario.to_json() , 201    
     
-    @role_required(roles = ["Admin","Bibliotecario","Usuario"])
+    @role_required(roles = ["Admin","Bibliotecario"])
     def delete(self, id):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
         except:
             return "ID inexistente.", 404
-        db.session.delete(usuario)
-        db.session.commit()
-        return usuario.to_json(), 204
+
+        jwt_identity = get_jwt_identity()
+        current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)
+        if current_user.rol == "Bibliotecario" and (usuario.rol == "Admin" or usuario.rol == "Bibliotecario"):
+            return "Permiso denegado.", 403
+        else:
+            db.session.delete(usuario)
+            db.session.commit()
+            return usuario.to_json(), 204

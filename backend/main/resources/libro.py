@@ -3,8 +3,9 @@ from flask import request, jsonify
 from main.models import LibroModel, AutorModel, PrestamoModel, ReseñaModel
 from .. import db
 from sqlalchemy import func, desc, asc
+from main.auth.decorators import role_required
 
-class Libros(Resource):
+class Libros(Resource):    
     def get(self):
         page = 1
         per_page = 10
@@ -95,6 +96,7 @@ class Libros(Resource):
                   'page': page
                 })
     
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def post(self): 
         autores_ids = request.get_json().get('autores')
         libro = LibroModel.from_json(request.get_json())
@@ -120,6 +122,7 @@ class Libro(Resource):
             return "ID inexistente.", 404
         return libro.to_json_complete()
     
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def delete(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)
@@ -129,6 +132,7 @@ class Libro(Resource):
         db.session.commit()
         return libro.to_json(), 204
     
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def put(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)

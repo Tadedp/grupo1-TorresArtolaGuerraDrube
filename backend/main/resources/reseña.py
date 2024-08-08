@@ -3,8 +3,10 @@ from flask import request, jsonify
 from main.models import ReseñaModel
 from .. import db
 from sqlalchemy import func, desc, asc
+from flask_jwt_extended import jwt_required
 
 class Reseña(Resource):
+    @jwt_required()
     def get(self):   
         page = 1
         per_page = 10
@@ -67,6 +69,7 @@ class Reseña(Resource):
                   'page': page
                 })
     
+    @jwt_required()
     def post(self):
         reseña = ReseñaModel.from_json(request.get_json())
         try:
