@@ -14,5 +14,5 @@ class Configuracion(Resource):
             configuracion = CONFIGURACION[int(id)]
             data = request.get_json()
             configuracion.update(data)
-            return "La configuración se edito correctamente", 201
+            return "La configuración se editó correctamente", 201
         return "ID inexistente.", 404

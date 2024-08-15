@@ -67,7 +67,8 @@ class Usuario(db.Model):
             'id': self.id,
             'nombre': str(self.nombre),
             'apellido': str(self.apellido),
-            'alias': str(self.alias)
+            'alias': str(self.alias),
+            'mail': str(self.mail)
         }
         return usuario_json
 

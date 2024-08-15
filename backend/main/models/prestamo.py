@@ -2,7 +2,6 @@ from .. import db
 from . import UsuarioModel
 from datetime import datetime
 
-
 class Prestamo(db.Model):
     __tablename__ = "prestamos"
     id = db.Column(db.Integer, primary_key=True)

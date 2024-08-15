@@ -2,8 +2,10 @@ from flask_restful import Resource
 from flask import request
 from main.models import NotificacionModel
 from .. import db
+from main.auth.decorators import role_required
 
 class Notificacion(Resource):
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def post(self):
         notificacion = NotificacionModel.from_json(request.get_json())
         try:

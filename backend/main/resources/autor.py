@@ -3,6 +3,7 @@ from flask import request, jsonify
 from main.models import AutorModel, LibroModel
 from .. import db
 from sqlalchemy import func, desc, asc
+from main.auth.decorators import role_required
 
 class Autores(Resource):
     def get(self):
@@ -69,6 +70,7 @@ class Autores(Resource):
                   'page': page
                 })
 
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def post(self):
         autor = AutorModel.from_json(request.get_json())
         try:
@@ -86,6 +88,7 @@ class Autor(Resource):
             return "ID inexistente.", 404
         return autor.to_json_complete()
 
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def put(self,id):
         try:
             autor = db.session.query(AutorModel).get_or_404(id)
@@ -98,6 +101,7 @@ class Autor(Resource):
         db.session.commit()
         return autor.to_json() , 201
 
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def delete(self,id):
         try:
             autor = db.session.query(AutorModel).get_or_404(id)
