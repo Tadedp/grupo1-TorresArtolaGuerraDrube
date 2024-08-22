@@ -8,49 +8,58 @@ from main.auth.decorators import role_required
 from werkzeug.security import generate_password_hash
 
 class Usuarios(Resource):
-    @role_required(roles = ["Admin"])
+    @role_required(roles = ["Admin", "Bibliotecario"])
     def get(self):
         page = 1
         per_page = 10
         usuarios = db.session.query(UsuarioModel)
         
+        args = ["page", "per_page", "id", "rol", "nombre", "apellido", "dni", "mail", "telefono", "sortby_apellido", "sortby_nombre", "sortby_nrPrestamos", "sortby_nrReseñas"]
+        
+        for key in request.args.keys():
+            if key not in args:
+                return "URL inexistente.", 404 
+        
+        jwt_identity = get_jwt_identity()
+        current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)                
+        
         if list(request.args.keys()) == []:
             page = 1
         
-        elif request.args.get('page'):
+        if request.args.get('page'):
             try:
                 page = int(request.args.get('page'))
             except:
                 return "URL inexistente.", 404
-                 
-        elif request.args.get('per_page'):
+                
+        if request.args.get('per_page'):
             try:
                 per_page = int(request.args.get('per_page'))
             except:
                 return "URL inexistente.", 404
             
-        elif request.args.get('id'):
+        if request.args.get('id'):
             usuarios=usuarios.filter(UsuarioModel.id.like("%"+request.args.get('id')+"%"))
-                             
-        elif request.args.get('rol'):
+                            
+        if request.args.get('rol'):
             usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('rol')+"%"))
-                         
-        elif request.args.get('nombre'):
+                        
+        if request.args.get('nombre'):
             usuarios=usuarios.filter(UsuarioModel.nombre.like("%"+request.args.get('nombre')+"%"))
                     
-        elif request.args.get('apellido'):
+        if request.args.get('apellido'):
             usuarios=usuarios.filter(UsuarioModel.apellido.like("%"+request.args.get('apellido')+"%"))
                     
-        elif request.args.get('dni'):
+        if request.args.get('dni'):
             usuarios=usuarios.filter(UsuarioModel.dni.like("%"+request.args.get('dni')+"%"))
                     
-        elif request.args.get('mail'):
+        if request.args.get('mail'):
             usuarios=usuarios.filter(UsuarioModel.mail.like("%"+request.args.get('mail')+"%"))
                     
-        elif request.args.get('telefono'):
+        if request.args.get('telefono'):
             usuarios=usuarios.filter(UsuarioModel.telefono.like("%"+request.args.get('telefono')+"%"))
         
-        elif request.args.get('sortby_apellido'):
+        if request.args.get('sortby_apellido'):
             if request.args.get('sortby_apellido') == "asc":
                 usuarios=usuarios.order_by(asc(UsuarioModel.apellido))
             elif request.args.get('sortby_apellido') == "desc":
@@ -58,7 +67,7 @@ class Usuarios(Resource):
             else:
                 return "URL inexistente.", 404
             
-        elif request.args.get('sortby_nombre'):
+        if request.args.get('sortby_nombre'):
             if request.args.get('sortby_nombre') == "asc":
                 usuarios=usuarios.order_by(asc(UsuarioModel.nombre))
             elif request.args.get('sortby_nombre') == "desc":
@@ -66,24 +75,24 @@ class Usuarios(Resource):
             else:
                 return "URL inexistente.", 404
                 
-        elif request.args.get('sortby_nrPrestamos'):
+        if request.args.get('sortby_nrPrestamos'):
             if request.args.get('sortby_nrPrestamos') == "asc":
                 usuarios=usuarios.outerjoin(UsuarioModel.prestamos).group_by(UsuarioModel.id).order_by(func.count(PrestamoModel.id).asc())
             elif request.args.get('sortby_nrPrestamos') == "desc":
                 usuarios=usuarios.outerjoin(UsuarioModel.prestamos).group_by(UsuarioModel.id).order_by(func.count(PrestamoModel.id).desc())
             else:
                 return "URL inexistente.", 404
-             
-        elif request.args.get('sortby_nrReseñas'):
+            
+        if request.args.get('sortby_nrReseñas'):
             if request.args.get('sortby_nrReseñas') == "asc":
                 usuarios=usuarios.outerjoin(UsuarioModel.reseñas).group_by(UsuarioModel.id).order_by(func.count(ReseñaModel.id).asc())
             elif request.args.get('sortby_nrReseñas') == "desc":
                 usuarios=usuarios.outerjoin(UsuarioModel.reseñas).group_by(UsuarioModel.id).order_by(func.count(ReseñaModel.id).desc())
             else:
                 return "URL inexistente.", 404
-            
-        else:
-            return "URL inexistente.", 404
+
+        if current_user.rol == "Bibliotecario":
+            usuarios=usuarios.filter(UsuarioModel.rol.like("Usuario"))
         
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=True)
     
@@ -119,23 +128,14 @@ class Usuario(Resource):
     
         jwt_identity = get_jwt_identity()
         current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)
-        if current_user.rol == "Usuario": 
-            if usuario.rol == "Usuario": 
-                if int(jwt_identity) != int(id):
-                    return usuario.to_json_short()
-                else:
-                    return usuario.to_json_complete()
-            else:
-                return "Permiso denegado.", 403
+        
+        if current_user.rol == "Usuario" and int(jwt_identity) != int(id):
+            return "Permiso denegado.", 403    
 
-        elif current_user.rol == "Bibliotecario":
-            if usuario.rol == "Admin":
-                return "Permiso denegado.", 403
-            else:
-                return usuario.to_json_complete()
+        if current_user.rol == "Bibliotecario" and (usuario.rol == "Admin" or usuario.rol == "Bibliotecario"):
+            return "Permiso denegado.", 403
 
-        else:
-            return usuario.to_json_complete()
+        return usuario.to_json_complete()
     
     @jwt_required()
     def put(self, id):
@@ -154,7 +154,7 @@ class Usuario(Resource):
                 value = generate_password_hash(value)
             setattr(usuario, key, value)
         
-        if (current_user.rol == "Usuario" or current_user.rol == "Bibliotecario") and int(jwt_identity) != int(id):
+        if (current_user.rol == "Usuario" or current_user.rol == "Bibliotecario") and (int(jwt_identity) != int(id)):
             return "Permiso denegado.", 403
         else:
             db.session.add(usuario)

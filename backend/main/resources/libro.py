@@ -11,40 +11,46 @@ class Libros(Resource):
         per_page = 10
         libros = db.session.query(LibroModel)
         
+        args = ["page", "per_page", "id", "titulo", "genero", "editorial", "estado", "ISBN", "sortby_cantidad", "sortby_titulo", "sortby_nrPrestamos", "sortby_nrReseñas", "sortby_nrAutores"]
+        
+        for key in request.args.keys():
+            if key not in args:
+                return "URL inexistente.", 404 
+        
         if list(request.args.keys()) == []:
             page = 1
         
-        elif request.args.get('page'):
+        if request.args.get('page'):
             try:
                 page = int(request.args.get('page'))
             except:
                 return "URL inexistente.", 404
         
-        elif request.args.get('per_page'):
+        if request.args.get('per_page'):
             try:
                 per_page = int(request.args.get('per_page'))
             except:
                 return "URL inexistente.", 404
             
-        elif request.args.get('titulo'):
+        if request.args.get('titulo'):
             libros=libros.filter(LibroModel.titulo.like("%"+request.args.get('titulo')+"%"))
                          
-        elif request.args.get('genero'):
+        if request.args.get('genero'):
             libros=libros.filter(LibroModel.genero.like("%"+request.args.get('genero')+"%"))
                     
-        elif request.args.get('editorial'):
+        if request.args.get('editorial'):
             libros=libros.filter(LibroModel.editorial.like("%"+request.args.get('editorial')+"%"))
 
-        elif request.args.get('estado'):
+        if request.args.get('estado'):
             libros=libros.filter(LibroModel.estado.like("%"+request.args.get('estado')+"%"))
                     
-        elif request.args.get('ISBN'):
+        if request.args.get('ISBN'):
             libros=libros.filter(LibroModel.isbn.like("%"+request.args.get('ISBN')+"%"))
                     
-        elif request.args.get('id'):
+        if request.args.get('id'):
             libros=libros.filter(LibroModel.id.like("%"+request.args.get('id')+"%"))
                             
-        elif request.args.get('sortby_cantidad'):
+        if request.args.get('sortby_cantidad'):
             if request.args.get('sortby_cantidad') == "asc":
                 libros=libros.order_by(asc(LibroModel.cantidad))
             elif request.args.get('sortby_cantidad') == "desc":
@@ -52,8 +58,7 @@ class Libros(Resource):
             else:
                 return "URL inexistente.", 404
             
-        
-        elif request.args.get('sortby_titulo'):
+        if request.args.get('sortby_titulo'):
             if request.args.get('sortby_titulo') == "asc":
                 libros=libros.order_by(asc(LibroModel.titulo))
             elif request.args.get('sortby_titulo') == "desc":
@@ -61,7 +66,7 @@ class Libros(Resource):
             else:
                 return "URL inexistente.", 404 
                 
-        elif request.args.get('sortby_nrPrestamos'):
+        if request.args.get('sortby_nrPrestamos'):
             if request.args.get('sortby_nrPrestamos') == "asc":
                 libros=libros.outerjoin(LibroModel.prestamos).group_by(LibroModel.id).order_by(func.count(PrestamoModel.id).asc())
             elif request.args.get('sortby_nrPrestamos') == "desc":
@@ -69,7 +74,7 @@ class Libros(Resource):
             else:
                 return "URL inexistente.", 404
             
-        elif request.args.get('sortby_nrReseñas'):
+        if request.args.get('sortby_nrReseñas'):
             if request.args.get('sortby_nrReseñas') == "asc":
                 libros=libros.outerjoin(LibroModel.reseñas).group_by(LibroModel.id).order_by(func.count(ReseñaModel.id).asc())
             elif request.args.get('sortby_nrReseñas') == "desc":
@@ -77,7 +82,7 @@ class Libros(Resource):
             else:
                 return "URL inexistente.", 404
             
-        elif request.args.get('sortby_nrAutores'):
+        if request.args.get('sortby_nrAutores'):
             if request.args.get('sortby_nrAutores') == "asc":
                 libros=libros.outerjoin(LibroModel.autores).group_by(LibroModel.id).order_by(func.count(AutorModel.id).asc())
             elif request.args.get('sortby_nrAutores') == "desc":

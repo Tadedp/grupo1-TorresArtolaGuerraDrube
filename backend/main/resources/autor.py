@@ -11,31 +11,37 @@ class Autores(Resource):
         per_page = 10
         autores = db.session.query(AutorModel)       
 
+        args = ["page", "per_page", "id", "nombre", "apellido", "sortby_apellido", "sortby_nombre", "sortby_nrLibros"]
+        
+        for key in request.args.keys():
+            if key not in args:
+                return "URL inexistente.", 404 
+        
         if list(request.args.keys()) == []:
             page = 1
 
-        elif request.args.get('page'):
+        if request.args.get('page'):
             try:
                 page = int(request.args.get('page'))
             except:
                 return "URL inexistente.", 404
         
-        elif request.args.get('per_page'):
+        if request.args.get('per_page'):
             try:
                 per_page = int(request.args.get('per_page'))
             except:
                 return "URL inexistente.", 404
           
-        elif request.args.get('id'):
+        if request.args.get('id'):
             autores=autores.filter(AutorModel.id.like("%"+request.args.get('id')+"%"))
                                                     
-        elif request.args.get('nombre'):
+        if request.args.get('nombre'):
             autores=autores.filter(AutorModel.nombre.like("%"+request.args.get('nombre')+"%"))
                  
-        elif request.args.get('apellido'):
+        if request.args.get('apellido'):
             autores=autores.filter(AutorModel.apellido.like("%"+request.args.get('apellido')+"%"))
                    
-        elif request.args.get('sortby_apellido'):
+        if request.args.get('sortby_apellido'):
             if request.args.get('sortby_apellido') == "asc":
                 autores=autores.order_by(asc(AutorModel.apellido))
             elif request.args.get('sortby_apellido') == "desc":
@@ -43,7 +49,7 @@ class Autores(Resource):
             else:
                 return "URL inexistente.", 404
             
-        elif request.args.get('sortby_nombre'):
+        if request.args.get('sortby_nombre'):
             if request.args.get('sortby_nombre') == "asc":
                 autores=autores.order_by(asc(AutorModel.nombre))
             elif request.args.get('sortby_nombre') == "desc":
@@ -51,16 +57,13 @@ class Autores(Resource):
             else:
                 return "URL inexistente.", 404
                   
-        elif request.args.get('sortby_nrLibros'):
+        if request.args.get('sortby_nrLibros'):
             if request.args.get('sortby_nrLibros') == "asc":
                 autores=autores.outerjoin(AutorModel.libros).group_by(AutorModel.id).order_by(func.count(LibroModel.id).asc())
             elif request.args.get('sortby_nrLibros') == "desc":
                 autores=autores.outerjoin(AutorModel.libros).group_by(AutorModel.id).order_by(func.count(LibroModel.id).desc())       
             else:
                 return "URL inexistente.", 404
-            
-        else: 
-            return "URL inexistente.", 404
          
         autores = autores.paginate(page=page, per_page=per_page, error_out=True)
 
