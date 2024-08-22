@@ -7,12 +7,12 @@ class Configuracion(Resource):
     def get(self,id):
         if int(id) in CONFIGURACION:
             return CONFIGURACION[int(id)], 200
-        return "No existe el id", 404
+        return "ID inexistente.", 404
     
     def put(self, id): 
         if int(id) in CONFIGURACION:
             configuracion = CONFIGURACION[int(id)]
             data = request.get_json()
             configuracion.update(data)
-            return "La configuración se edito correctamente", 201
-        return "No existe el id", 404
+            return "La configuración se editó correctamente", 201
+        return "ID inexistente.", 404

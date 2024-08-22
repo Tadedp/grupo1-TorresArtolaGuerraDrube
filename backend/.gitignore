@@ -1,4 +1,9 @@
 /env
 .env
-__pycache__/*
 */__pycache__/*
+/main/resources/__pycache__/*
+/main/models/__pycache__/*
+/main/auth/__pycache__/*
+/main/mail/__pycache__/*
+migrations/__pycache__/*
+migrations/versions/__pycache__/*

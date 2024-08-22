@@ -1,13 +1,16 @@
 from flask_restful import Resource
 from flask import request
-
-NOTIFICACIONES = {
-    1: [{"mensaje": "hola", "fecha": "hoy"}, {"mensaje": "chau", "fecha": "hoy"}],
-    2: []
-}
+from main.models import NotificacionModel
+from .. import db
+from main.auth.decorators import role_required
 
 class Notificacion(Resource):
-    def post(self, id):
-        notificacion = request.get_json()
-        NOTIFICACIONES[int(id)].append(notificacion)
-        return NOTIFICACIONES[int(id)], 201
+    @role_required(roles = ["Admin", "Bibliotecario"])
+    def post(self):
+        notificacion = NotificacionModel.from_json(request.get_json())
+        try:
+            db.session.add(notificacion)
+            db.session.commit()
+        except:
+            return "Formato de datos incorrecto.", 400
+        return notificacion.to_json(), 201
