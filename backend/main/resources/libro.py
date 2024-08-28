@@ -89,10 +89,7 @@ class Libros(Resource):
                 libros=libros.outerjoin(LibroModel.autores).group_by(LibroModel.id).order_by(func.count(AutorModel.id).desc())
             else:
                 return "URL inexistente.", 404
-            
-        else:
-            return "URL inexistente.", 404
-              
+                  
         libros = libros.paginate(page=page, per_page=per_page, error_out=True)
     
         return jsonify({'libros': [libro.to_json() for libro in libros],
