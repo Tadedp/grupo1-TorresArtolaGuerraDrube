@@ -1,0 +1,97 @@
+body{
+    background-color:#F0EBD5;
+}
+
+.espacioheader{
+    background-color: #F0EBD5;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+.fuentetitulo{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color:black;
+    font-weight: bold;
+    text-align: center; 
+}
+
+.fuentetitulo2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color:black;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 40px;
+}
+
+.fuentetitulo3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color:black;
+    font-weight: normal;
+    text-align: center;
+    margin-left: 40px;
+}
+
+.fuentetitulo4{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color:grey;
+    font-weight: normal;
+    text-align: center;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+.container {
+    width: 100%;
+    margin-left: 40px;
+    padding: 10px 0;
+}
+
+.container_fecha {
+    width: 30%;
+    margin-left: 40px;
+    padding: 10px 0;
+}
+
+.reseña .form-control {
+    width: 100%;
+    min-height: 300px; /* Altura mínima del textarea */
+    padding: 10px;
+    border: 1px solid #ccc;
+    resize: vertical; /* Permite redimensionar el textarea verticalmente */
+    box-sizing: border-box; /* Para asegurar que el padding no afecte al tamaño total */
+}
+
+.textoreseña{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color:black;
+    font-weight: bold;
+    text-align: center; 
+}
+
+.star-rating {
+    display: flex;
+    direction: row;
+    margin-left: 40px;
+}
+
+.star {
+    font-size: 30px;
+    color: #ccc; /* Default star color */
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star:hover, .star.selected {
+    color: #f5b301; /* Star color when hovered or selected */
+}
+
+.star:hover ~ .star {
+    color: #ccc; /* Reset the color of the stars after the hovered one */
+}

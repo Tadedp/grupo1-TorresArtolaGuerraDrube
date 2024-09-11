@@ -1,0 +1,125 @@
+body{
+    background-color:#F0EBD5;
+}
+
+.input-group .btn-search {
+    background-color: #ffffff; 
+    border: 1px solid #dee2e6; 
+    border-left: none; 
+    color: #000000; 
+}
+
+.input-group .dropdown-btn {
+    background-color: #ffffff; 
+    border: 1px solid #dee2e6;
+    border-left: none;
+    border-right: none;
+    color: #000000; 
+    border-radius: 0; 
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+}
+
+.grid-item {
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    border: 1px solid #c9c9c9;
+    background-color: #ffffff;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: inherit;
+    text-decoration: none;
+}
+
+.grid-header {
+    background-color: #F1F3F9;
+    width: 100%;
+    position: relative;
+}
+
+.order-btn {
+    position: absolute;
+    background-color: #F1F3F9; 
+    border: none;
+    top: 10%;
+    right: 0%;
+}
+
+.toggle-button {
+    display: none;
+}
+
+.down-icon {
+    display: block;
+}
+
+.up-icon {
+    display: none;
+}
+
+.toggle-button:checked + .order-btn .down-icon {
+    display: none;
+}
+
+.toggle-button:checked + .order-btn .up-icon {
+    display: block;
+}
+
+.page {
+    display: none;
+}
+
+.page:target {
+    display: grid;
+}
+
+#page1:target, body:not(:has(:target)) #page1 {
+    display: grid;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+#pagination-page1 {
+    display: flex;
+}
+
+#pagination-page2 {
+    display: none;
+}
+
+#page2:target ~ #pagination-page1 {
+    display: none;
+}
+
+#page2:target ~ #pagination-page2 {
+    display: flex;
+}
+
+#page1:target ~ #pagination-page1 {
+    display: flex;
+}
+
+#page1:target ~ #pagination-page2 {
+    display: none;
+}
+
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: 85%;
+}
+
+.add-btn{
+    padding: 1% 2%; 
+    font-size: 150%; 
+}
