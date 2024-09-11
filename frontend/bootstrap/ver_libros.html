@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ver libros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- Bootstrap Icons -->
+    <link href="css/ver_prestamos_libros_usuarios.css" rel="stylesheet">
+</head>
+<body style="background-color:#F0EBD5;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white position-relative">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <div class="position-absolute top-50 start-50 translate-middle">
+                <a class="navbar-brand" href="#">
+                    <img src="img/readradar.png" alt="ReadRadar Logo" class="img-fluid" style="max-height: 50px;">
+                </a>
+            </div>
+            <div class="d-flex align-items-center ms-auto">
+                <a class="btn btn-light position-relative me-3" href="ver_notificacion.html">
+                    <i class="bi bi-bell" style="font-size: 1.5rem;"></i> <!-- Icono de campana -->
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container-flex">
+        <div class="row ms-1 me-1">
+            <div class="col-md-10 offset-md-1">
+                <div class="d-flex m-3">  
+                    <div class="input-group flex-grow-1">
+                        <input type="text" class="form-control" placeholder="Buscar Libros...">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        ID
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Título
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Autor
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Género
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Editorial
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Estado
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Stock
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-search btn-outline-secondary" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary ms-2" data-bs-toggle="collapse" data-bs-target="#filtros">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+                    
+                <div class="d-flex m-3">
+                    <div class="collapse flex-grow-1" id="filtros">
+                        <div class="input-group flex-grow-1">
+                            <input type="text" class="form-control" placeholder="Buscar Libros...">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            ID
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Título
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Autor
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Género
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Editorial
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Estado
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Stock
+                                        </a>
+                                    </li>
+                                </ul>
+                                </div>
+                            <button class="btn btn-search btn-outline-secondary" type="button">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-container mt-2 page" id="page1" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="grid-item grid-header">
+                        <b>ID</b>
+                        <input type="checkbox" id="toggle-button-1" class="toggle-button">
+                        <label for="toggle-button-1" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>
+                    <div class="grid-item grid-header">
+                        <b>Título</b>
+                        <input type="checkbox" id="toggle-button-2" class="toggle-button">
+                        <label for="toggle-button-2" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>
+                    <div class="grid-item grid-header">
+                        <b>Estado</b>
+                        <input type="checkbox" id="toggle-button-3" class="toggle-button">
+                        <label for="toggle-button-3" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>
+                    <div class="grid-item grid-header">
+                        <b>Stock</b>
+                        <input type="checkbox" id="toggle-button-4" class="toggle-button">
+                        <label for="toggle-button-4" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>                    
+                    <div class="grid-item">
+                        125
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Demian
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Herman Hesse
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        No Disponible
+                    </div>
+                    <div class="grid-item">
+                        0
+                    </div>
+                    <div class="grid-item">
+                        123
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Orgullo y prejuicio
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Jane Austen
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        3
+                    </div>
+                    <div class="grid-item">
+                        256
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Drácula
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Bram Stoker
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        No Disponible
+                    </div>
+                    <div class="grid-item">
+                        0
+                    </div>
+                    <div class="grid-item">
+                        598
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Cien años de Soledad
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Gabriel García Marquez
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        4
+                    </div>
+                    <div class="grid-item">
+                        857
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Harry Potter y la piedra filosofal
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            J.K. Rowling
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        No Disponible
+                    </div>
+                    <div class="grid-item">
+                        0
+                    </div>
+                    <div class="grid-item">
+                        115
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Don Quijote de la Mancha
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Gabriel García Marquez
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        2
+                    </div>
+                    <div class="grid-item">
+                        975
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Cumbres borrascosas
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Emily Bronte
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        5
+                    </div>
+                </div>
+                <div class="grid-container mt-2 page" id="page2" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="grid-item grid-header">
+                        <b>ID</b>
+                        <input type="checkbox" id="toggle-button-6" class="toggle-button">
+                        <label for="toggle-button-6" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>
+                    <div class="grid-item grid-header">
+                        <b>Título</b>
+                        <input type="checkbox" id="toggle-button-7" class="toggle-button">
+                        <label for="toggle-button-7" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>
+                    <div class="grid-item grid-header">
+                        <b>Estado</b>
+                        <input type="checkbox" id="toggle-button-8" class="toggle-button">
+                        <label for="toggle-button-8" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>
+                    <div class="grid-item grid-header">
+                        <b>Stock</b>
+                        <input type="checkbox" id="toggle-button-9" class="toggle-button">
+                        <label for="toggle-button-9" class="btn order-btn">
+                            <i class="fa-solid fa-chevron-down down-icon"></i>
+                            <i class="fa-solid fa-chevron-up up-icon"></i>
+                        </label>
+                    </div>
+                    <div class="grid-item">
+                        257
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        El código Da Vinci
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Dan Brown
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        1
+                    </div>
+                    <div class="grid-item">
+                        900
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        1984
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            George Orwell
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        No Disponible
+                    </div>
+                    <div class="grid-item">
+                        5
+                    </div>
+                    <div class="grid-item">
+                        850
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Crimen y castigo
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Flódor Dostoyevski
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        10
+                    </div>
+                    <div class="grid-item">
+                        707
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Divina comedia
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Dante Alighieri
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        No Disponible
+                    </div>
+                    <div class="grid-item">
+                        0
+                    </div>
+                    <div class="grid-item">
+                        198
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        Diario de Ana Frank
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Ana Frank
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        5
+                    </div>
+                    <div class="grid-item">
+                        206
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        La casa de los espíritus
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Isabel Allende
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        Disponible
+                    </div>
+                    <div class="grid-item">
+                        8
+                    </div>
+                    <div class="grid-item">
+                        756
+                    </div>
+                    <a class="grid-item text-start" href="ver_libro1.html">
+                        El retrato de Dorian Gray
+                        <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            Oscar Wilde
+                        </p>
+                    </a>
+                    <div class="grid-item">
+                        No Disponible
+                    </div>
+                    <div class="grid-item">
+                        0
+                    </div>
+                </div>
+                <ul class="pagination justify-content-center m-3 page" id="pagination-page1">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#page1">
+                            1
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#page2">
+                            2
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#page2" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul> 
+
+                <ul class="pagination justify-content-center m-3 page" id="pagination-page2">
+                    <li class="page-item">
+                        <a class="page-link" href="#page1" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#page1">
+                            1
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#page2">
+                            2
+                        </a>
+                    </li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#page2" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="container d-flex justify-content-center">
+                    <a class="btn add-btn" style="color: #ffffff; background-color: #893027; margin-bottom: 5rem;" href="./agregar_libro.html">
+                        <b>AGREGAR LIBRO</b>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="mt-auto bg-light py-3 fixed-bottom"> 
+        <div class="container">
+            <ul class="nav justify-content-around">
+                <li class="nav-item">
+                    <a href="home_bibliotecario_admin.html" class="nav-link text-dark">
+                        <i class="bi bi-house-door" style="font-size: 1rem;"></i> <!-- Icono de casa -->
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ver_libros.html" class="nav-link text-dark">
+                        <i class="bi bi-book" style="font-size: 1rem;"></i> <!-- Icono de libro -->
+                        <span>Libros</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ver_usuarios.html" class="nav-link text-dark">
+                        <i class="bi bi-person" style="font-size: 1rem;"></i> <!-- Icono de usuario -->
+                        <span>Usuarios</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ver_prestamos.html" class="nav-link text-dark">
+                        <i class="bi bi-journal" style="font-size: 1rem;"></i> <!-- Icono de préstamos -->
+                        <span>Préstamos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

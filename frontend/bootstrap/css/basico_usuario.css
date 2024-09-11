@@ -1,0 +1,84 @@
+body{
+    background-color:#F0EBD5;
+}
+
+.logo {
+    background-color: white;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 200px; 
+}
+
+   
+.notificacion {
+    float: right;
+    max-width: 50px; /* Ajusta el tamaño si es necesario */
+    margin-right: 20px; /* Espacio desde el borde derecho */
+    margin-top: 15px;
+}
+
+.user{
+    float: left;
+    max-width: 0px; /* Ajusta el tamaño si es necesario */
+    margin-left: 30px; /* Espacio desde el borde derecho */
+    margin-top: 20px;    
+}
+
+.center{
+    padding: 250px 0;
+    vertical-align: middle;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+}
+
+.pie{
+    background-color: #F0EBD5;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu li {
+    text-align: center;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #463743;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+}
+
+.menu li a i {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #8E544B;
+}
+
+.menu li a span {
+    color: #463743;
+}
+
+.menu li a:hover i,
+.menu li a:hover span {
+    color: #0C1A30;
+}

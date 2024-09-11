@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <title>Editar préstamo</title>
+</head>
+<body class="d-flex flex-column min-vh-100" style="background-color:#F0EBD5;">
+    <br>
+    <br>
+    <div style="margin-left: 5%;margin-bottom: 2%;">
+        <a class="btn back-btn border-0" href="./ver_prestamos.html">
+            <i class="fa-solid fa-chevron-left"></i>
+        </a>
+        <p1 class="fuentetitulo">Editar Préstamo</p1>
+        <a class="btn btn-secondary" style="background-color:#893027; margin-inline-start: 68%;" href="ver_prestamos.html" data-bs-toggle="modal" data-bs-target="#modalEditarLibro">CONFIRMAR</a>
+    </div>
+    <div class="modal fade" id="modalEditarLibro" tabindex="-1" aria-labelledby="modalEditarLibroLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #D9D9D9;">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro que deseas editar el préstamo?
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="ver_prestamos.html">Aceptar</a>
+                    <a type="button" class="btn btn-danger" href="ver_prestamos.html">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Containers -->
+
+    <div class="container-sm" style="margin-left: 5%";>
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+            <input type="" class="form-control" id="exampleFormControlInput1" placeholder="..."value="valencora">
+        </div>
+    </div>
+<br>
+    <div class="container-sm" style="margin-left: 5%";>
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Libro</label>
+            <input type="" class="form-control" id="exampleFormControlInput1" placeholder="..."value="Harry Potter y la Piedra Filosofal">
+        </div>
+    </div>
+<br>
+    <div class="container-sm" style="margin-left: 5%";>
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Fecha Inicio</label>
+            <input type="" class="form-control" id="exampleFormControlInput1" placeholder="dd-mm-aaaa"value="25-01-2018">
+        </div>
+    </div>
+<br>
+    <div class="container-sm" style="margin-left: 5%";>
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Fecha Fin</label>
+            <input type="" class="form-control" id="exampleFormControlInput1" placeholder="dd-mm-aaaa"value="01-02-2018">
+        </div>
+    </div>
+<br>
+</body>    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>

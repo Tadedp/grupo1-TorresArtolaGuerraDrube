@@ -1,0 +1,33 @@
+body{
+    background-color:#F0EBD5;
+}
+
+.top-bar{
+    padding: 1% 2%; 
+    font-size: 200%;
+    margin-right: 50%;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.back-btn{
+    font-size: 100%; 
+    margin-right: 2%; 
+}
+
+.btn:focus, .btn:active {
+    outline: none;
+    box-shadow: none; 
+}
+
+.form-label{
+    font-size: 150%;
+    margin-top: 2%;
+}
+
+.add-btn{
+    padding: 1% 2%; 
+    font-size: 150%; 
+    margin-top: 4%;
+}

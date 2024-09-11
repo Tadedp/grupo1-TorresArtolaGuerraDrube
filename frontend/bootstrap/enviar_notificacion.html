@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <title>Enviar notificación</title>
+</head>
+<body class="d-flex flex-column min-vh-100" style="background-color:#F0EBD5;">
+    <br>
+    <br>
+    <div style="margin-left: 5%;margin-bottom: 2% ;margin-top: 2%">
+        <a class="btn back-btn border-0" href="./ver_notificacion.html">
+            <i class="fa-solid fa-chevron-left"></i>
+            <p1 class="fuentetitulo">Notificación</p1>
+        </a>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#notifSend" style="background-color:#893027; margin-inline-start: 66%;">ENVIAR</button>
+        <div class="modal fade" id="notifSend" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content text-center" style="background-color: #D9D9D9;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">
+                            Notificación enviada
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        Se ha enviado con éxito la notificación.
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <a class="btn btn-danger" href="ver_notificacion.html">
+                            ACEPTAR
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mb-4" style="margin-left: 5%; max-width: 80%;">
+        <label for="userSelect" class="form-label">Usuarios</label>
+        <select class="form-control" id="userSelect">
+            <option>Todos los usuarios</option>
+            <option>Usuario 1</option>
+            <option>Usuario 2</option>
+            <!-- Agregar más opciones de usuarios aquí -->
+        </select>
+    </div>
+
+    <!-- Campo de mensaje -->
+    <div class="mb-3" style="margin-left: 5%; max-width: 80%;">
+        <label for="messageInput" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="messageInput" placeholder="Escribe el mensaje..." rows="5"></textarea>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
