@@ -1,10 +1,49 @@
 from flask_restful import Resource
-from flask import request
-from main.models import NotificacionModel
+from flask import request, jsonify
+from main.models import NotificacionModel, UsuarioModel
 from .. import db
 from main.auth.decorators import role_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
-class Notificacion(Resource):
+class Notificaciones(Resource):
+    @jwt_required()
+    def get(self):
+        page = 1
+        per_page = 10
+        notificaciones = db.session.query(NotificacionModel)
+        
+        args = ["page", "per_page"]
+        
+        for key in request.args.keys():
+            if key not in args:
+                return "URL inexistente.", 404 
+        
+        jwt_identity = get_jwt_identity()
+        notificaciones=notificaciones.filter(NotificacionModel.id_usuario.like("%"+str(jwt_identity)+"%"))
+        
+        if list(request.args.keys()) == []:
+            page = 1
+        
+        if request.args.get('page'):
+            try:
+                page = int(request.args.get('page'))
+            except:
+                return "URL inexistente.", 404
+        
+        if request.args.get('per_page'):
+            try:
+                per_page = int(request.args.get('per_page'))
+            except:
+                return "URL inexistente.", 404
+            
+        notificaciones = notificaciones.paginate(page=page, per_page=per_page, error_out=True)
+    
+        return jsonify({'notificaciones': [notificacion.to_json() for notificacion in notificaciones],
+                  'total': notificaciones.total,
+                  'pages': notificaciones.pages,
+                  'page': page
+                })
+
     @role_required(roles = ["Admin", "Bibliotecario"])
     def post(self):
         notificacion = NotificacionModel.from_json(request.get_json())
@@ -14,3 +53,36 @@ class Notificacion(Resource):
         except:
             return "Formato de datos incorrecto.", 400
         return notificacion.to_json(), 201
+        
+class Notificacion(Resource):
+    @jwt_required()
+    def get(self,id): 
+        try:
+            notificacion = db.session.query(NotificacionModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
+        
+        jwt_identity = get_jwt_identity()
+        current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)        
+        
+        if current_user.id != notificacion.id_usuario:
+            return "Permiso denegado.", 403
+        else: 
+            return notificacion.to_json()
+    
+    @jwt_required()
+    def delete(self, id):
+        try:
+            notificacion = db.session.query(NotificacionModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
+        
+        jwt_identity = get_jwt_identity()
+        current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)        
+        
+        if current_user.id != notificacion.id_usuario:
+            return "Permiso denegado.", 403
+        else: 
+            db.session.delete(notificacion)
+            db.session.commit()
+            return notificacion.to_json(), 204
