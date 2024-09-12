@@ -6,7 +6,6 @@ from sqlalchemy import func, desc, asc
 from flask_jwt_extended import jwt_required
 
 class Reseña(Resource):
-    @jwt_required()
     def get(self):   
         page = 1
         per_page = 10

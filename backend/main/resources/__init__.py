@@ -4,6 +4,7 @@ from .reseña import Reseña as ReseñaResource
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource
 from .configuracion import Configuracion as ConfiguracionResource
+from .notificacion import Notificaciones as NotificacionesResource
 from .notificacion import Notificacion as NotificacionResource
 from .prestamos import Prestamos as PrestamosResource
 from .prestamos import Prestamo as PrestamoResource
