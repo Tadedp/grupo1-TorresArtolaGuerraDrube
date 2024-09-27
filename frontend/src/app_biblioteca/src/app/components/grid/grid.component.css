@@ -1,0 +1,36 @@
+.hidden {
+    display: none;
+}
+
+.grid-container {
+    display: grid;
+    width: 100%;
+}
+
+.grid-item {
+    padding: 15px;
+    font-size: 110%;
+    text-align: center;
+    align-items: center;
+    border: 1px solid #c9c9c9;
+    background-color: #ffffff;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: inherit;
+    text-decoration: none;
+}
+
+.grid-header {
+    background-color: #F1F3F9;
+    width: 100%;
+    position: relative;
+}
+
+.order-btn {
+    position: absolute;
+    background-color: #F1F3F9; 
+    border: none;
+    top: 10%;
+    right: 0%;
+}

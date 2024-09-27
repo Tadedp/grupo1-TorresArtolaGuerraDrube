@@ -1,0 +1,11 @@
+<div class="container">
+    <p class="fs-4 fw-bold">{{ titulo }}</p>
+    <p class="fs-5">{{ subtitulo }}</p>
+</div>
+
+<div class="d-flex">
+    <div *ngFor="let ruta of rutas; let i = index">
+        <app-imagen-libro [urlImagen]="ruta" [titulo]="titulos [i]" [autor]="autores [i]"></app-imagen-libro>
+    </div>
+</div>
+

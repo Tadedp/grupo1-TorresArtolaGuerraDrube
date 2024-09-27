@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 5rem;">
+    <a>
+        <app-blue-button [texto]="'Iniciar Sesión'" [url]="'/login'"></app-blue-button>
+    </a>
+
+    <a>
+        <app-blue-button [texto]="'Crear Cuenta'" [url]="'registrarse'"></app-blue-button>
+    </a>
+
+    <a>
+        <a type="button" class="btn btn-primary"
+        style="
+        background-color:transparent;
+        font-family: Arial, Helvetica, sans-serif;
+        border-width:0.5px;
+        border-color: black;
+        margin: auto;
+        margin-top: 5px;
+        color: black;" 
+        [routerLink]="'/home'">
+        Explorar</a>
+    </a>
+</div>

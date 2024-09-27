@@ -1,0 +1,18 @@
+<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+    <div style="display:flex; justify-content:space-between;">
+        <app-back-button [texto]="'Enviar Notificacion'" [url]="'/notificaciones'"></app-back-button>
+        <app-red-button [texto]="'CONFIRMAR'" [url]="'/notificaciones'"></app-red-button>  
+    </div>
+    
+    <div style="font-size: 125%;">
+        <label for="userSelect" class="form-label">Usuarios</label>
+        <select class="form-control" id="userSelect">
+            <option>Todos los usuarios</option>
+            <option>Usuario 1</option>
+            <option>Usuario 2</option>
+        </select>
+        <br>
+        <label for="messageInput" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="messageInput" placeholder="Escribe el mensaje..." rows="5"></textarea>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.review-container{
+    background-color: #C4C5C4; 
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.review-header{
+    margin-right: 0.5rem;
+    display:flex;
+    align-items: center;
+    font-size: 2px;
+}
+
+.review-rating{
+    margin-top: 0.5rem;
+}
+
+.review-text{
+    margin-top: 0.5rem;
+}
+
+h5 {
+    margin: 0; 
+}
+
+.user-icon {
+    font-size: 2rem;
+    margin-right: 0.5rem; /* Espacio entre ícono y nombre */
+}

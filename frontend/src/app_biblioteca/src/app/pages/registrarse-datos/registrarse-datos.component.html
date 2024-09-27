@@ -1,0 +1,11 @@
+<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+    <div style="display:flex; justify-content:space-between;">
+        <app-back-button [texto]="'Crear Mi Cuenta'" [url]="'/registrarse'"></app-back-button>
+        <app-red-button [texto]="'CONFIRMAR'" [url]="'/login'"></app-red-button>
+    </div>    
+
+    <app-formulario 
+    [titulos]="['Nombre', 'Apellido', 'Alias', 'Mail', 'DNI', 'Teléfono', 'Contraseña', 'Confirmar Contraseña']" 
+    [placeholders]="['...', '...', '...', '...@gmail.com', '...', '...', '...', '...']">
+    </app-formulario>
+</div>

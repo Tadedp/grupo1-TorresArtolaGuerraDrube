@@ -1,0 +1,26 @@
+body{
+    background-color:#F0EBD5;
+}
+
+.logo {
+    background-color: white;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.btn-black {
+    background-color: black !important; /* Usar !important para forzar el color */
+    color: white;
+}
+
+
+
+.logo img{
+    max-width: 200px;
+}
+
+.center{
+    padding: 50px 0;
+
+}

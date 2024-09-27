@@ -1,0 +1,21 @@
+<div class="review-container">
+    <div class="review-header">
+        <i class="fas fa-user-circle user-icon"></i>
+        <h5 class="fs-4 fw-bold">{{ nombreUsuario }}</h5>
+    </div>
+    <div class="review-rating">
+        <!-- Mostrar estrellas llenas -->
+        <ng-container *ngFor="let _ of [].constructor(getEstrellas().llenas)">
+          <i class="fas fa-star star-icon"></i>
+        </ng-container>
+    
+        <!-- Mostrar media estrella si existe -->
+        <i *ngIf="getEstrellas().media" class="fas fa-star-half-alt star-icon"></i>
+    
+        <!-- Mostrar estrellas vacías -->
+        <ng-container *ngFor="let _ of [].constructor(getEstrellas().vacias)">
+          <i class="far fa-star star-icon"></i> <!-- "far" para estrellas vacías -->
+        </ng-container>
+      </div>
+    <p class="review-text">{{ resenia }}</p>
+</div>

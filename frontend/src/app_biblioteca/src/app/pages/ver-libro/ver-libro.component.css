@@ -1,0 +1,25 @@
+.review{
+    border-radius: 1rem; 
+    padding: 1rem;
+    margin: o.2rem;
+}
+
+.col-md-4{
+    min-height: 100px;
+    margin-top: 2rem;
+
+}
+
+.col-md-8{
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+}
+
+.boton-solicitar-libro{
+    font-size: 0.8rem;
+    margin-top: 0%;
+}
+
+.libro-image{
+    margin:0;
+}

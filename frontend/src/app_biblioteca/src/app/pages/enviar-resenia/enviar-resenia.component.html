@@ -1,0 +1,18 @@
+<div class="d-flex flex-column min-vh-100 mt-5" style="background-color:#F0EBD5;">
+    <div class="d-flex align-items-center" style="margin-left: 5%; margin-bottom: 1rem;">
+        <app-back-button [texto]="'Escribir reseña'" [url]="'ver-libro'"></app-back-button> 
+    </div>
+    <div class="container_fecha" style="margin-left: 5%; margin-bottom: 2%;">
+        <app-campo-formulario [titulo]="'Deja la reseña de este libro'" [placeholder]="'...'"></app-campo-formulario>       
+        <div class="star-rating" style="margin-top: 2%;">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+        </div>  
+    </div>
+    <div class="d-flex mt-0 m-5">
+        <app-red-button [texto]="'PUBLICAR RESEÑA'" [url]="'ver-libro'"></app-red-button>
+    </div>
+</div>

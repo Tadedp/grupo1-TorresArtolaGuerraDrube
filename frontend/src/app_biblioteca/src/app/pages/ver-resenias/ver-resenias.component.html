@@ -1,0 +1,12 @@
+
+<div class="container">
+    <div class="row align-items-start">
+        <div class="review-container" *ngFor="let nombreUsuario of nombresUsuarios; let i = index">
+            <app-resenia
+            [nombreUsuario]="nombreUsuario"
+            [resenia]="resenias[i]"
+            [valoracion]="valoraciones[i]">
+        </app-resenia>
+        </div>
+    </div>
+</div>
