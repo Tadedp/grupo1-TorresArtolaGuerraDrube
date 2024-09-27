@@ -7,7 +7,6 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PrestamosComponent } from './pages/prestamos/prestamos.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
-import { BuscarComponent } from './pages/buscar/buscar.component';
 import { VerReseniasComponent } from './pages/ver-resenias/ver-resenias.component';
 import { VerLibroComponent } from './pages/ver-libro/ver-libro.component';
 import { DatosLibroComponent } from './pages/datos-libro/datos-libro.component';
@@ -34,7 +33,6 @@ const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent},
   { path: 'prestamos', component: PrestamosComponent},
   { path: 'error-page', component: ErrorPageComponent},
-  { path: 'buscar', component: BuscarComponent},
   { path: 'ver-resenias', component: VerReseniasComponent},
   { path: 'ver-libro', component: VerLibroComponent},
   { path: 'datos-libro', component: DatosLibroComponent},

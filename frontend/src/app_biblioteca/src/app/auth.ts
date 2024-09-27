@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CurrentUser {
 
-  private currentUser: { email: string, rol: string } = {email:'hola', rol:'Usuario'};
+  private currentUser: { email: string, rol: string } = {email:'hola', rol:'Admin'};
   
   getUserrol() {
     return this.currentUser?.rol

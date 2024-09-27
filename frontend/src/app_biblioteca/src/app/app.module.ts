@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -13,7 +12,6 @@ import { LibrosComponent } from './pages/libros/libros.component';
 import { PrestamosComponent } from './pages/prestamos/prestamos.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { PrestamoComponent } from './pages/prestamo/prestamo.component';
-import { BuscarComponent } from './pages/buscar/buscar.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ImagenLibroComponent } from './components/imagen-libro/imagen-libro.component';
 import { IngresosFavoritosComponent } from './components/ingresos-favoritos/ingresos-favoritos.component';
@@ -61,7 +59,6 @@ import { EnviarNotificacionComponent } from './pages/enviar-notificacion/enviar-
     PrestamosComponent,
     ErrorPageComponent,
     PrestamoComponent,
-    BuscarComponent,
     ImagenLibroComponent,
     IngresosFavoritosComponent,
     VerReseniasComponent,
