@@ -1,0 +1,28 @@
+<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+    <div style="display:flex; justify-content:space-between;">
+        <ng-container *ngIf="tipoUrl === 'agregar'">
+            <app-back-button [texto]="'Agregar Libro'" [url]="'/libros'"></app-back-button>
+            <app-red-button [texto]="'CONFIRMAR'" [url]="'/libros'"></app-red-button>  
+        </ng-container>     
+        
+        <ng-container *ngIf="tipoUrl === 'editar'">
+            <app-back-button [texto]="'Editar Libro'" [url]="'/ver-libro'"></app-back-button>
+            <app-red-button [texto]="'CONFIRMAR'" [url]="'/ver-libro'"></app-red-button>
+        </ng-container> 
+    </div>    
+    
+    <ng-container *ngIf="tipoUrl === 'agregar'">
+        <app-formulario 
+        [titulos]="['Título', 'Género', 'Editorial', 'ISBN', 'Stock', 'Estado']" 
+        [placeholders]="['...', '...', '...', 'xxx-xxx-xxxx-xx-x', '...', 'Disponible/No Disponible']">
+        </app-formulario>
+    </ng-container>
+
+    <ng-container *ngIf="tipoUrl === 'editar'">
+        <app-formulario 
+        [titulos]="['Título', 'Género', 'Editorial', 'ISBN', 'Stock', 'Estado']"
+        [placeholders]="['...', '...', '...', 'xxx-xxx-xxxx-xx-x', '...', 'Disponible/No Disponible']"
+        [values]="['Demian', 'Psicológico', 'Alianza', '978-842-0633-39-8', '0', 'No Disponible']">
+        </app-formulario>
+    </ng-container>
+</div>

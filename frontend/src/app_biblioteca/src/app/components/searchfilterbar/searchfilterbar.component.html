@@ -1,0 +1,26 @@
+<div *ngFor="let bar of bars" class="search-filter-bar d-flex m-3">
+    <div class="input-group flex-grow-1">
+        <input type="text" class="form-control" [placeholder]="'Buscar...'">
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li *ngFor="let item of dropdownItems">
+                    <button class="dropdown-item">
+                        {{ item }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-search btn-outline-secondary" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+    <button *ngIf="bar === 1 && bars.length < maxBars" class="btn btn-primary btn-add-bar ms-2" (click)="addBar()">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+    <button *ngIf="bars.length > 1 && bar != 1" class="btn btn-danger btn-remove-bar ms-2" (click)="removeBar(bar)">
+        <i class="fa-solid fa-minus"></i>
+    </button>
+</div>

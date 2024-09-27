@@ -1,0 +1,36 @@
+<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+    <div style="display:flex; justify-content:space-between;">
+        <ng-container *ngIf="tipoUrl === 'agregar'">
+            <app-back-button [texto]="'Agregar Usuario'" [url]="'/usuarios'"></app-back-button>
+            <app-red-button [texto]="'CONFIRMAR'" [url]="'/usuarios'"></app-red-button>  
+        </ng-container>     
+        
+        <ng-container *ngIf="tipoUrl === 'editar'">
+            <app-back-button [texto]="'Editar Usuario'" [url]="'/usuario'"></app-back-button>
+            <app-red-button [texto]="'CONFIRMAR'" [url]="'/usuario'"></app-red-button>
+        </ng-container> 
+    </div>    
+    
+    <ng-container *ngIf="tipoUrl === 'agregar'">
+        <app-formulario 
+        [titulos]="['Nombre', 'Apellido', 'Alias', 'Mail', 'DNI', 'Teléfono']" 
+        [placeholders]="['...', '...', '...', 'name@example.com', '...', '...']">
+        </app-formulario>
+    </ng-container>
+
+    <ng-container *ngIf="tipoUrl === 'editar'">
+        <app-formulario 
+        [titulos]="['Nombre', 'Apellido', 'Alias', 'Mail', 'DNI', 'Teléfono']"
+        [placeholders]="['...', '...', '...', 'name@example.com', '...', '...']"
+        [values]="['Juan', 'Torres', 'juancito123', 'juancitorres@gmail.com', '45021528', '5492615578239']">
+        </app-formulario>
+    </ng-container>
+
+    <div style="font-size: 125%;">
+        <label for="exampleFormControlInput" class="form-label"> Rol </label>
+        <div class="input-group">
+            <input type="" class="form-control" id="exampleFormControlInput" placeholder="Usuario/Bibliotecario/Admin" value="Usuario" readonly>
+            <button type="button" class="btn btn-link text-decoration-none" style="color: #ffffff; background-color: #893027">cambiar</button>
+        </div>
+    </div>
+</div>

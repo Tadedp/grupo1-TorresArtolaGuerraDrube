@@ -1,0 +1,92 @@
+body{
+    background-color:#F0EBD5;
+}
+
+.logo {
+    background-color: white;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 200px; 
+}
+
+.center{
+    padding: 50px 0;
+    vertical-align: middle;
+    align-self: center;
+    align-content: center;
+}
+
+.inicio{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color:black;
+    font-weight: bold;
+    text-align: center; 
+}
+
+.bienvenido{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color:grey;
+    text-align: center;
+}
+
+.container{
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.email{
+    text-align: left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.contraseña{
+    padding: 15px 0;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.tienecuenta{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding: 20px;
+    text-align: center;
+    color: grey;
+}
+
+.tienecuenta a {
+    color: #6A87B5;
+    text-decoration: none;
+}
+
+.tienecuenta a:hover {
+    text-decoration: underline;
+}
+
+.notienecuenta{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding: 20px;
+    text-align: center;
+    color: grey;
+}
+
+.notienecuenta a {
+    color: #6A87B5;
+    text-decoration: none;
+}
+
+.notienecuenta a:hover {
+    text-decoration: underline;
+}
+

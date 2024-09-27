@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<div class="container" (click)="navigateToLibro()">
+    <div class="row">
+        <app-ingresos-favoritos 
+        [titulo]="'Nuevos Ingresos'" 
+        [subtitulo]="'Libros recién llegados'"
+        [rutas]="['orgulloyprejuicio.png','demian.png','1984.jpeg','cienanosdesoledad.png','harrypotter.jpg']"
+        [titulos]="['Orgullo y Prejuicio','Demian','1984','Cien Años de Soledad','Harry Potter y la piedra filosofal']"
+        [autores]="['Jane Austen','Herman Hesse','George Orwell','Gabriel Garcia Marquez','J.K. Rowling']"></app-ingresos-favoritos>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" *ngIf="!isUserNoReg()">
+        <app-ingresos-favoritos 
+        [titulo]="'Tus Favoritos'" 
+        [subtitulo]="'Los libros que mas te gustaron'"
+        [rutas]="['amantejapones.jpg','doriangrey.jpeg','elvisitante.jpg','grangatsby.jpeg','lacasadelosesp.jpeg']"
+        [titulos]="['El Amante Japonés','El Retrato de Dorian Gray','El Visitante','El Gran Gatsby','La Casa de los Espiritus']"
+        [autores]="['Isabel Allende','Oscar Wilde','Stephen King','F. Scott Fitzgerald','Isabel Allende']"></app-ingresos-favoritos>
+    </div>
+</div>
+
+
+<app-footer></app-footer>
+
+

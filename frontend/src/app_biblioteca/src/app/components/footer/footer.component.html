@@ -1,0 +1,40 @@
+<footer class="mt-auto bg-light py-3 fixed-bottom footer d-flex justify-content-between align-items-center">
+    
+    <div class="footer-item" (click)="navigateToHome()">
+        <i class="bi bi-house-door" style="font-size: 1rem;"></i> 
+        <span>Inicio</span>
+    </div>
+   
+    <div class="footer-item" *ngIf="isAdmin()" (click)="navigateToLibros()">
+        <i class="bi bi-book" style="font-size: 1rem;"></i> 
+        <span>Libros</span>
+    </div>
+
+    <div class="footer-item" *ngIf="isAdmin()" (click)="navigateToUsuarios()">
+        <i class="bi bi-person" style="font-size: 1rem;"></i> 
+        <span>Usuarios</span>
+    </div>
+
+    <div class="footer-item" *ngIf="isAdmin()" (click)="navigateToPrestamos()">
+        <i class="bi bi-journal" style="font-size: 1rem;"></i> 
+        <span>Prestamos</span>
+    </div>
+
+    <div class="footer-item" *ngIf="isUser()" (click)="navigateToMisPrestamos()">
+        <i class="bi bi-journal" style="font-size: 1rem;"></i> 
+        <span>Prestamos</span>
+    </div>
+
+    <div class="footer-item" *ngIf="isUser()" (click)="navigateToBuscar()">
+        <i class="bi bi-search" style="font-size: 1rem;"></i> 
+        <span>Buscar</span>
+    </div>
+    
+    <div class="footer-item" *ngIf="isUserNoReg()" (click)="navigateToBuscar()">
+        <i class="bi bi-search" style="font-size: 1rem;"></i> 
+        <span>Buscar</span>
+    </div>
+</footer>
+
+
+  

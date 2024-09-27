@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col-md-4 d-flex align-items-start">
+            <div class="libro-image">
+                <app-imagen-libro 
+                [urlImagen]="'orgulloyprejuicio.png'"
+                [titulo]="'Orgullo y prejuicio'"
+                [autor]="'Jane Austen'"
+                ></app-imagen-libro>
+                <div *ngIf="isUser()" class="boton-solicitar-libro">
+                    <app-red-button
+                    [texto]="'SOLICITAR LIBRO'"
+                    [url]="'solicitar-prestamo'"></app-red-button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" >
+            <div class="text-container">
+                <p class="fs-4 fw-bold" style="color: #0D0842;margin-top: 2rem;">Sinopsis</p>
+                <p>El matrimonio Bennet tiene cinco hijas casaderas de entre 15 y 23 años. Conseguir colocarlas con un buen casamiento es la única esperanza que puede albelgar la madre, sabedora de que sus hijas perderán su escasa fortuna cuando fallezcan sus padres. La llegada de un joven y rico hacendado, Charles Bingley; revoluciona la pequeña sociedad de pretendientes. Viene acompañado de Fitzwilliam Darcy que se gana pronto fama de distante y antipático. La presencia de los dos jóvenes será el desencadenante de un torrente de pasiones que alcanzará también a Elizabeth Bennet, centro de toda la historia.</p>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+                <p class="fs-4 fw-bold" style="color: #0D0842; margin-right: 1rem;margin-top: 2rem;">Reseñas</p>
+                <a class="d-flex" style="color: inherit;text-decoration: none;" *ngIf="isAdmin()" (click)="navigateToDatosLibro()">
+                    <p class="fs-5 fw-bold" style="color: #0D0842; margin-right: 1rem;" >Más Información</p>
+                    <i class="bi bi-chevron-right" style="color: #0D0842;"></i>
+                </a>
+                <a class="d-flex" style="color: inherit;text-decoration: none;" *ngIf="isUser()" (click)="navigateToEnviarResenia()"> 
+                    <p class="fs-5 fw-bold" style="color: #0D0842; margin-right: 1rem;" >Enviar Reseña</p>
+                    <i class="bi bi-chevron-right" style="color: #0D0842;"></i>
+                </a>
+            </div>
+            <div *ngFor="let nombreUsuario of nombresUsuarios; let i = index" class="review">
+                <app-resenia
+                [nombreUsuario]="nombreUsuario"
+                [resenia]="resenias[i]"
+                [valoracion]="valoraciones[i]">
+            </app-resenia>
+
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+

@@ -1,0 +1,28 @@
+<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+    <div style="display:flex; justify-content:space-between;">
+        <ng-container *ngIf="tipoUrl === 'agregar'">
+            <app-back-button [texto]="'Agregar Préstamo'" [url]="'/prestamos'"></app-back-button>
+            <app-red-button [texto]="'CONFIRMAR'" [url]="'/prestamos'"></app-red-button>  
+        </ng-container>     
+        
+        <ng-container *ngIf="tipoUrl === 'editar'">
+            <app-back-button [texto]="'Editar Préstamo'" [url]="'/prestamos'"></app-back-button>
+            <app-red-button [texto]="'CONFIRMAR'" [url]="'/prestamos'"></app-red-button>
+        </ng-container> 
+    </div>    
+    
+    <ng-container *ngIf="tipoUrl === 'agregar'">
+        <app-formulario 
+        [titulos]="['Usuario', 'Libro', 'Fecha de Inicio', 'Fecha de Fin']" 
+        [placeholders]="['...', '...', 'dd-mm-aaaa', 'dd-mm-aaaa']">
+        </app-formulario>
+    </ng-container>
+
+    <ng-container *ngIf="tipoUrl === 'editar'">
+        <app-formulario 
+        [titulos]="['Usuario', 'Libro', 'Fecha de Inicio', 'Fecha de Fin']"
+        [placeholders]="['...', '...', 'dd-mm-aaaa', 'dd-mm-aaaa']"
+        [values]="['valencora', 'Harry Potter y la Piedra Filosofal', '25-01-2018', '01-02-2018']">
+        </app-formulario>
+    </ng-container>
+</div>

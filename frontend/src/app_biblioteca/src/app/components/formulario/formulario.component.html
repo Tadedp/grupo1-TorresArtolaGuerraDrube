@@ -1,0 +1,8 @@
+<ng-container *ngFor="let titulo of titulos; let i = index">
+    <app-campo-formulario 
+    [titulo]="titulo" 
+    [placeholder]="placeholders[i]" 
+    [value]="values[i]">
+    </app-campo-formulario>
+    <br>
+ </ng-container>

@@ -1,0 +1,17 @@
+<div class="d-flex flex-column min-vh-100 mt-5" style="background-color:#F0EBD5;">
+    <div class="d-flex align-items-center" style="margin-left: 5%; margin-bottom: 1rem;">
+        <app-back-button [texto]="'Solicitar Préstamo'" [url]="'ver-libro'"></app-back-button>
+    </div>
+
+    <div class="container_fecha" style="margin-left: 5%; margin-bottom: 2%;">
+        <app-campo-formulario [titulo]="'Ingrese la fecha en la que desea iniciar su préstamo'" [placeholder]="'dd/mm/aaaa'"></app-campo-formulario>
+    </div>
+
+    <div>
+        <p class="fuentetitulo4" style="margin-left: 5%; margin-bottom: 2%;">Espere la confirmación de la reserva. Una vez aceptada, se deberá acercar al local para poder retirar el libro y generar el préstamo.</p>
+    </div>
+
+    <div class="d-flex mt-0 m-5">
+        <app-red-button [texto]="'ENVIAR SOLICITUD'" [url]="'ver-libro'"></app-red-button>
+    </div>
+</div>

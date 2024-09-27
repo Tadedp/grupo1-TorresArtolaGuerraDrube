@@ -1,0 +1,25 @@
+<ul class="pagination pagination-container justify-content-center m-3 page">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" aria-label="Previous" (click)="goToPage(1)">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+  
+    <li class="page-item disabled" *ngIf="showLeftEllipsis">
+        <span class="page-link">...</span>
+    </li>
+  
+    <li *ngFor="let page of visiblePages" class="page-item" [class.active]="page === currentPage">
+        <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+    </li>
+
+    <li class="page-item disabled" *ngIf="showRightEllipsis">
+        <span class="page-link">...</span>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" aria-label="Next" (click)="goToPage(totalPages)">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>

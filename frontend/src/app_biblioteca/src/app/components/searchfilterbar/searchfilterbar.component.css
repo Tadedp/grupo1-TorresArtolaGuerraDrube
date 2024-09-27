@@ -1,0 +1,29 @@
+.search-filter-bar {
+    font-size: 110%;
+}
+
+.input-group .btn-search {
+    background-color: #ffffff; 
+    border: 1px solid #dee2e6; 
+    border-left: none; 
+    color: #000000; 
+    font-size: 105%;
+}
+
+.input-group .dropdown-btn {
+    background-color: #ffffff; 
+    border: 1px solid #dee2e6;
+    border-left: none;
+    border-right: none;
+    color: #000000; 
+    border-radius: 0; 
+    font-size: 105%;
+}
+
+.btn-add-bar {
+    font-size: 105%;
+}
+
+.btn-remove-bar {
+    font-size: 105%;
+}

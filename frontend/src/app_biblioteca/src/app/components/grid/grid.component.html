@@ -1,0 +1,81 @@
+<div class="grid-container mt-4" [style.grid-template-columns]="'repeat(' + gridColumns + ', 1fr)'">
+    <ng-container *ngFor="let header of headers">
+        <div class="grid-item grid-header">
+            <b>{{ header.name }}</b>
+            <label class="btn order-btn">
+                <i class="fa-solid fa-chevron-down down-icon" [ngClass]="{'hidden': header.sortDirection === 'up'}" (click)="toggleSortDirection(header)"></i>
+                <i class="fa-solid fa-chevron-up up-icon" [ngClass]="{'hidden': header.sortDirection === 'down'}" (click)="toggleSortDirection(header)"></i>   
+            </label>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="getRouter().includes('prestamos') || getRouter().includes('notificaciones')">
+        <div class="grid-item grid-header"></div>
+    </ng-container>
+
+    <ng-container *ngIf="getRouter().includes('prestamos')">
+        <ng-container *ngFor="let row of pagedRows">
+            <div class="grid-item">{{ row.id }}</div>
+            <div class="grid-item">
+                {{ row.libro }}
+                <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{ row.autor }}
+                </p>
+            </div>
+            <div class="grid-item">
+                {{ row.usuario }}
+                <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{ row.nombre }} {{row.apellido}}
+                </p>
+            </div>
+            <div class="grid-item">{{ row.fechaInicio }}</div>
+            <div class="grid-item">{{ row.fechaFin }}</div>
+            <div class="grid-item" style="overflow: visible">
+                <app-edit-delete-buttons [editarUrl]="'/editar-prestamo'"></app-edit-delete-buttons>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="getRouter().includes('usuarios')">
+        <ng-container *ngFor="let row of pagedRows">
+            <div class="grid-item">{{ row.id }}</div>
+            <div class="grid-item btn" style="border-radius: 0;" (click)="navigate()">
+                {{ row.alias }}
+                <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{ row.nombre }} {{row.apellido}}
+                </p>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="getRouter().includes('libros')">
+        <ng-container *ngFor="let row of pagedRows">
+            <div class="grid-item">{{ row.id }}</div>
+            <div class="grid-item btn" style="border-radius: 0;" (click)="navigate()">
+                {{ row.titulo }}
+                <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{ row.autor }}
+                </p>
+            </div>
+            <div class="grid-item">{{ row.estado }}</div>
+            <div class="grid-item">{{ row.stock }}</div>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="getRouter().includes('notificaciones')">
+        <ng-container *ngFor="let row of pagedRows">
+            <div class="grid-item">{{ row.fecha }}</div>
+            <div class="grid-item">{{ row.libro }}</div>
+            <div class="grid-item">{{ row.usuario }}</div>
+            <div class="grid-item" style="overflow: visible">
+                <button class="btn btn-success btn-sm me-2">
+                    <i class="bi bi-check-lg"></i>
+                </button>                            
+                <button class="btn btn-danger btn-sm">
+                    <i class="bi bi-x-lg"></i>
+                </button>            
+            </div>
+        </ng-container>
+    </ng-container>
+</div>
+
+<app-paginado [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)"></app-paginado>
