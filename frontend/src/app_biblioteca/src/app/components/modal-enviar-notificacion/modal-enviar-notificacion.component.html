@@ -1,0 +1,17 @@
+<h5 mat-dialog-title class="modal-title" style="font-weight: bold;">
+    Enviar Notificación
+</h5>
+
+<form [formGroup]="form">
+    <div style="font-size: 125%; margin-left: 5%; margin-right: 3%">
+        <label for="usuarios" class="form-label"> Usuarios </label>
+        <input type="usuarios" class="form-control" formControlName="usuarios" id="usuarios" placeholder="alias1, alias2...">
+        <br>
+        <label for="mensaje" class="form-label"> Mensaje </label>
+        <textarea class="form-control" formControlName="mensaje" id="mensaje" placeholder="Mensaje..." rows="5"></textarea>
+    </div>
+</form>
+
+<div class="mt-4 mb-4 text-center align-items-center">
+    <app-router-button [texto]="'CONFIRMAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
+</div>

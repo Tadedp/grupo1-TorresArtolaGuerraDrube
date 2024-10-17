@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PrestamosService } from '../../services/prestamos.service';
+import { FormularioComponent } from '../../components/formulario/formulario.component';
 
 @Component({
   selector: 'app-am-prestamo',
@@ -7,15 +9,36 @@ import { Router } from '@angular/router';
   styleUrl: './am-prestamo.component.css'
 })
 export class AmPrestamoComponent {
-    tipoUrl: string = '';
+    @ViewChild(FormularioComponent) formularioComponent!: FormularioComponent;
 
-    constructor(private router: Router) { }
+    prestamo_id!: string;
+    tipo_op!: string;
+    prestamoDatos:any[] = [];
+
+    constructor(
+        private route:ActivatedRoute,
+        private prestamosService: PrestamosService,
+        private router: Router
+    ) { }
   
     ngOnInit(): void {
-        if (this.router.url.includes("agregar")){
-            this.tipoUrl = "agregar";
-        } else if (this.router.url.includes('editar')) {
-            this.tipoUrl = "editar";
+        this.prestamo_id = this.route.snapshot.paramMap.get('id') || '';
+        this.tipo_op = this.route.snapshot.paramMap.get('tipo_op') || '';
+        
+        if (this.tipo_op == "editar") {
+            this.prestamosService.getPrestamo(parseInt(this.prestamo_id)).subscribe((prestamo: any) => {
+                this.prestamoDatos = [prestamo.usuario.id, prestamo.libros[0].id, prestamo.fecha_inicio, prestamo.fecha_fin]
+            });
+        }
+    }
+
+    submit() {
+        const form = this.formularioComponent.form;  
+
+        if (form.valid) {
+            this.router.navigateByUrl('/prestamos');
+        } else {
+            alert('Los valores son requeridos');
         }
     }
 }

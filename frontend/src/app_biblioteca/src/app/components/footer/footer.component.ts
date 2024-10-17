@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CurrentUser } from '../../auth';
 
 @Component({
   selector: 'app-footer',
@@ -8,53 +7,46 @@ import { CurrentUser } from '../../auth';
   styleUrl: './footer.component.css'
 })
 
-export class FooterComponent implements OnInit {
+export class FooterComponent {
+    rolSesion = localStorage.getItem('rol')
 
-  userRol: string = '';
+    constructor (
+        private router: Router,
+    ) {}
 
-  constructor (
-    private currentUserService: CurrentUser,
-    private router: Router,
-  ) {}
+    isAdmin(): boolean {
+        return this.rolSesion === 'Admin';
+    }
 
-  ngOnInit(): void {
-    this.userRol = this.currentUserService.getUserrol();
-  }
+    isUser(): boolean {
+        return this.rolSesion === 'Usuario';
+    }
 
-  isAdmin(): boolean {
-    return this.userRol === 'Admin';
-  }
+    isUserNoReg(): boolean {
+        return this.rolSesion === null;
+    }
 
-  isUser(): boolean {
-    return this.userRol === 'Usuario';
-  }
+    navigateToLibros() {
+        this.router.navigate(['/libros']);
+    }
 
-  isUserNoReg(): boolean {
-    return this.userRol === '';
-  }
+    navigateToUsuarios() {
+        this.router.navigate(['/usuarios']);
+    }
 
-  navigateToLibros() {
-    this.router.navigate(['/libros']);
-  }
+    navigateToPrestamos() {
+        this.router.navigate(['/prestamos']);
+    }
 
-  navigateToUsuarios() {
-    this.router.navigate(['/usuarios']);
-  }
+    navigateToBuscar(){
+        this.router.navigate(['/search']);
+    }
 
-  navigateToPrestamos() {
-    this.router.navigate(['/prestamos']);
-  }
+    navigateToMisPrestamos(){
+        this.router.navigate(['/prestamos-usuarios']);
+    }
 
-  navigateToBuscar(){
-    this.router.navigate(['/search']);
-  }
-
-  navigateToMisPrestamos(){
-    this.router.navigate(['/prestamos-usuarios']);
-  }
-
-  navigateToHome(){
-    this.router.navigate(['/home']);
-  }
-
+    navigateToHome(){
+        this.router.navigate(['/home']);
+    }
 }

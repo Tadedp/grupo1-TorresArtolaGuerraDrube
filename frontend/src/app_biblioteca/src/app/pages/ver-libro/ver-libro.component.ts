@@ -1,50 +1,99 @@
-import { Component, OnInit } from '@angular/core';
-import { CurrentUser } from '../../auth';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LibrosService } from '../../services/libros.service'
+import { catchError } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDatosLibroComponent } from '../../components/modal-datos-libro/modal-datos-libro.component';
+import { ModalSolicitarPrestamoComponent } from '../../components/modal-solicitar-prestamo/modal-solicitar-prestamo.component';
+import { ModalEnviarReseniaComponent } from '../../components/modal-enviar-resenia/modal-enviar-resenia.component';
 
 @Component({
   selector: 'app-ver-libro',
   templateUrl: './ver-libro.component.html',
   styleUrl: './ver-libro.component.css'
 })
-export class VerLibroComponent implements OnInit{
-  nombresUsuarios: string[] = ['vicky', 'tadeo', 'celi', 'vale'];
-  resenias: string[] = ['muy bueno', 'no me gusto mucho', 'maso maso', 'malisimo'];
-  valoraciones: number[] = [4.5, 2.5, 3, 1]; // Agrega las valoraciones aquí
 
-  userRol: string = '';
+export class VerLibroComponent {
+    libro_id!: number;
+    libro_datos: any;
+    libro_autor: any;
+    libro_resenias: any;
 
-  constructor (
-    private currentUserService: CurrentUser,
-    private router: Router) {}
+    rolSesion = localStorage.getItem('rol')
 
-  ngOnInit(): void {
-    this.userRol = this.currentUserService.getUserrol();
-  }
+    constructor (
+        private router: Router,
+        private route: ActivatedRoute,
+        private librosServicio: LibrosService,
+        private dialog: MatDialog
+    ) {}
 
-  isAdmin(): boolean {
-    return this.userRol === 'Admin';
-  }
+    ngOnInit(): void {
+        this.libro_id = parseInt(this.route.snapshot.paramMap.get('id') || '1');
+        this.librosServicio.getLibro(this.libro_id).pipe(
+            catchError(() => {
+                console.error('Error 404: Libro no encontrado');
+                this.router.navigateByUrl('libros'); 
+                return []
+            })
+            ).subscribe((rta: any) => { 
+                console.log('Return api: ', rta );
+                this.libro_datos = rta;
+                this.libro_autor = rta.autores[0].nombre + ' ' + rta.autores[0].apellido;
+                this.libro_resenias = rta.reseñas
+            });
+    }
 
-  isUser(): boolean {
-    return this.userRol === 'Usuario';
-  }
+    isAdmin(): boolean {
+        return this.rolSesion === 'Admin';
+    }
 
-  isUserNoReg(): boolean {
-    return this.userRol === '';
-  }
+    isUser(): boolean {
+        return this.rolSesion === 'Usuario';
+    }
 
-  navigateToDatosLibro() {
-    this.router.navigate(['/datos-libro']);
-  }
+    isUserNoReg(): boolean {
+        return this.rolSesion === null;
+    }
 
-  navigateToSolicitarLibro() {
-    this.router.navigate(['/solicitar-libro']);
-  }
+    openModalDatosLibro(): void {
+        const dialogRef = this.dialog.open(ModalDatosLibroComponent, {
+            width: '500px',
+            data: { 
+                libro_id: this.libro_id, 
+                libro_genero: this.libro_datos.genero, 
+                libro_editorial: this.libro_datos.editorial, 
+                libro_isbn: this.libro_datos.isbn,
+                libro_cantidad: this.libro_datos.cantidad,
+                libro_estado: this.libro_datos.estado 
+            } 
+        });
+    }
+        
+    openModalSolicitarPrestamo(): void {
+        const dialogRef = this.dialog.open(ModalSolicitarPrestamoComponent, {
+        width: '500px',
+        data: { libro_id: this.libro_id }
+        });
+    }
 
-  navigateToEnviarResenia() {
-    this.router.navigate(['/enviar-resenia']);
-  }
+    openModalEnviarResenia(): void {
+        const dialogRef = this.dialog.open(ModalEnviarReseniaComponent, {
+        width: '500px',
+        data: { libro_id: this.libro_id }
+        });
+    }
 
+    navigateToDatosLibro() {
+        this.router.navigate(['/datos-libro']);
+    }
+
+    navigateToSolicitarPrestamo() {
+        this.router.navigate(['/solicitar-prestamo']);
+    }
+
+    navigateToEnviarResenia() {
+        this.router.navigate(['/enviar-resenia']);
+    }
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CurrentUser } from '../../auth';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalPerfilComponent } from '../modal-perfil/modal-perfil.component';
 
 @Component({
   selector: 'app-navbar',
@@ -8,35 +9,34 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 
-export class NavbarComponent implements OnInit{
-  userRol: string = '';
+export class NavbarComponent{
+    rolSesion = localStorage.getItem('rol')
 
-  constructor (
-    private currentUserService: CurrentUser,
-    private router: Router) {}
+    constructor (
+        private router: Router,
+        private dialog: MatDialog
+    ) {}
 
-  ngOnInit(): void {
-    this.userRol = this.currentUserService.getUserrol();
-  }
+    openModalPerfilDialog(): void {
+        const dialogRef = this.dialog.open(ModalPerfilComponent, {
+          width: '500px',
+          data: {} // Puedes pasar datos adicionales aquí si lo necesitas
+        });
+    }
 
-  isAdmin(): boolean {
-    return this.userRol === 'Admin';
-  }
+    isAdmin(): boolean {
+        return this.rolSesion === 'Admin';
+    }
 
-  isUser(): boolean {
-    return this.userRol === 'Usuario';
-  }
+    isUser(): boolean {
+        return this.rolSesion === 'Usuario';
+    }
 
-  isUserNoReg(): boolean {
-    return this.userRol === '';
-  }
+    isUserNoReg(): boolean {
+        return this.rolSesion === null;
+    }
 
-  navigateToProfile() {
-    this.router.navigate(['/perfil']);
-  }
-
-  navigateToNotifications() {
-    this.router.navigate(['/notificaciones']);
-  }
-
+    navigateToNotifications() {
+        this.router.navigate(['/notificaciones']);
+    }
 }

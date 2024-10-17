@@ -7,6 +7,11 @@ import { Router } from '@angular/router';
   styleUrl: './usuarios.component.css'
 })
 export class UsuariosComponent {
+    constructor (
+        private router: Router
+    ) {}
 
-
+    navigateToAgregarUsuario() {
+        this.router.navigate(['usuario/0/agregar']);
+    }
 }

@@ -7,7 +7,11 @@ import { Router } from '@angular/router';
   styleUrl: './prestamos.component.css'
 })
 export class PrestamosComponent {
-  
+    constructor (
+        private router: Router
+    ) {}
 
- 
+    navigateToAgregarPrestamo() {
+        this.router.navigate(['prestamo/0/agregar']);
+    }
 }

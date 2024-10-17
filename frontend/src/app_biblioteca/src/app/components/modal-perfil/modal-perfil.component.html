@@ -1,0 +1,39 @@
+<h5 mat-dialog-title class="modal-title">Perfil</h5>
+
+<mat-dialog-content class="mat-content">
+    <div class="profile-header">
+        <img src="cat.png" alt="Profile" class="profile-pic" />
+        <div class="profile-info">
+            <h3>{{ usuarioDatos[0] }}</h3>
+            <p>{{ usuarioDatos[1] }} {{ usuarioDatos[2] }}</p>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="profile-options">
+        <button mat-button (click)="navigateToDetallesPerfil()">
+            <mat-icon>person</mat-icon>
+            <span>Detalles del Perfil</span>
+        </button>
+
+        <button mat-button (click)="navigateToFavoritos()">
+            <mat-icon>star</mat-icon>
+            <span>Favoritos</span>
+        </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="profile-options">
+        <button mat-button (click)="logout()">
+        <mat-icon>delete</mat-icon>
+        <span>Eliminar Cuenta</span>
+        </button>
+
+        <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar Sesión</span>
+        </button>
+    </div>
+</mat-dialog-content>

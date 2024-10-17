@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-barra-busqueda',
   templateUrl: './barra-busqueda.component.html',
   styleUrls: ['./barra-busqueda.component.css']
+
 })
 export class BarraBusquedaComponent {
   searchText: string = ''; // Almacena el texto del input
@@ -30,6 +31,6 @@ export class BarraBusquedaComponent {
     this.librosFiltrados = []; // Limpia el dropdown
 
     // Redirige a la página de detalles usando el ID del libro
-    this.router.navigate(['/libros/libro', libro.id]);
+    this.router.navigate(['/libro/1']);
   }
 }

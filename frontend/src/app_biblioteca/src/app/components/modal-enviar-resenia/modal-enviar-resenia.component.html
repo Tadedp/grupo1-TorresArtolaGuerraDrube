@@ -1,0 +1,24 @@
+<h5 mat-dialog-title class="modal-title" style="font-weight: bold;">
+    Publicar Reseña
+</h5>
+
+<mat-dialog-content class="modal-content" style="background-color: #F0EBD5;">
+    <form [formGroup]="form">
+        <div style="font-size: 125%; margin-top: 5%; margin-bottom: 2%;">
+            <label for="reseña" class="form-label"> Deje su reseña de este libro </label>
+            <input type="reseña" class="form-control" formControlName="reseña" id="reseña" placeholder="Mensaje...">
+        </div>
+    </form>
+    
+    <div class="star-rating" style="margin-top: 2%;">
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+    </div>  
+    <br>
+    <div class="d-flex mt-0 m-3 align-items-center justify-content-center">
+        <app-router-button [texto]="'CONFIRMAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
+    </div>
+</mat-dialog-content>

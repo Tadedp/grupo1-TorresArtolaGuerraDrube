@@ -45,7 +45,7 @@ class Usuario(db.Model):
 
     def to_json_complete(self):
         notificaciones = [notificacion.to_json() for notificacion in self.notificaciones]
-        prestamos = [prestamo.to_json() for prestamo in self.prestamos]
+        prestamos = [prestamo.to_json_complete() for prestamo in self.prestamos]
         reseñas = [reseña.to_json() for reseña in self.reseñas]
         usuario_json = {
             'id': self.id,

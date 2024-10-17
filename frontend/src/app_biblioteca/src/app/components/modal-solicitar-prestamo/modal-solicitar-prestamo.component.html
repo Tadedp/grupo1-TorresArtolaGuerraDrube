@@ -1,0 +1,21 @@
+<h5 mat-dialog-title class="modal-title" style="font-weight: bold;">
+    Solicitar Libro
+</h5>
+
+<mat-dialog-content class="modal-content" style="background-color: #F0EBD5;">
+    <form [formGroup]="form">
+        <div class="container_fecha" style="margin-top: 5%; margin-bottom: 2%;">
+            <label for="fecha" class="form-label"> Ingrese la fecha en la que desea iniciar su préstamo </label>
+            <input type="fecha" class="form-control" formControlName="fecha" id="fecha" placeholder="aaaa-mm-dd">
+        </div>
+    </form>
+
+    <p class="fuentetitulo4" style="margin-bottom: 2%;">
+        Espere la confirmación de la reserva. Una vez aceptada, se deberá acercar al local para poder retirar el libro y generar el préstamo.
+    </p>
+    <br>
+    <div class="d-flex mt-0 m-3 align-items-center justify-content-center">
+        <app-router-button [texto]="'ENVIAR SOLICITUD'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
+    </div>
+</mat-dialog-content>
+

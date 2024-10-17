@@ -25,7 +25,7 @@ class Prestamo(db.Model):
     
     def to_json_complete(self):
         self.usuario = db.session.query(UsuarioModel).get_or_404(self.id_usuario)
-        libros = [libro.to_json() for libro in self.libros]
+        libros = [libro.to_json_complete() for libro in self.libros]
         libro_json = {
             'id': self.id,
             'fecha_inicio': str(self.fecha_inicio.strftime('%Y-%m-%d')),

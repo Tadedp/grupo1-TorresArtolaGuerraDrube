@@ -3,8 +3,8 @@
     <div class="row ms-1 me-1">
         <div class="col-md-10 offset-md-1">
             <app-searchfilterbar></app-searchfilterbar>
-            <app-grid [url]="'ver-libro'"></app-grid>
-            <app-red-button [texto]="'AGREGAR LIBRO'" [url]="'agregar-libro'"></app-red-button>
+            <app-grid [url]="'libro'"></app-grid>
+            <app-router-button [texto]="'AGREGAR LIBRO'" [tipo]="'rojo'" (clickEvent)="navigateToAgregarLibro()"></app-router-button>  
         </div>
     </div>
 </div>    

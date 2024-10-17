@@ -1,8 +1,9 @@
-<ng-container *ngFor="let titulo of titulos; let i = index">
-    <app-campo-formulario 
-    [titulo]="titulo" 
-    [placeholder]="placeholders[i]" 
-    [value]="values[i]">
-    </app-campo-formulario>
-    <br>
- </ng-container>
+<form [formGroup]="form">
+    <ng-container *ngFor="let titulo of titulos; let i = index">
+        <div style="font-size: 125%;">
+            <label for="{{ titulo }}" class="form-label"> {{ titulo }} </label>
+            <input type="titulo" class="form-control" formControlName="{{ titulo }}" id="{{ titulo }}" [placeholder]="placeholders[i]">
+        </div>
+        <br>
+     </ng-container>    
+</form>

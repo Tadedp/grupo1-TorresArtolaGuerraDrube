@@ -4,7 +4,7 @@
         <div class="col-md-10 offset-md-1">
             <app-searchfilterbar></app-searchfilterbar>
             <app-grid></app-grid>
-            <app-red-button [texto]="'AGREGAR PRÉSTAMO'" [url]="'agregar-prestamo'"></app-red-button>
+            <app-router-button [texto]="'AGREGAR PRÉSTAMO'" [tipo]="'rojo'" (clickEvent)="navigateToAgregarPrestamo()"></app-router-button>  
         </div>
     </div>
 </div>    

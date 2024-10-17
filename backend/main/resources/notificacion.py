@@ -3,16 +3,17 @@ from flask import request, jsonify
 from main.models import NotificacionModel, UsuarioModel
 from .. import db
 from main.auth.decorators import role_required
+from sqlalchemy import func, desc, asc
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 class Notificaciones(Resource):
     @jwt_required()
     def get(self):
         page = 1
-        per_page = 10
+        per_page = 6
         notificaciones = db.session.query(NotificacionModel)
         
-        args = ["page", "per_page"]
+        args = ["page", "per_page", "sortby_fecha"]
         
         for key in request.args.keys():
             if key not in args:
@@ -35,6 +36,14 @@ class Notificaciones(Resource):
                 per_page = int(request.args.get('per_page'))
             except:
                 return "URL inexistente.", 404
+            
+        if request.args.get('sortby_fecha'):
+            if request.args.get('sortby_fecha') == "asc":
+                notificaciones=notificaciones.order_by(asc(NotificacionModel.fecha))
+            elif request.args.get('sortby_fecha') == "desc":
+                notificaciones=notificaciones.order_by(desc(NotificacionModel.fecha))
+            else:
+                return "URL inexistente.", 404    
             
         notificaciones = notificaciones.paginate(page=page, per_page=per_page, error_out=True)
     
@@ -80,7 +89,7 @@ class Notificacion(Resource):
         jwt_identity = get_jwt_identity()
         current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)        
         
-        if current_user.id != notificacion.id_usuario:
+        if current_user.rol != "Admin" and current_user.id != notificacion.id_usuario:
             return "Permiso denegado.", 403
         else: 
             db.session.delete(notificacion)
