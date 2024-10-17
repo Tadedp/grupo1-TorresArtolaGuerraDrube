@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LibrosService } from '../../services/libros.service';
+import { FormularioComponent } from '../../components/formulario/formulario.component';
 
 @Component({
   selector: 'app-am-libro',
@@ -7,15 +9,36 @@ import { Router } from '@angular/router';
   styleUrl: './am-libro.component.css'
 })
 export class AmLibroComponent {
-    tipoUrl: string = '';
+    @ViewChild(FormularioComponent) formularioComponent!: FormularioComponent;
 
-    constructor(private router: Router) { }
+    libro_id!: string;
+    tipo_op!: string;
+    libroDatos:any[] = [];
+
+    constructor(
+        private route:ActivatedRoute,
+        private librosService: LibrosService,
+        private router: Router
+    ) { }
   
     ngOnInit(): void {
-        if (this.router.url.includes("agregar")){
-            this.tipoUrl = "agregar";
-        } else if (this.router.url.includes('editar')) {
-            this.tipoUrl = "editar";
+        this.libro_id = this.route.snapshot.paramMap.get('id') || '';
+        this.tipo_op = this.route.snapshot.paramMap.get('tipo_op') || '';
+        
+        if (this.tipo_op == "editar") {
+            this.librosService.getLibro(parseInt(this.libro_id)).subscribe((libro: any) => {
+                this.libroDatos = [libro.titulo, libro.autores[0].id, libro.genero, libro.editorial, libro.isbn, libro.cantidad.toString(), libro.estado]
+            });
+        }
+    }
+
+    submit() {
+        const form = this.formularioComponent.form;  
+
+        if (form.valid) {
+            this.router.navigateByUrl('/libros');
+        } else {
+            alert('Los valores son requeridos');
         }
     }
 }

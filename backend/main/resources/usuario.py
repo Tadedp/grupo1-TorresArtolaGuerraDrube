@@ -11,10 +11,10 @@ class Usuarios(Resource):
     @role_required(roles = ["Admin", "Bibliotecario"])
     def get(self):
         page = 1
-        per_page = 10
+        per_page = 6
         usuarios = db.session.query(UsuarioModel)
         
-        args = ["page", "per_page", "id", "rol", "nombre", "apellido", "dni", "mail", "telefono", "sortby_apellido", "sortby_nombre", "sortby_nrPrestamos", "sortby_nrReseñas"]
+        args = ["page", "per_page", "id", "rol", "alias", "nombre", "apellido", "dni", "mail", "telefono", "sortby_id", "sortby_alias", "sortby_apellido", "sortby_nombre", "sortby_nrPrestamos", "sortby_nrReseñas"]
         
         for key in request.args.keys():
             if key not in args:
@@ -44,6 +44,9 @@ class Usuarios(Resource):
         if request.args.get('rol'):
             usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('rol')+"%"))
                         
+        if request.args.get('alias'):
+            usuarios=usuarios.filter(UsuarioModel.alias.like("%"+request.args.get('alias')+"%"))              
+                        
         if request.args.get('nombre'):
             usuarios=usuarios.filter(UsuarioModel.nombre.like("%"+request.args.get('nombre')+"%"))
                     
@@ -59,19 +62,35 @@ class Usuarios(Resource):
         if request.args.get('telefono'):
             usuarios=usuarios.filter(UsuarioModel.telefono.like("%"+request.args.get('telefono')+"%"))
         
-        if request.args.get('sortby_apellido'):
-            if request.args.get('sortby_apellido') == "asc":
-                usuarios=usuarios.order_by(asc(UsuarioModel.apellido))
-            elif request.args.get('sortby_apellido') == "desc":
-                usuarios=usuarios.order_by(desc(UsuarioModel.apellido))
+        if request.args.get('sortby_id'):
+            if request.args.get('sortby_id') == "asc":
+                usuarios=usuarios.order_by(asc(UsuarioModel.id))
+            elif request.args.get('sortby_id') == "desc":
+                usuarios=usuarios.order_by(desc(UsuarioModel.id))
             else:
                 return "URL inexistente.", 404
             
+        if request.args.get('sortby_alias'):
+            if request.args.get('sortby_alias') == "asc":
+                usuarios=usuarios.order_by(asc(UsuarioModel.alias))
+            elif request.args.get('sortby_alias') == "desc":
+                usuarios=usuarios.order_by(desc(UsuarioModel.alias))
+            else:
+                return "URL inexistente.", 404
+
         if request.args.get('sortby_nombre'):
             if request.args.get('sortby_nombre') == "asc":
                 usuarios=usuarios.order_by(asc(UsuarioModel.nombre))
             elif request.args.get('sortby_nombre') == "desc":
                 usuarios=usuarios.order_by(desc(UsuarioModel.nombre))
+            else:
+                return "URL inexistente.", 404
+
+        if request.args.get('sortby_apellido'):
+            if request.args.get('sortby_apellido') == "asc":
+                usuarios=usuarios.order_by(asc(UsuarioModel.apellido))
+            elif request.args.get('sortby_apellido') == "desc":
+                usuarios=usuarios.order_by(desc(UsuarioModel.apellido))
             else:
                 return "URL inexistente.", 404
                 

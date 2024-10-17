@@ -3,8 +3,8 @@
         <div class="grid-item grid-header">
             <b>{{ header.name }}</b>
             <label class="btn order-btn">
-                <i class="fa-solid fa-chevron-down down-icon" [ngClass]="{'hidden': header.sortDirection === 'up'}" (click)="toggleSortDirection(header)"></i>
-                <i class="fa-solid fa-chevron-up up-icon" [ngClass]="{'hidden': header.sortDirection === 'down'}" (click)="toggleSortDirection(header)"></i>   
+                <i class="fa-solid fa-chevron-down down-icon" [ngClass]="{'hidden': header.sortDirection === 'asc'}" (click)="sortGrid(header)"></i>
+                <i class="fa-solid fa-chevron-up up-icon" [ngClass]="{'hidden': header.sortDirection === 'desc'}" (click)="sortGrid(header)"></i>   
             </label>
         </div>
     </ng-container>
@@ -13,59 +13,69 @@
     </ng-container>
 
     <ng-container *ngIf="getRouter().includes('prestamos')">
-        <ng-container *ngFor="let row of pagedRows">
-            <div class="grid-item">{{ row.id }}</div>
+        <ng-container *ngFor="let fila of arrayFilas">
+            <div class="grid-item">{{ fila.id }}</div>
             <div class="grid-item">
-                {{ row.libro }}
+                {{ fila.libros[0].titulo }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                    {{ row.autor }}
+                    {{ fila.libros[0].autores[0].nombre }} {{ fila.libros[0].autores[0].apellido}}
                 </p>
             </div>
             <div class="grid-item">
-                {{ row.usuario }}
+                {{ fila.usuario.alias }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                    {{ row.nombre }} {{row.apellido}}
+                    {{ fila.usuario.nombre }} {{fila.usuario.apellido}}
                 </p>
             </div>
-            <div class="grid-item">{{ row.fechaInicio }}</div>
-            <div class="grid-item">{{ row.fechaFin }}</div>
+            <div class="grid-item">{{ fila.fecha_inicio }}</div>
+            <div class="grid-item">{{ fila.fecha_fin }}</div>
             <div class="grid-item" style="overflow: visible">
-                <app-edit-delete-buttons [editarUrl]="'/editar-prestamo'"></app-edit-delete-buttons>
+                <app-edit-delete-buttons [editarUrl]="'/prestamo/' + fila.id + '/editar'"></app-edit-delete-buttons>
             </div>
         </ng-container>
     </ng-container>
 
     <ng-container *ngIf="getRouter().includes('usuarios')">
-        <ng-container *ngFor="let row of pagedRows">
-            <div class="grid-item">{{ row.id }}</div>
-            <div class="grid-item btn" style="border-radius: 0;" (click)="navigate()">
-                {{ row.alias }}
+        <ng-container *ngFor="let fila of arrayFilas">
+            <div class="grid-item">{{ fila.id }}</div>
+            <div class="grid-item btn" style="border-radius: 0;" (click)="navigate(fila.id)">
+                {{ fila.alias }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                    {{ row.nombre }} {{row.apellido}}
+                    {{ fila.nombre }} {{fila.apellido}}
                 </p>
             </div>
         </ng-container>
     </ng-container>
 
     <ng-container *ngIf="getRouter().includes('libros')">
-        <ng-container *ngFor="let row of pagedRows">
-            <div class="grid-item">{{ row.id }}</div>
-            <div class="grid-item btn" style="border-radius: 0;" (click)="navigate()">
-                {{ row.titulo }}
+        <ng-container *ngFor="let fila of arrayFilas">
+            <div class="grid-item">{{ fila.id }}</div>
+            <div class="grid-item btn" style="border-radius: 0;" (click)="navigate(fila.id)">
+                {{ fila.titulo }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                    {{ row.autor }}
+                    {{ fila.autores[0].nombre }} {{ fila.autores[0].apellido }}
                 </p>
             </div>
-            <div class="grid-item">{{ row.estado }}</div>
-            <div class="grid-item">{{ row.stock }}</div>
+            <div class="grid-item">{{ fila.estado }}</div>
+            <div class="grid-item">{{ fila.cantidad }}</div>
         </ng-container>
     </ng-container>
 
     <ng-container *ngIf="getRouter().includes('notificaciones')">
-        <ng-container *ngFor="let row of pagedRows">
-            <div class="grid-item">{{ row.fecha }}</div>
-            <div class="grid-item">{{ row.libro }}</div>
-            <div class="grid-item">{{ row.usuario }}</div>
+        <ng-container *ngFor="let fila of arrayFilas">
+            <div class="grid-item">{{ fila.fecha }}</div>
+            <div class="grid-item">
+                {{ fila.libroTitulo }}
+                <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{ fila.libroAutor }}
+                </p>
+            </div>
+            <div class="grid-item">
+                {{ fila.usuarioAlias }}
+                <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{ fila.usuarioNombre }}
+                </p>
+            </div>
             <div class="grid-item" style="overflow: visible">
                 <button class="btn btn-success btn-sm me-2">
                     <i class="bi bi-check-lg"></i>

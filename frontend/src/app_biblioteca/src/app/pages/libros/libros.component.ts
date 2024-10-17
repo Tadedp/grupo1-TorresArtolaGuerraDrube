@@ -7,6 +7,11 @@ import { Router } from '@angular/router';
   styleUrl: './libros.component.css'
 })
 export class LibrosComponent {
+    constructor (
+        private router: Router
+    ) {}
 
-
+    navigateToAgregarLibro() {
+        this.router.navigate(['libro/0/agregar']);
+    }
 }

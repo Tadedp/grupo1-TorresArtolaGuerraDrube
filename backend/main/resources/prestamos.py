@@ -10,10 +10,10 @@ class Prestamos(Resource):
     @jwt_required()
     def get(self):
         page = 1
-        per_page = 10
+        per_page = 6
         prestamos = db.session.query(PrestamoModel)
         
-        args = ["page", "per_page", "id", "fecha_inicio", "fecha_fin", "id_usuario", "sortby_fecha_inicio", "sortby_fecha_fin", "sortby_nrLibros"]
+        args = ["page", "per_page", "id", "libro_id", "usuario_id", "fecha_inicio", "fecha_fin", "sortby_id", "sortby_libro_titulo", "sortby_usuario_alias", "sortby_fecha_inicio", "sortby_fecha_fin", "sortby_nrLibros"]
         
         for key in request.args.keys():
             if key not in args:
@@ -42,15 +42,42 @@ class Prestamos(Resource):
         
         if request.args.get('id'):
             prestamos=prestamos.filter(PrestamoModel.id.like("%"+request.args.get('id')+"%"))
+            
+        if request.args.get('libro_id'):
+            prestamos=prestamos.join(PrestamoModel.libros).filter(LibroModel.id == request.args.get('libro_id')) 
+
+        if request.args.get('usuario_id'):
+            prestamos=prestamos.filter(PrestamoModel.id_usuario.like("%"+request.args.get('usuario_id')+"%"))
                 
         if request.args.get('fecha_inicio'):
             prestamos=prestamos.filter(PrestamoModel.fecha_inicio.like("%"+request.args.get('fecha_inicio')+"%"))
                     
         if request.args.get('fecha_fin'):
             prestamos=prestamos.filter(PrestamoModel.fecha_fin.like("%"+request.args.get('fecha_fin')+"%"))
-                    
-        if request.args.get('id_usuario'):
-            prestamos=prestamos.filter(PrestamoModel.id_usuario.like("%"+request.args.get('id_usuario')+"%"))
+
+        if request.args.get('sortby_id'):
+            if request.args.get('sortby_id') == "asc":
+                prestamos=prestamos.order_by(asc(PrestamoModel.id))
+            elif request.args.get('sortby_id') == "desc":
+                prestamos=prestamos.order_by(desc(PrestamoModel.id))
+            else:
+                return "URL inexistente.", 404
+            
+        if request.args.get('sortby_libro_titulo'):
+            if request.args.get('sortby_libro_titulo') == "asc":
+                prestamos=prestamos.join(PrestamoModel.libros).order_by(asc(LibroModel.titulo))
+            elif request.args.get('sortby_libro_titulo') == "desc":
+                prestamos=prestamos.join(PrestamoModel.libros).order_by(desc(LibroModel.titulo))
+            else:
+                return "URL inexistente.", 404
+    
+        if request.args.get('sortby_usuario_alias'):
+            if request.args.get('sortby_usuario_alias') == "asc":
+                prestamos=prestamos.join(PrestamoModel.usuario).order_by(asc(UsuarioModel.alias))
+            elif request.args.get('sortby_usuario_alias') == "desc":
+                prestamos=prestamos.join(PrestamoModel.usuario).order_by(desc(UsuarioModel.alias))
+            else:
+                return "URL inexistente.", 404
 
         if request.args.get('sortby_fecha_inicio'):
             if request.args.get('sortby_fecha_inicio') == "asc":
@@ -78,7 +105,7 @@ class Prestamos(Resource):
             
         prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
     
-        return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos],
+        return jsonify({'prestamos': [prestamo.to_json_complete() for prestamo in prestamos],
                 'total': prestamos.total,
                 'pages': prestamos.pages,
                 'page': page
@@ -123,8 +150,15 @@ class Prestamo(Resource):
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
         except:
             return "ID inexistente.", 404
-        data = PrestamoModel.from_json_attr(request.get_json()).items()
-        for key, value in data:
+        
+        data = PrestamoModel.from_json_attr(request.get_json())
+        
+        if "usuario" in data:
+            usuario_id = data["usuario"]
+            usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+            prestamo.usuario = usuario
+        
+        for key, value in data.items():
             if key == "id" or key == "usuario":
                 continue
             setattr(prestamo, key, value)

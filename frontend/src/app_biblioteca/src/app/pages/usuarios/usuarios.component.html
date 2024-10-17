@@ -4,7 +4,7 @@
         <div class="col-md-10 offset-md-1">
             <app-searchfilterbar></app-searchfilterbar>
             <app-grid [url]="'usuario'"></app-grid>
-            <app-red-button [texto]="'AGREGAR USUARIO'" [url]="'agregar-usuario'"></app-red-button>
+            <app-router-button [texto]="'AGREGAR USUARIO'" [tipo]="'rojo'" (clickEvent)="navigateToAgregarUsuario()"></app-router-button>  
         </div>
     </div>
 </div>    

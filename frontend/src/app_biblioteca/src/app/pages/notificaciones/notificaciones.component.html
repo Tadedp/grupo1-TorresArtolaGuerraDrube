@@ -3,7 +3,7 @@
     <div class="row ms-1 me-1">
         <div class="col-md-10 offset-md-1">
             <app-grid></app-grid>
-            <app-red-button [texto]="'ENVIAR NOTIFICACIÓN'" [url]="'/enviar-notificacion'"></app-red-button>
+            <app-router-button [texto]="'ENVIAR NOTIFICACIÓN'" [tipo]="'rojo'" (clickEvent)="openModalEnviarNotificacion()"></app-router-button> 
         </div>
     </div>
 </div>    

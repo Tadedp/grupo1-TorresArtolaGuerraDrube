@@ -5,7 +5,9 @@
 
 <div class="d-flex">
     <div *ngFor="let ruta of rutas; let i = index">
-        <app-imagen-libro [urlImagen]="ruta" [titulo]="titulos [i]" [autor]="autores [i]"></app-imagen-libro>
+        <div class="m-2">
+            <app-imagen-libro [urlImagen]="ruta" [titulo]="titulos [i]" [autor]="autores [i]"></app-imagen-libro>
+        </div>
     </div>
 </div>
 

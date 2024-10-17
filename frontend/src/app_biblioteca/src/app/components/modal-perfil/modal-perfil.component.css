@@ -1,0 +1,88 @@
+.modal-title {
+    text-align: center;
+    color: black;
+    font-size: 1.5em;
+    background-color: #F0EBD5;
+    margin: 0;
+}
+
+.modal-form {
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+button[mat-button] {
+    margin-right: 8px;
+    border-radius: 15px;
+    background-color: #92A5BF !important; 
+    color: #333 !important; 
+    border: none !important;
+    font-weight: bold;
+}
+
+.mat-content{
+    background-color: #F0EBD5;
+}
+
+.mat-footer{
+    background-color: #F0EBD5;
+}
+
+.form-img{
+    color: #F0EBD5;
+    padding: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.profile-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile-info p {
+    margin: 0;
+    color: gray;
+}
+
+.profile-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-options button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 5px 0;
+    text-transform: none;
+}
+
+.profile-options mat-icon {
+    margin-right: 10px;
+}
+
+.danger {
+    color: red;
+}
+
+.mat-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+  

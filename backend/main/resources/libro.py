@@ -8,10 +8,10 @@ from main.auth.decorators import role_required
 class Libros(Resource):    
     def get(self):
         page = 1
-        per_page = 10
+        per_page = 6
         libros = db.session.query(LibroModel)
         
-        args = ["page", "per_page", "id", "titulo", "genero", "editorial", "estado", "ISBN", "sortby_cantidad", "sortby_titulo", "sortby_nrPrestamos", "sortby_nrReseñas", "sortby_nrAutores"]
+        args = ["page", "per_page", "id", "titulo", "autor_id", "genero", "editorial", "estado", "cantidad", "isbn", "sortby_id", "sortby_titulo", "sortby_estado", "sortby_cantidad", "sortby_nrPrestamos", "sortby_nrReseñas", "sortby_nrAutores"]
         
         for key in request.args.keys():
             if key not in args:
@@ -32,8 +32,14 @@ class Libros(Resource):
             except:
                 return "URL inexistente.", 404
             
+        if request.args.get('id'):
+            libros=libros.filter(LibroModel.id.like("%"+request.args.get('id')+"%"))    
+            
         if request.args.get('titulo'):
             libros=libros.filter(LibroModel.titulo.like("%"+request.args.get('titulo')+"%"))
+                
+        if request.args.get('autor_id'):
+            libros=libros.join(LibroModel.autores).filter(AutorModel.id == request.args.get('autor_id'))     
                          
         if request.args.get('genero'):
             libros=libros.filter(LibroModel.genero.like("%"+request.args.get('genero')+"%"))
@@ -44,12 +50,36 @@ class Libros(Resource):
         if request.args.get('estado'):
             libros=libros.filter(LibroModel.estado.like("%"+request.args.get('estado')+"%"))
                     
-        if request.args.get('ISBN'):
-            libros=libros.filter(LibroModel.isbn.like("%"+request.args.get('ISBN')+"%"))
+        if request.args.get('cantidad'):
+            libros=libros.filter(LibroModel.cantidad.like("%"+request.args.get('cantidad')+"%"))
                     
-        if request.args.get('id'):
-            libros=libros.filter(LibroModel.id.like("%"+request.args.get('id')+"%"))
-                            
+        if request.args.get('isbn'):
+            libros=libros.filter(LibroModel.isbn.like("%"+request.args.get('isbn')+"%"))
+             
+        if request.args.get('sortby_id'):
+            if request.args.get('sortby_id') == "asc":
+                libros=libros.order_by(asc(LibroModel.id))
+            elif request.args.get('sortby_id') == "desc":
+                libros=libros.order_by(desc(LibroModel.id))
+            else:
+                return "URL inexistente.", 404     
+            
+        if request.args.get('sortby_titulo'):
+            if request.args.get('sortby_titulo') == "asc":
+                libros=libros.order_by(asc(LibroModel.titulo))
+            elif request.args.get('sortby_titulo') == "desc":
+                libros=libros.order_by(desc(LibroModel.titulo))
+            else:
+                return "URL inexistente.", 404     
+              
+        if request.args.get('sortby_estado'):
+            if request.args.get('sortby_estado') == "asc":
+                libros=libros.order_by(asc(LibroModel.estado))
+            elif request.args.get('sortby_estado') == "desc":
+                libros=libros.order_by(desc(LibroModel.estado))
+            else:
+                return "URL inexistente.", 404
+                  
         if request.args.get('sortby_cantidad'):
             if request.args.get('sortby_cantidad') == "asc":
                 libros=libros.order_by(asc(LibroModel.cantidad))
@@ -58,14 +88,6 @@ class Libros(Resource):
             else:
                 return "URL inexistente.", 404
             
-        if request.args.get('sortby_titulo'):
-            if request.args.get('sortby_titulo') == "asc":
-                libros=libros.order_by(asc(LibroModel.titulo))
-            elif request.args.get('sortby_titulo') == "desc":
-                libros=libros.order_by(desc(LibroModel.titulo))
-            else:
-                return "URL inexistente.", 404 
-                
         if request.args.get('sortby_nrPrestamos'):
             if request.args.get('sortby_nrPrestamos') == "asc":
                 libros=libros.outerjoin(LibroModel.prestamos).group_by(LibroModel.id).order_by(func.count(PrestamoModel.id).asc())
@@ -81,18 +103,10 @@ class Libros(Resource):
                 libros=libros.outerjoin(LibroModel.reseñas).group_by(LibroModel.id).order_by(func.count(ReseñaModel.id).desc())
             else:
                 return "URL inexistente.", 404
-            
-        if request.args.get('sortby_nrAutores'):
-            if request.args.get('sortby_nrAutores') == "asc":
-                libros=libros.outerjoin(LibroModel.autores).group_by(LibroModel.id).order_by(func.count(AutorModel.id).asc())
-            elif request.args.get('sortby_nrAutores') == "desc":
-                libros=libros.outerjoin(LibroModel.autores).group_by(LibroModel.id).order_by(func.count(AutorModel.id).desc())
-            else:
-                return "URL inexistente.", 404
                   
         libros = libros.paginate(page=page, per_page=per_page, error_out=True)
     
-        return jsonify({'libros': [libro.to_json() for libro in libros],
+        return jsonify({'libros': [libro.to_json_complete() for libro in libros],
                   'total': libros.total,
                   'pages': libros.pages,
                   'page': page
@@ -140,9 +154,19 @@ class Libro(Resource):
             libro = db.session.query(LibroModel).get_or_404(id)
         except:
             return "ID inexistente.", 404
-        data = request.get_json().items()
-        for key, value in data:
+        
+        data = request.get_json()
+        
+        if "autor" in data:
+            autor_id = data["autores"]
+            autor = db.session.query(AutorModel).get_or_404(autor_id)
+            libro.autores = autor
+        
+        for key, value in data.items():
+            if key == "id":
+                continue
             setattr(libro, key, value)
+            
         db.session.add(libro)
         db.session.commit()
         return libro.to_json() , 201

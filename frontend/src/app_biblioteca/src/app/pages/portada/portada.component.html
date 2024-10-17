@@ -1,25 +1,40 @@
 <app-navbar></app-navbar>
 
-<div style="display: flex; flex-direction: column; align-items: center; margin-top: 5rem;">
-    <a>
-        <app-blue-button [texto]="'Iniciar Sesión'" [url]="'/login'"></app-blue-button>
+<div *ngIf="!mostrarLogin" style="display: flex; flex-direction: column; align-items: center; margin-top: 5rem;">
+    <a style="margin-bottom: 2%;">
+        <app-router-button [texto]="'INICIAR SESIÓN'" [tipo]="'azul'" (clickEvent)="mostrarFormularioLogin()"></app-router-button>  
     </a>
 
-    <a>
-        <app-blue-button [texto]="'Crear Cuenta'" [url]="'registrarse'"></app-blue-button>
+    <a style="margin-bottom: 2%;">
+        <app-router-button [texto]="'REGISTRARSE'" [tipo]="'azul'" (clickEvent)="navigateToRegistrarse()"></app-router-button>  
     </a>
 
-    <a>
-        <a type="button" class="btn btn-primary"
-        style="
-        background-color:transparent;
-        font-family: Arial, Helvetica, sans-serif;
-        border-width:0.5px;
-        border-color: black;
-        margin: auto;
-        margin-top: 5px;
-        color: black;" 
-        [routerLink]="'/home'">
-        Explorar</a>
+    <a type="button" class="btn btn-primary" [routerLink]="'/home'">
+        Explorar
     </a>
 </div>
+
+<div *ngIf="mostrarLogin" class="align-items-center mb-4" >
+    <div class="align-items-center text-center mt-3">
+        <p class="inicio">Iniciar Sesión</p>
+    </div>
+    <div class="align-items-center text-center">
+        <p class="bienvenido">Bienvenido de vuelta! Inicia sesión para buscar tus libros.</p>
+    </div>
+    <form [formGroup]="loginForm">
+        <div class="container" style="font-size: 125%;">
+            <div class="email">
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="email" class="form-control" formControlName="mail" id="mail" placeholder="name@example.com">
+            </div>
+            <div class="contraseña">
+                <label for="inputPassword" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" formControlName="contraseña" id="contraseña" placeholder="...">
+            </div>            
+        </div>
+    </form>
+    <div class="align-items-center text-center"> 
+        <app-router-button [texto]="'INGRESAR'" [tipo]="'azul'" (clickEvent)="submit()"></app-router-button>  
+    </div>
+</div>
+

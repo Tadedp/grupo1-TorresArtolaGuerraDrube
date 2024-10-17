@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { CurrentUser } from '../../auth';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ingresos-favoritos',
@@ -9,14 +7,11 @@ import { Router } from '@angular/router';
 })
 
 export class IngresosFavoritosComponent {
-  @Input() titulo: string = 'texto'; 
-  @Input() subtitulo: string = 'texto'; 
+    @Input() titulo: string = 'texto'; 
+    @Input() subtitulo: string = 'texto'; 
 
-  @Input() rutas: string [] = []
-  @Input() titulos: string [] = []
-  @Input() autores: string [] = []
-
- 
-
+    @Input() rutas: string [] = []
+    @Input() titulos: string [] = []
+    @Input() autores: string [] = []
 }
 

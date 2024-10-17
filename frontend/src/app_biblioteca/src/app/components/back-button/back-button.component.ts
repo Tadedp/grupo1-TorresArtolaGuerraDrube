@@ -13,6 +13,7 @@ export class BackButtonComponent {
     constructor(private router: Router) {}
 
     navigate() {
+        console.log(this.url)
         this.router.navigate([this.url]);
     }
 }

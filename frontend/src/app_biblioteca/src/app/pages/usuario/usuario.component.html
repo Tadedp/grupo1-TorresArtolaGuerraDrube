@@ -5,16 +5,16 @@
                 <div>
                     <i class="bi bi-person-circle" style="font-size: 7rem;"></i>
                     <div class="d-flex align-items-center">
-                        <p class="fs-3 fw-bold m-3" style="color: #0D0842;margin-left:0;">juancito123</p>
-                        <app-edit-delete-buttons [editarUrl]="'/editar-usuario'"></app-edit-delete-buttons> 
+                        <p class="fs-3 fw-bold m-3" style="color: #0D0842;margin-left:0;">{{ usuario_datos.alias }}</p>
+                        <app-edit-delete-buttons [editarUrl]="'/usuario/' + usuario_datos.id + '/editar'"></app-edit-delete-buttons> 
                     </div>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>ID: </strong>456789</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Nombre: </strong>Juan</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Apellido: </strong>Torres</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Mail: </strong>juancitorresgmail.com</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>DNI: </strong>45021528</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Teléfono: </strong>+5492615578239</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Rol: </strong>Usuario</p>    
+                    <p class="text-start m-2" style="color: #0D0842;"><strong>ID: </strong>{{ usuario_datos.id }}</p>
+                    <p class="text-start m-2" style="color: #0D0842;"><strong>Nombre: </strong>{{ usuario_datos.nombre }}</p>
+                    <p class="text-start m-2" style="color: #0D0842;"><strong>Apellido: </strong>{{ usuario_datos.apellido }}</p>
+                    <p class="text-start m-2" style="color: #0D0842;"><strong>Mail: </strong>{{ usuario_datos.mail }}</p>
+                    <p class="text-start m-2" style="color: #0D0842;"><strong>DNI: </strong>{{ usuario_datos.dni }}</p>
+                    <p class="text-start m-2" style="color: #0D0842;"><strong>Teléfono: </strong>{{ usuario_datos.telefono }}</p>
+                    <p class="text-start m-2" style="color: #0D0842;"><strong>Rol: </strong>{{ usuario_datos.rol }}</p>    
                 </div>
             </div>
     
@@ -24,9 +24,9 @@
                     <p class="fs-3 fw-bold m-3" style="color: #0D0842;">Préstamos</p>
                     <div class="row text-center">
                         <div class="col-3 d-flex">
-                            <app-imagen-libro [urlImagen]="'1984.jpeg'" [titulo]="'1984'" [autor]="'George Orwell'"></app-imagen-libro>
-                            <app-imagen-libro [urlImagen]="'amantejapones.jpg'" [titulo]="'El Amante Japones'" [autor]="'Isabel Allende'"></app-imagen-libro>
-                            <app-imagen-libro [urlImagen]="'cienanosdesoledad.png'" [titulo]="'Cien Años de Soledad'" [autor]="'Gabriel Garcia Marquez'"></app-imagen-libro>
+                            <app-imagen-libro class="m-2" [urlImagen]="'1984.jpeg'" [titulo]="'1984'" [autor]="'George Orwell'"></app-imagen-libro>
+                            <app-imagen-libro class="m-2" [urlImagen]="'amantejapones.jpg'" [titulo]="'El Amante Japones'" [autor]="'Isabel Allende'"></app-imagen-libro>
+                            <app-imagen-libro class="m-2" [urlImagen]="'cienanosdesoledad.png'" [titulo]="'Cien Años de Soledad'" [autor]="'Gabriel Garcia Marquez'"></app-imagen-libro>
 
                         </div>
                     </div>
@@ -36,5 +36,3 @@
     </div>
 
 <app-footer></app-footer>
-
-
