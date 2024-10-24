@@ -5,17 +5,17 @@
         <span>Inicio</span>
     </div>
    
-    <div class="footer-item" *ngIf="isAdmin()" (click)="navigateToLibros()">
+    <div class="footer-item" *ngIf="isAdminBibliotecario()" (click)="navigateToLibros()">
         <i class="bi bi-book" style="font-size: 1rem;"></i> 
         <span>Libros</span>
     </div>
 
-    <div class="footer-item" *ngIf="isAdmin()" (click)="navigateToUsuarios()">
+    <div class="footer-item" *ngIf="isAdminBibliotecario()" (click)="navigateToUsuarios()">
         <i class="bi bi-person" style="font-size: 1rem;"></i> 
         <span>Usuarios</span>
     </div>
 
-    <div class="footer-item" *ngIf="isAdmin()" (click)="navigateToPrestamos()">
+    <div class="footer-item" *ngIf="isAdminBibliotecario()" (click)="navigateToPrestamos()">
         <i class="bi bi-journal" style="font-size: 1rem;"></i> 
         <span>Prestamos</span>
     </div>

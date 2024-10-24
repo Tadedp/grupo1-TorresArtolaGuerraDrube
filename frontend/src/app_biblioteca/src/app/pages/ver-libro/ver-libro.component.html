@@ -3,13 +3,13 @@
     <div class="row">
         <div class="col-md-4 d-flex">
             <div class="libro-image justify-content-center align-items-center">
-                <app-imagen-libro [urlImagen]="'orgulloyprejuicio.png'" [titulo]="libro_datos.titulo" [autor]="libro_autor"></app-imagen-libro>
+                <app-imagen-libro [urlImagen]="libro_datos.portada" [titulo]="libro_datos.titulo" [autor]="libro_autor"></app-imagen-libro>
                 <div *ngIf="isUser()" class="boton-solicitar-libro">
                     <app-router-button [texto]="'SOLICITAR LIBRO'" [tipo]="'rojo'" (clickEvent)="openModalSolicitarPrestamo()"></app-router-button>  
                 </div>
-                <div *ngIf="isAdmin()" class="m-0">
+                <div *ngIf="isAdminBibliotecario()" class="m-0">
                     <div class="d-flex justify-content-center align-items-center">
-                        <app-edit-delete-buttons [editarUrl]="'libro/' + libro_id + '/editar'"></app-edit-delete-buttons>
+                        <app-edit-delete-buttons [editarUrl]="'libro/' + libro_id + '/editar'" (clickEvent)="deleteLibro(libro_datos.id)"></app-edit-delete-buttons>
                     </div>
                 </div>
             </div>
@@ -17,12 +17,12 @@
         <div class="col-md-8" >
             <div class="text-container">
                 <p class="fs-4 fw-bold" style="color: #0D0842;margin-top: 2rem;">Sinopsis</p>
-                <p>El matrimonio Bennet tiene cinco hijas casaderas de entre 15 y 23 años. Conseguir colocarlas con un buen casamiento es la única esperanza que puede albelgar la madre, sabedora de que sus hijas perderán su escasa fortuna cuando fallezcan sus padres. La llegada de un joven y rico hacendado, Charles Bingley; revoluciona la pequeña sociedad de pretendientes. Viene acompañado de Fitzwilliam Darcy que se gana pronto fama de distante y antipático. La presencia de los dos jóvenes será el desencadenante de un torrente de pasiones que alcanzará también a Elizabeth Bennet, centro de toda la historia.</p>
+                <p>{{ libro_datos.sinopsis }}</p>
             </div>
 
             <div class="d-flex align-items-center justify-content-between mt-5">
                 <p class="fs-4 fw-bold" style="color: #0D0842; margin-right: 1rem;">Reseñas</p>
-                <a class="d-flex btn p-0" style="color: inherit; text-decoration: none; border: 0rem;" *ngIf="isAdmin()" (click)="openModalDatosLibro()">
+                <a class="d-flex btn p-0" style="color: inherit; text-decoration: none; border: 0rem;" *ngIf="isAdminBibliotecario()" (click)="openModalDatosLibro()">
                     <p class="fs-5 fw-bold" style="color: #0D0842; margin-right: 1rem;" >Más Información</p>
                     <i class="bi bi-chevron-right mt-1" style="color: #0D0842;"></i>
                 </a>
@@ -36,7 +36,8 @@
                 <app-resenia
                 [nombreUsuario]="resenia.usuario.alias"
                 [resenia]="resenia.comentario"
-                [valoracion]="resenia.valoracion">
+                [valoracion]="resenia.valoracion"
+                [fecha]="resenia.fecha">
                 </app-resenia>
             </div>
         </div>

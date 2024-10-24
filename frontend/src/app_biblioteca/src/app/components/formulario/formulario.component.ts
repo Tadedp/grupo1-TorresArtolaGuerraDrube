@@ -44,4 +44,8 @@ export class FormularioComponent {
 
         this.form = this.formBuilder.group(formEstructura);
     }
+
+    esCampoContrasena(titulo: string): boolean {
+        return titulo.toLowerCase().includes('contraseña');
+    }
 }

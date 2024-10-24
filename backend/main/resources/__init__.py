@@ -1,5 +1,6 @@
 from .libro import Libro as LibroResource
 from .libro import Libros as LibrosResource
+from .reseña import Reseñas as ReseñasResource
 from .reseña import Reseña as ReseñaResource
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource

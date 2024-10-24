@@ -11,7 +11,7 @@ export class PrestamosService {
         private httpClient:HttpClient
     ) { }
 
-    getPrestamos(page: number, params?: { id?: string, libro_id?:string, usuario_id?: string, fecha_inicio?: string, fecha_fin?: string, sortby_id?: string, sortby_libro_titulo?: string, sortby_usuario_alias?: string, sortby_fecha_inicio?: string, sortby_fecha_fin?: string}) {
+    getPrestamos(page: number, params?: { per_page?: number, id?: string, libro_id?:string, usuario_id?: string, fecha_inicio?: string, fecha_fin?: string, sortby_id?: string, sortby_libro_titulo?: string, sortby_usuario_alias?: string, sortby_fecha_inicio?: string, sortby_fecha_fin?: string}) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -22,6 +22,9 @@ export class PrestamosService {
         let httpParams = new HttpParams().set('page', page.toString());
 
         if (params) {
+            if (params.per_page) {
+                httpParams = httpParams.set('per_page', params.per_page);
+            }
             if (params.id) {
                 httpParams = httpParams.set('id', params.id);
             }
@@ -59,7 +62,7 @@ export class PrestamosService {
         return this.httpClient.get(this.url + '/prestamos', requestOptions);
     }
 
-    postPrestamo() {
+    postPrestamo(body: any) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -67,10 +70,9 @@ export class PrestamosService {
         'Authorization': `Bearer ${auth_token}` 
         })
 
-        //const body = 
         const requestOptions = {headers: headers}
         
-        return this.httpClient.post(this.url + '/prestamos', requestOptions);
+        return this.httpClient.post(this.url + '/prestamos', body, requestOptions);
     }
 
     getPrestamo(id: number) {
@@ -81,13 +83,12 @@ export class PrestamosService {
         'Authorization': `Bearer ${auth_token}` 
         })
 
-        //const body =
         const requestOptions = {headers: headers}
 
         return this.httpClient.get(this.url + '/prestamo/' + id, requestOptions);
     }
 
-    putPrestamo(id: number) {
+    putPrestamo(id: number, body: any) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -97,7 +98,7 @@ export class PrestamosService {
 
         const requestOptions = {headers: headers}
 
-        return this.httpClient.put(this.url + '/prestamo/' + id, requestOptions);
+        return this.httpClient.put(this.url + '/prestamo/' + id, body, requestOptions);
     }
 
     deletePrestamo(id: number) {

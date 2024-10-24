@@ -79,7 +79,7 @@ export class GridComponent {
                 { name: 'Estado', sortDirection: 'desc' },
                 { name: 'Stock', sortDirection: 'desc' }
             ];
-
+    
             this.librosService.getLibros(1).subscribe((rta:any) => { 
                 console.log('Return api: ', rta );
                 this.arrayFilas = rta.libros || [];
@@ -110,12 +110,20 @@ export class GridComponent {
                     const idLibro = partes[1]?.trim();
                     const idUsuario = partes[3]?.trim();
 
+                    const fechaRegex = /\d{4}-\d{2}-\d{2}/;
+                    const fechaMatch = mensaje.match(fechaRegex);
+                    const fecha_inicio = fechaMatch ? fechaMatch[0] : null;
+
                     this.librosService.getLibro(idLibro).subscribe((libro: any) => {
                         this.usuariosService.getUsuario(idUsuario).subscribe((usuario: any) => {
                             this.arrayFilas.push({
-                                fecha: notificacion.fecha,     
+                                id: notificacion.id,
+                                fecha: notificacion.fecha,
+                                fecha_inicio: fecha_inicio,     
+                                id_libro: idLibro,
                                 libroTitulo: libro.titulo,
-                                libroAutor: libro.autores[0].nombre + " " + libro.autores[0].apellido,
+                                libroAutor: libro.autor.nombre + " " + libro.autor.apellido,
+                                id_usuario: idUsuario,
                                 usuarioAlias: usuario.alias,
                                 usuarioNombre: usuario.nombre + " " + usuario.apellido
                             });
@@ -180,12 +188,20 @@ export class GridComponent {
                     const idLibro = partes[1]?.trim();
                     const idUsuario = partes[3]?.trim();
 
+                    const fechaRegex = /\d{4}-\d{2}-\d{2}/;
+                    const fechaMatch = mensaje.match(fechaRegex);
+                    const fecha_inicio = fechaMatch ? fechaMatch[0] : null;
+
                     this.librosService.getLibro(idLibro).subscribe((libro: any) => {
                         this.usuariosService.getUsuario(idUsuario).subscribe((usuario: any) => {
                             this.arrayFilas.push({
-                                fecha: notificacion.fecha,     
+                                id: notificacion.id,
+                                fecha: notificacion.fecha,
+                                fecha_inicio: fecha_inicio,     
+                                id_libro: idLibro,
                                 libroTitulo: libro.titulo,
-                                libroAutor: libro.autores[0].nombre + " " + libro.autores[0].apellido,
+                                libroAutor: libro.autor.nombre + " " + libro.autor.apellido,
+                                id_usuario: idUsuario,
                                 usuarioAlias: usuario.alias,
                                 usuarioNombre: usuario.nombre + " " + usuario.apellido
                             });
@@ -289,12 +305,20 @@ export class GridComponent {
                         const idLibro = partes[1]?.trim();
                         const idUsuario = partes[3]?.trim();
 
+                        const fechaRegex = /\d{4}-\d{2}-\d{2}/;
+                        const fechaMatch = mensaje.match(fechaRegex);
+                        const fecha_inicio = fechaMatch ? fechaMatch[0] : null;
+
                         this.librosService.getLibro(idLibro).subscribe((libro: any) => {
                             this.usuariosService.getUsuario(idUsuario).subscribe((usuario: any) => {
                                 this.arrayFilas.push({
-                                    fecha: notificacion.fecha,     
+                                    id: notificacion.id,
+                                    fecha: notificacion.fecha,
+                                    fecha_inicio: fecha_inicio,     
+                                    id_libro: idLibro,
                                     libroTitulo: libro.titulo,
-                                    libroAutor: libro.autores[0].nombre + " " + libro.autores[0].apellido,
+                                    libroAutor: libro.autor.nombre + " " + libro.autor.apellido,
+                                    id_usuario: idUsuario,
                                     usuarioAlias: usuario.alias,
                                     usuarioNombre: usuario.nombre + " " + usuario.apellido
                                 });
@@ -346,6 +370,74 @@ export class GridComponent {
         }
         
         header.sortDirection = header.sortDirection === 'desc' ? 'asc' : 'desc';
+    }
+
+    deletePrestamo(prestamoID: number){
+        this.prestamosService.deletePrestamo(prestamoID).subscribe({
+            next: (response) => {
+                console.log('Préstamo eliminado exitosamente:', response);
+                
+            }, error: (error) => {
+                console.error('Error al eliminar el préstamo:', error);
+                alert('Error al eliminar el préstamo');
+            }, complete: () => {
+                this.onPageChanged(1)
+            }
+        });
+    }
+
+    confirmNotificacion(notificacion: any){
+        const fechaActual = new Date();
+
+        const body = {
+            fecha: (fechaActual.getFullYear()).toString() + "-" + (fechaActual.getMonth() + 1).toString() + "-" + (fechaActual.getDate()).toString(),
+            mensaje: "Su solicitud de préstamo de '" + notificacion.libroTitulo + "' fue aceptada, acérquese al local para retirar su libro el " + notificacion.fecha_inicio + ".",
+            usuarios: [notificacion.id_usuario]
+        };
+
+        this.notificacionesService.deleteNotificacion(notificacion.id).subscribe({
+            next: (response) => {
+                console.log('Notificación eliminada exitosamente:', response);
+            }, error: (error) => {
+                console.error('Error al eliminar la notificación:', error);
+            }, complete: () => {
+                this.onPageChanged(1)
+                this.notificacionesService.postNotificacion(body).subscribe({
+                    next: (response) => {
+                        console.log('Notificación de confirmación enviada exitosamente:', response);
+                    }, error: (error) => {
+                        console.error('Error al enviar la notificación de confirmación:', error);
+                    }
+                });
+            }
+        });
+    }
+
+    declineNotificacion(notificacion: any){
+        const fechaActual = new Date();
+
+        const body = {
+            fecha: (fechaActual.getFullYear()).toString() + "-" + (fechaActual.getMonth() + 1).toString() + "-" + (fechaActual.getDate()).toString(),
+            mensaje: "Su solicitud de préstamo de '" + notificacion.libroTitulo + "' fue rechazada, lo sentimos.",
+            usuarios: [notificacion.id_usuario]
+        };
+        
+        this.notificacionesService.deleteNotificacion(notificacion.id).subscribe({
+            next: (response) => {
+                console.log('Notificación eliminada exitosamente:', response);
+            }, error: (error) => {
+                console.error('Error al eliminar la notificación:', error);
+            }, complete: () => {
+                this.onPageChanged(1)
+                this.notificacionesService.postNotificacion(body).subscribe({
+                    next: (response) => {
+                        console.log('Notificación de rechazo enviada exitosamente:', response);
+                    }, error: (error) => {
+                        console.error('Error al enviar la notificación de rechazo:', error);
+                    }
+                });
+            }
+        });
     }
 
     getRouter(): string {

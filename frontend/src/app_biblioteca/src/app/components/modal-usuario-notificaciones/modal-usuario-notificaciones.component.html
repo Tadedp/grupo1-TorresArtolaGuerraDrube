@@ -1,0 +1,23 @@
+<h5 mat-dialog-title class="fw-bold m-0" style="background-color: #F0EBD5;">Notificaciones</h5>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-content>
+    <div *ngFor="let notificacion of notificaciones; let i = index" class="notificacion">
+        
+        <!-- Contenedor con la fecha y mensaje -->
+        <div class="notificacion-content">
+            <p><strong>Fecha:</strong> {{ notificacion.fecha }}</p>
+            <p>{{ notificacion.mensaje }}</p>
+        </div>  
+        
+        <!-- Botón para cerrar la notificación -->
+        <button (click)="deleteNotificacion(notificacion.id)" class="btn-x">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="mb-4 text-center align-items-center">
+    <app-router-button [texto]="'CERRAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
+</div>

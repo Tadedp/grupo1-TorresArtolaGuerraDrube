@@ -1,26 +1,28 @@
 <h5 mat-dialog-title class="modal-title" style="font-weight: bold;">Información</h5>
 
+<mat-divider></mat-divider>
+
 <mat-dialog-content class="modal-content">
-<div class="info-container" style="margin-top: 1rem;">
-    <p><strong>ID: </strong> {{ data.libro_id }}</p>
-    <p><strong>Género: </strong> {{ data.libro_genero }} </p>
-    <p><strong>Editorial: </strong> {{ data.libro_editorial }} </p>
-    <p><strong>ISBN: </strong> {{ data.libro_isbn }} </p>
+    <div class="info-container" style="margin-top: 1rem;">
+        <p><strong>ID: </strong> {{ data.libro_id }}</p>
+        <p><strong>Género: </strong> {{ data.libro_genero }} </p>
+        <p><strong>Editorial: </strong> {{ data.libro_editorial }} </p>
+        <p><strong>ISBN: </strong> {{ data.libro_isbn }} </p>
 
-    <div class="details-container" style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-        <div class="detail-box" style="flex: 1; text-align: center; border: 1px solid #ccc; border-radius: 5px; padding: 1rem;">
-            <p style="margin: 0; font-weight: bold;">Cantidad</p>
-            <p style="margin: 0;">{{ data.libro_cantidad }}</p>
-        </div>
+        <div class="details-container" style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <div class="detail-box" style="flex: 1; text-align: center; border: 1px solid #ccc; border-radius: 5px; padding: 1rem;">
+                <p style="margin: 0; font-weight: bold;">Cantidad</p>
+                <p style="margin: 0;">{{ data.libro_cantidad }}</p>
+            </div>
 
-        <div class="detail-box" style="flex: 1; text-align: center; border: 1px solid #ccc; border-radius: 5px; padding: 1rem;">
-            <p style="margin: 0; font-weight: bold;">Estado</p>
-            <p style="margin: 0;">{{ data.libro_estado }}</p>
+            <div class="detail-box" style="flex: 1; text-align: center; border: 1px solid #ccc; border-radius: 5px; padding: 1rem;">
+                <p style="margin: 0; font-weight: bold;">Estado</p>
+                <p style="margin: 0;">{{ data.libro_estado }}</p>
+            </div>
         </div>
     </div>
-</div>
 </mat-dialog-content>
 
 <div class="mb-4 text-center align-items-center">
-    <app-router-button [texto]="'CONFIRMAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
+    <app-router-button [texto]="'CERRAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
 </div>

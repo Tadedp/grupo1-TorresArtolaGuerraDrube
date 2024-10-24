@@ -18,6 +18,7 @@ export class VerLibroComponent {
     libro_datos: any;
     libro_autor: any;
     libro_resenias: any;
+    libro_estado: any;
 
     rolSesion = localStorage.getItem('rol')
 
@@ -39,13 +40,14 @@ export class VerLibroComponent {
             ).subscribe((rta: any) => { 
                 console.log('Return api: ', rta );
                 this.libro_datos = rta;
-                this.libro_autor = rta.autores[0].nombre + ' ' + rta.autores[0].apellido;
+                this.libro_autor = rta.autor.nombre + ' ' + rta.autor.apellido;
                 this.libro_resenias = rta.reseñas
+                this.libro_estado = rta.estado
             });
     }
 
-    isAdmin(): boolean {
-        return this.rolSesion === 'Admin';
+    isAdminBibliotecario(): boolean {
+        return this.rolSesion === 'Admin' || this.rolSesion === 'Bibliotecario';
     }
 
     isUser(): boolean {
@@ -73,7 +75,7 @@ export class VerLibroComponent {
     openModalSolicitarPrestamo(): void {
         const dialogRef = this.dialog.open(ModalSolicitarPrestamoComponent, {
         width: '500px',
-        data: { libro_id: this.libro_id }
+        data: { libro_datos: this.libro_datos }
         });
     }
 
@@ -84,16 +86,16 @@ export class VerLibroComponent {
         });
     }
 
-    navigateToDatosLibro() {
-        this.router.navigate(['/datos-libro']);
+    deleteLibro(libroID: number){
+        this.librosServicio.deleteLibro(libroID).subscribe({
+            next: (response) => {
+                console.log('Libro eliminado exitosamente:', response);
+            }, error: (error) => {
+                console.error('Error al eliminar el libro:', error);
+                alert('Error al eliminar el libro');
+            }, complete: () => {
+                this.router.navigateByUrl('libros'); 
+            }
+        });
     }
-
-    navigateToSolicitarPrestamo() {
-        this.router.navigate(['/solicitar-prestamo']);
-    }
-
-    navigateToEnviarResenia() {
-        this.router.navigate(['/enviar-resenia']);
-    }
-
 }

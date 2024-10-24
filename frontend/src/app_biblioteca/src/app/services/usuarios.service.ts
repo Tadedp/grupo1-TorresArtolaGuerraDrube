@@ -11,7 +11,7 @@ export class UsuariosService {
         private httpClient:HttpClient
     ) { }
 
-    getUsuarios(page: number, params?: { id?: string, alias?: string, nombre?: string, apellido?: string, dni?: string, telefono?: string, mail?: string, sortby_id?: string, sortby_alias?: string}) {
+    getUsuarios(page: number, params?: { per_page?: number, id?: string, alias?: string, nombre?: string, apellido?: string, dni?: string, telefono?: string, mail?: string, rol?: string, sortby_id?: string, sortby_alias?: string}) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -22,6 +22,9 @@ export class UsuariosService {
         let httpParams = new HttpParams().set('page', page.toString());
 
         if (params) {
+            if (params.per_page) {
+                httpParams = httpParams.set('per_page', params.per_page);
+            }
             if (params.id) {
                 httpParams = httpParams.set('id', params.id);
             }
@@ -43,6 +46,9 @@ export class UsuariosService {
             if (params.mail) {
                 httpParams = httpParams.set('mail', params.mail);
             }
+            if (params.rol) {
+                httpParams = httpParams.set('rol', params.rol);
+            }
             if (params.sortby_id) {
               httpParams = httpParams.set('sortby_id', params.sortby_id);
             }
@@ -56,7 +62,7 @@ export class UsuariosService {
         return this.httpClient.get(this.url + '/usuarios', requestOptions);
     }
 
-    postUsuario() {
+    postUsuario(body: any) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -64,10 +70,9 @@ export class UsuariosService {
         'Authorization': `Bearer ${auth_token}` 
         })
 
-        //const body = 
         const requestOptions = {headers: headers}
         
-        return this.httpClient.post(this.url + '/usuarios', requestOptions);
+        return this.httpClient.post(this.url + '/usuarios', body, requestOptions);
     }
 
     getUsuario(id: number) {
@@ -83,7 +88,7 @@ export class UsuariosService {
         return this.httpClient.get(this.url + '/usuario/' + id, requestOptions);
     }
 
-    putUsuario(id: number) {
+    putUsuario(id: number, body: any) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -93,7 +98,7 @@ export class UsuariosService {
 
         const requestOptions = {headers: headers}
 
-        return this.httpClient.put(this.url + '/usuario/' + id, requestOptions);
+        return this.httpClient.put(this.url + '/usuario/' + id, body, requestOptions);
     }
 
     deleteUsuario(id: number) {

@@ -13,15 +13,15 @@
     
     <ng-container *ngIf="tipo_op === 'agregar'">
         <app-formulario 
-        [titulos]="['Título', 'Autor ID', 'Género', 'Editorial', 'ISBN', 'Stock', 'Estado']" 
-        [placeholders]="['...', '...', '...', '...', 'xxx-xxx-xxxx-xx-x', '...', 'Disponible/No Disponible']">
+        [titulos]="['Título', 'Autor Nombres', 'Autor Apellidos', 'Género', 'Editorial', 'ISBN', 'Sinopsis', 'Stock', 'Estado']" 
+        [placeholders]="['...', '...', '...', '...', '...', '...', '...', '...', 'Disponible/No Disponible']">
         </app-formulario>
     </ng-container>
 
     <ng-container *ngIf="tipo_op === 'editar'">
         <app-formulario 
-        [titulos]="['Título', 'Autor ID', 'Género', 'Editorial', 'ISBN', 'Stock', 'Estado']"
-        [placeholders]="['...', '...', '...', '...', 'xxx-xxx-xxxx-xx-x', '...', 'Disponible/No Disponible']"
+        [titulos]="['Título', 'Autor Nombres', 'Autor Apellidos', 'Género', 'Editorial', 'ISBN', 'Sinopsis', 'Stock', 'Estado']"
+        [placeholders]="['...', '...', '...', '...', '...', '...', '...', '...', 'Disponible/No Disponible']"
         [values]="libroDatos">
         </app-formulario>
     </ng-container>

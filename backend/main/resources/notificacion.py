@@ -20,7 +20,7 @@ class Notificaciones(Resource):
                 return "URL inexistente.", 404 
         
         jwt_identity = get_jwt_identity()
-        notificaciones=notificaciones.filter(NotificacionModel.id_usuario.like("%"+str(jwt_identity)+"%"))
+        notificaciones = notificaciones.join(NotificacionModel.usuarios).filter(UsuarioModel.id == jwt_identity)
         
         if list(request.args.keys()) == []:
             page = 1
@@ -36,7 +36,7 @@ class Notificaciones(Resource):
                 per_page = int(request.args.get('per_page'))
             except:
                 return "URL inexistente.", 404
-            
+
         if request.args.get('sortby_fecha'):
             if request.args.get('sortby_fecha') == "asc":
                 notificaciones=notificaciones.order_by(asc(NotificacionModel.fecha))
@@ -53,15 +53,34 @@ class Notificaciones(Resource):
                   'page': page
                 })
 
-    @role_required(roles = ["Admin", "Bibliotecario"])
+    @jwt_required()
     def post(self):
+        usuarios_ids = request.get_json().get('usuarios')
         notificacion = NotificacionModel.from_json(request.get_json())
+                        
+        jwt_identity = get_jwt_identity()
+        current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)     
+                        
+        if usuarios_ids:
+            if current_user.rol == "Bibliotecario":
+                usuarios = UsuarioModel.query.filter(UsuarioModel.id.in_(usuarios_ids), UsuarioModel.rol == "Usuario").all()
+            else:
+                usuarios = UsuarioModel.query.filter(UsuarioModel.id.in_(usuarios_ids)).all()
+
+            if not usuarios:
+                return "No se encontraron usuarios válidos.", 400
+
+            notificacion.usuarios.extend(usuarios)
+        else:
+            return "Formato de datos incorrecto.", 400
+        
         try:
             db.session.add(notificacion)
             db.session.commit()
         except:
             return "Formato de datos incorrecto.", 400
-        return notificacion.to_json(), 201
+        
+        return notificacion.to_json_complete(), 201
         
 class Notificacion(Resource):
     @jwt_required()
@@ -74,10 +93,10 @@ class Notificacion(Resource):
         jwt_identity = get_jwt_identity()
         current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)        
         
-        if current_user.id != notificacion.id_usuario:
+        if current_user.rol == "Usuario" and current_user not in notificacion.usuarios:
             return "Permiso denegado.", 403
         else: 
-            return notificacion.to_json()
+            return notificacion.to_json_complete()
     
     @jwt_required()
     def delete(self, id):
@@ -89,7 +108,7 @@ class Notificacion(Resource):
         jwt_identity = get_jwt_identity()
         current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)        
         
-        if current_user.rol != "Admin" and current_user.id != notificacion.id_usuario:
+        if current_user.rol == "Usuario" and current_user not in notificacion.usuarios:
             return "Permiso denegado.", 403
         else: 
             db.session.delete(notificacion)

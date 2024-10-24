@@ -1,8 +1,10 @@
-<h5 mat-dialog-title class="modal-title" style="font-weight: bold;">
+<h5 mat-dialog-title class="modal-title m-0" style="font-weight: bold; background-color: #F0EBD5;">
     Publicar Reseña
 </h5>
 
-<mat-dialog-content class="modal-content" style="background-color: #F0EBD5;">
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="modal-content" style="background-color: #ffffff">
     <form [formGroup]="form">
         <div style="font-size: 125%; margin-top: 5%; margin-bottom: 2%;">
             <label for="reseña" class="form-label"> Deje su reseña de este libro </label>
@@ -10,13 +12,19 @@
         </div>
     </form>
     
-    <div class="star-rating" style="margin-top: 2%;">
-        <i class="bi bi-star-fill"></i>
-        <i class="bi bi-star-fill"></i>
-        <i class="bi bi-star-fill"></i>
-        <i class="bi bi-star-fill"></i>
-        <i class="bi bi-star-fill"></i>
-    </div>  
+    <div class="star-rating" style="margin-top: 2%; font-size: large;">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+            <i 
+                [ngClass]="{
+                    'bi-star-fill black-star': rating >= (i + 1),   
+                    'bi-star-half black-star': rating >= (i + 0.5) && rating < (i + 1), 
+                    'bi-star': rating < (i + 0.5)}"
+                class="bi"
+                (click)="rate(i + 1, $event)"
+                style="cursor: pointer;">
+            </i>
+        </ng-container>
+    </div>
     <br>
     <div class="d-flex mt-0 m-3 align-items-center justify-content-center">
         <app-router-button [texto]="'CONFIRMAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>

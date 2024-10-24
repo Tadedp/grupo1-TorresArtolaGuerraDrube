@@ -16,9 +16,9 @@
         <ng-container *ngFor="let fila of arrayFilas">
             <div class="grid-item">{{ fila.id }}</div>
             <div class="grid-item">
-                {{ fila.libros[0].titulo }}
+                {{ fila.libro.titulo }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                    {{ fila.libros[0].autores[0].nombre }} {{ fila.libros[0].autores[0].apellido}}
+                    {{ fila.libro.autor.nombre }} {{ fila.libro.autor.apellido}}
                 </p>
             </div>
             <div class="grid-item">
@@ -30,7 +30,7 @@
             <div class="grid-item">{{ fila.fecha_inicio }}</div>
             <div class="grid-item">{{ fila.fecha_fin }}</div>
             <div class="grid-item" style="overflow: visible">
-                <app-edit-delete-buttons [editarUrl]="'/prestamo/' + fila.id + '/editar'"></app-edit-delete-buttons>
+                <app-edit-delete-buttons [editarUrl]="'/prestamo/' + fila.id + '/editar'" (clickEvent)="deletePrestamo(fila.id)"></app-edit-delete-buttons>
             </div>
         </ng-container>
     </ng-container>
@@ -53,7 +53,7 @@
             <div class="grid-item btn" style="border-radius: 0;" (click)="navigate(fila.id)">
                 {{ fila.titulo }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                    {{ fila.autores[0].nombre }} {{ fila.autores[0].apellido }}
+                    {{ fila.autor.nombre }} {{ fila.autor.apellido }}
                 </p>
             </div>
             <div class="grid-item">{{ fila.estado }}</div>
@@ -77,10 +77,10 @@
                 </p>
             </div>
             <div class="grid-item" style="overflow: visible">
-                <button class="btn btn-success btn-sm me-2">
+                <button class="btn btn-success btn-sm me-2" (click)="confirmNotificacion(fila)">
                     <i class="bi bi-check-lg"></i>
                 </button>                            
-                <button class="btn btn-danger btn-sm">
+                <button class="btn btn-danger btn-sm" (click)="declineNotificacion(fila)">
                     <i class="bi bi-x-lg"></i>
                 </button>            
             </div>

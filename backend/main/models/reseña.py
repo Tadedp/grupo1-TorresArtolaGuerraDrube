@@ -18,6 +18,15 @@ class Reseña(db.Model):
         return '<Reseña> id:%r, valoracion:%r, comentario:%r' % (self.id, self.valoracion, self.comentario)
 
     def to_json(self):
+        reseña_json = {
+            'id': self.id,
+            'comentario': str(self.comentario),
+            'valoracion': self.valoracion,
+            'fecha': str(self.fecha.strftime('%Y-%m-%d'))
+        }
+        return reseña_json
+    
+    def to_json_complete(self):
         self.usuario = db.session.query(UsuarioModel).get_or_404(self.id_usuario)
         self.libro = db.session.query(LibroModel).get_or_404(self.id_libro)
         reseña_json = {

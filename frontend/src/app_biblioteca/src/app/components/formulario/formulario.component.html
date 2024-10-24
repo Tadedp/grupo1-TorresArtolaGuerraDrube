@@ -2,8 +2,11 @@
     <ng-container *ngFor="let titulo of titulos; let i = index">
         <div style="font-size: 125%;">
             <label for="{{ titulo }}" class="form-label"> {{ titulo }} </label>
-            <input type="titulo" class="form-control" formControlName="{{ titulo }}" id="{{ titulo }}" [placeholder]="placeholders[i]">
+            <input [type]="esCampoContrasena(titulo) ? 'password' : 'text'" 
+                   class="form-control" 
+                   formControlName="{{ titulo }}" 
+                   id="{{ titulo }}" 
+                   [placeholder]="placeholders[i]">        
         </div>
-        <br>
      </ng-container>    
 </form>

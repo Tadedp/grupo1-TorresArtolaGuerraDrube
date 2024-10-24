@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -10,7 +9,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ModalDatosLibroComponent {
     constructor(
         public dialogRef: MatDialogRef<ModalDatosLibroComponent>,
-        private router: Router,
     
         @Inject(MAT_DIALOG_DATA) public data: any
     ) {}
