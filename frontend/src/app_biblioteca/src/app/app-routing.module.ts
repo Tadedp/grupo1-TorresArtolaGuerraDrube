@@ -19,28 +19,28 @@ import { NotificacionesComponent } from './pages/notificaciones/notificaciones.c
 import { authsessionGuard } from './guards/authsession.guard'
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: 'libros', component: LibrosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: 'usuarios', component: UsuariosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: 'prestamos', component: PrestamosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: 'error-page', component: ErrorPageComponent},
-  { path: 'libro/:id', component: VerLibroComponent},
-  { path: 'usuario/:id', component: UsuarioComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: 'detalles-perfil', component: DetallesPerfilComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Usuario'] }},
-  { path: 'prestamos-usuarios', component: PrestamosUsuariosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Usuario'] }},
-  { path: 'search', component: SearchComponent},
-  { path: 'portada', component: PortadaComponent},
-  { path: 'registrarse', component: RegistrarseComponent},
-  { path: 'prestamo/:id/:tipo_op', component: AmPrestamoComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: 'libro/:id/:tipo_op', component: AmLibroComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: 'usuario/:id/:tipo_op', component: AmUsuarioComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: 'notificaciones', component: NotificacionesComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
-  { path: '', redirectTo: 'portada', pathMatch: 'full'},
-  { path: '**', redirectTo: 'error-page'}
+    { path: 'home', component: HomeComponent},
+    { path: 'libros', component: LibrosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: 'usuarios', component: UsuariosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: 'prestamos', component: PrestamosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: 'error-page', component: ErrorPageComponent},
+    { path: 'libro/:id', component: VerLibroComponent},
+    { path: 'usuario/:id', component: UsuarioComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: 'detalles-perfil', component: DetallesPerfilComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Usuario', 'Bibliotecario', 'Admin'] }},
+    { path: 'prestamos-usuarios', component: PrestamosUsuariosComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Usuario'] }},
+    { path: 'search', component: SearchComponent},
+    { path: 'portada', component: PortadaComponent, canActivate: [authsessionGuard] },
+    { path: 'registrarse', component: RegistrarseComponent, canActivate: [authsessionGuard] },
+    { path: 'prestamo/:id/:tipo_op', component: AmPrestamoComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: 'libro/:id/:tipo_op', component: AmLibroComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: 'usuario/:id/:tipo_op', component: AmUsuarioComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: 'notificaciones', component: NotificacionesComponent, canActivate: [authsessionGuard], data: { rolesPermitidos: ['Bibliotecario', 'Admin'] }},
+    { path: '', redirectTo: 'portada', pathMatch: 'full'},
+    { path: '**', redirectTo: 'error-page'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

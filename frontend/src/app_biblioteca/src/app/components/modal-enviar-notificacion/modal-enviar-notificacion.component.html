@@ -5,7 +5,13 @@
 <form [formGroup]="form">
     <div style="font-size: 125%; margin-left: 5%; margin-right: 3%">
         <label for="usuarios" class="form-label"> Usuarios </label>
-        <input type="usuarios" class="form-control" formControlName="usuarios" id="usuarios" placeholder="alias1, alias2...">
+        <input type="usuarios" class="form-control" formControlName="usuarios" id="usuarios" placeholder="ID1, ID2...">
+        <div class="form-check mt-3">
+            <input class="form-check-input" type="checkbox" value="" id="enviarATodos" (change)="toggleEnviarATodos()">
+            <label class="form-check-label fs-6" for="enviarATodos">
+                Enviar a todos los usuarios
+            </label>
+        </div>
         <br>
         <label for="mensaje" class="form-label"> Mensaje </label>
         <textarea class="form-control" formControlName="mensaje" id="mensaje" placeholder="Mensaje..." rows="5"></textarea>

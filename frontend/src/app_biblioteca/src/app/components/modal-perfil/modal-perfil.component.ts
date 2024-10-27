@@ -12,6 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export class ModalPerfilComponent {
     usuarioDatos:any[] = [];
+    usuario_id!: number
 
     constructor(
         public dialogRef: MatDialogRef<ModalPerfilComponent>,
@@ -23,6 +24,7 @@ export class ModalPerfilComponent {
     ) {}
 
     ngOnInit(): void {
+        this.usuario_id = parseInt(localStorage.getItem('id') || '0')
         this.usuariosService.getUsuario(parseInt(localStorage.getItem('id') || '1')).subscribe((usuario: any) => { 
                 this.usuarioDatos = [usuario.alias, usuario.nombre, usuario.apellido];
             });
@@ -35,6 +37,20 @@ export class ModalPerfilComponent {
 
     navigateToFavoritos() {
         this.router.navigate(['/home']);
+        this.dialogRef.close();
+    }
+
+    deleteUsuario(){
+        this.usuariosService.deleteUsuario(this.usuario_id).subscribe({
+            error: (error: any) => {
+                console.error('Error al eliminar el usuario:', error);
+                alert('Error al eliminar el usuario');
+            }, complete: () => {
+                console.log('Usuario eliminado exitosamente');
+                this.router.navigateByUrl('portada'); 
+            }
+        });
+        this.authService.logout()
         this.dialogRef.close();
     }
 

@@ -9,18 +9,12 @@
         </div>
     </div> 
     
-    <div class="container-sm" style="margin-left: 5%; margin-right: 5%;">
+    <div style="margin-left: 5%; margin-right: 5%; margin-bottom: 2%;">
         <app-formulario 
-        [titulos]="['Nombre', 'Apellido', 'Alias', 'Mail', 'DNI', 'Teléfono']"
-        [placeholders]="['...', '...', '...', 'name@example.com', '...', '...']"
-        [values]="usuarioDatos"></app-formulario>
-        <div style="font-size: 125%; margin-bottom: 3%;">
-            <label for="exampleFormControlInput" class="form-label"> Contraseña </label>
-            <div class="input-group">
-                <input type="" class="form-control" id="exampleFormControlInput" placeholder="..." value="***" readonly>
-                <button type="button" class="btn btn-link text-decoration-none" style="color: #ffffff; background-color: #893027">cambiar</button>
-            </div>
-        </div>
+        [titulos]="['Nombre', 'Apellido', 'Alias', 'Mail', 'DNI', 'Teléfono', 'Contraseña', 'Confirmar Contraseña']"
+        [placeholders]="['...', '...', '...', 'name@example.com', '...', '...', '...', '...']"
+        [values]="usuarioDatos">
+        </app-formulario>
     </div>
     <div class="mb-4">
         <app-router-button [texto]="'CONFIRMAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>  

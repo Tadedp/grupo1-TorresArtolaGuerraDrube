@@ -8,7 +8,7 @@ from main.auth.decorators import role_required
 from werkzeug.security import generate_password_hash
 
 class Usuarios(Resource):
-    @role_required(roles = ["Admin", "Bibliotecario"])
+    @jwt_required()
     def get(self):
         page = 1
         per_page = 6
@@ -151,7 +151,7 @@ class Usuario(Resource):
         if current_user.rol == "Usuario" and int(jwt_identity) != int(id):
             return "Permiso denegado.", 403    
 
-        if current_user.rol == "Bibliotecario" and (usuario.rol == "Admin" or usuario.rol == "Bibliotecario"):
+        if current_user.rol == "Bibliotecario" and (usuario.rol == "Admin" or (usuario.rol == "Bibliotecario" and usuario.id != current_user.id)):
             return "Permiso denegado.", 403
 
         return usuario.to_json_complete()
@@ -162,6 +162,7 @@ class Usuario(Resource):
             usuario = db.session.query(UsuarioModel).get_or_404(id)
         except:
             return "ID inexistente.", 404
+        
         data = request.get_json().items()
         jwt_identity = get_jwt_identity()
         current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)
@@ -170,15 +171,21 @@ class Usuario(Resource):
             if key == "id" or key == "rol" or key == "reseñas" or key == "prestamos" or key == "notificaciones":
                 continue
             if key == "contraseña":
-                value = generate_password_hash(value)
+                if (current_user.rol == "Admin") or (int(jwt_identity) == int(id)):
+                    value = generate_password_hash(value)
+                else:
+                    continue
             setattr(usuario, key, value)
         
-        if (current_user.rol == "Usuario" or current_user.rol == "Bibliotecario") and (int(jwt_identity) != int(id)):
+        if (current_user.rol == "Usuario") and (int(jwt_identity) != int(id)):
             return "Permiso denegado.", 403
-        else:
-            db.session.add(usuario)
-            db.session.commit()
-            return usuario.to_json(), 201    
+        
+        if (current_user.rol == "Bibliotecario") and (usuario.rol == "Admin" or (usuario.rol == "Bibliotecario" and usuario.id != current_user.id)):
+            return "Permiso denegado.", 403
+        
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario.to_json(), 201    
 
     @jwt_required()    
     def delete(self, id):

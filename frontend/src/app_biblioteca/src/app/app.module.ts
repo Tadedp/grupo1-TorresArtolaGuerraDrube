@@ -47,6 +47,7 @@ import { ModalEnviarNotificacionComponent } from './components/modal-enviar-noti
 import { ModalEnviarReseniaComponent } from './components/modal-enviar-resenia/modal-enviar-resenia.component';
 import { ModalSolicitarPrestamoComponent } from './components/modal-solicitar-prestamo/modal-solicitar-prestamo.component';
 import { ModalDatosLibroComponent } from './components/modal-datos-libro/modal-datos-libro.component';
+import { ModalUsuarioNotificacionesComponent } from './components/modal-usuario-notificaciones/modal-usuario-notificaciones.component';
 
 @NgModule({
     declarations: [
@@ -88,6 +89,7 @@ import { ModalDatosLibroComponent } from './components/modal-datos-libro/modal-d
         ModalEnviarReseniaComponent,
         ModalSolicitarPrestamoComponent,
         ModalDatosLibroComponent,
+        ModalUsuarioNotificacionesComponent,
     ],
 
     imports: [

@@ -2,8 +2,8 @@
 <div class="container-flex">
     <div class="row ms-1 me-1">
         <div class="col-md-10 offset-md-1">
-            <app-searchfilterbar></app-searchfilterbar>
-            <app-grid></app-grid>
+            <app-searchfilterbar (search)="busquedaFiltrada($event)"></app-searchfilterbar>
+            <app-grid [filtros]="busqueda"></app-grid>
             <app-router-button [texto]="'AGREGAR PRÉSTAMO'" [tipo]="'rojo'" (clickEvent)="navigateToAgregarPrestamo()"></app-router-button>  
         </div>
     </div>

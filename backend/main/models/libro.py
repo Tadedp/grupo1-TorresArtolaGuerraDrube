@@ -1,9 +1,5 @@
 from .. import db
-
-libros_prestamos = db.Table("libros_prestamos",
-    db.Column("id_libro",db.Integer,db.ForeignKey("libros.id"),primary_key=True),
-    db.Column("id_prestamo",db.Integer,db.ForeignKey("prestamos.id"),primary_key=True)
-    )
+from . import AutorModel
 
 class Libro(db.Model):
     __tablename__ = "libros"
@@ -13,14 +9,19 @@ class Libro(db.Model):
     editorial = db.Column(db.String(100), nullable=False)
     estado = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Integer, nullable=False)
-    isbn = db.Column(db.String(100), nullable=False) 
+    isbn = db.Column(db.String(100), nullable=False)
+    sinopsis = db.Column(db.String(5000), nullable=False)
+    portada = db.Column(db.String(100), nullable=False)
+    id_autor = db.Column(db.Integer, db.ForeignKey("autores.id"), nullable=False)
+    autor = db.relationship("Autor", back_populates="libros", uselist=False, single_parent=True)
     reseñas = db.relationship("Reseña", back_populates="libro",cascade="all, delete-orphan")
-    prestamos = db.relationship("Prestamo", secondary=libros_prestamos, backref=db.backref('libros', lazy='dynamic'))
+    prestamos = db.relationship("Prestamo", back_populates="libro",cascade="all, delete-orphan")
    
     def __repr__(self):
         return '<Libro> titulo:%r' % (self.titulo)
 
     def to_json(self):
+        self.autor = db.session.query(AutorModel).get_or_404(self.id_autor) 
         libro_json = {
             'id': self.id,
             'titulo': str(self.titulo),
@@ -28,13 +29,16 @@ class Libro(db.Model):
             'editorial': str(self.editorial),
             'estado': str(self.estado),
             'cantidad': self.cantidad,
-            'isbn': str(self.isbn)
+            'isbn': str(self.isbn),
+            'sinopsis': str(self.sinopsis),
+            'portada': str(self.portada),
+            'autor': self.autor.to_json()
         }
         return libro_json
             
     def to_json_complete(self):
-        autores = [autor.to_json() for autor in self.autores]  
-        reseñas = [reseña.to_json() for reseña in self.reseñas]
+        self.autor = db.session.query(AutorModel).get_or_404(self.id_autor) 
+        reseñas = [reseña.to_json_complete() for reseña in self.reseñas]
         prestamos = [prestamo.to_json() for prestamo in self.prestamos]
         libro_json = {
             'id': self.id,
@@ -44,7 +48,9 @@ class Libro(db.Model):
             'estado': str(self.estado),
             'cantidad': self.cantidad,
             'isbn': str(self.isbn),
-            'autores': autores,
+            'sinopsis': str(self.sinopsis),
+            'portada': str(self.portada),
+            'autor': self.autor.to_json(),
             'reseñas': reseñas,
             'prestamos': prestamos
         }
@@ -55,6 +61,7 @@ class Libro(db.Model):
             'id': self.id,
             'titulo': str(self.titulo),
             'genero': str(self.genero),
+            'portada': str(self.portada)
         }
         return libro_json
 
@@ -67,6 +74,9 @@ class Libro(db.Model):
         estado = libro_json.get('estado')
         cantidad = libro_json.get('cantidad')
         isbn = libro_json.get('isbn')
+        sinopsis = libro_json.get('sinopsis')
+        portada = libro_json.get('portada')
+        id_autor = libro_json.get('id_autor')
 
         return Libro(id=id,
                     titulo = titulo,
@@ -74,5 +84,8 @@ class Libro(db.Model):
                     editorial = editorial,
                     estado = estado,
                     cantidad = cantidad,
-                    isbn = isbn
+                    isbn = isbn,
+                    sinopsis = sinopsis,
+                    portada = portada,
+                    id_autor = id_autor
                     )

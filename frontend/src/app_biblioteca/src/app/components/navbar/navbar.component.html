@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white position-relative fixed-top" style="width: 100%;">
     <div class="container-fluid">
         <div class="d-flex">
-            <button type="button" class="btn btn-light position-relative me-3" *ngIf="isUser()">
+            <button type="button" class="btn btn-light position-relative me-3" *ngIf="!isUserNoReg()">
                 <a (click)="openModalPerfilDialog()" style="cursor: pointer;">
                     <i class="bi bi-person" style="font-size: 1.5rem;"></i> 
                 </a>
@@ -15,7 +15,10 @@
         </div>
         
         <div class="d-flex align-items-center ms-auto">
-            <button *ngIf="!isUserNoReg()"  type="button" class="btn btn-light position-relative me-3" (click)="navigateToNotifications()">
+            <button *ngIf="isUsuario()"  type="button" class="btn btn-light position-relative me-3" (click)="openModalUsuarioNotificaciones()">
+                <i class="bi bi-bell" style="font-size: 1.5rem;"></i>
+            </button>
+            <button *ngIf="isAdminBibliotecario()"  type="button" class="btn btn-light position-relative me-3" (click)="navigateToNotifications()">
                 <i class="bi bi-bell" style="font-size: 1.5rem;"></i>
             </button>
         </div>

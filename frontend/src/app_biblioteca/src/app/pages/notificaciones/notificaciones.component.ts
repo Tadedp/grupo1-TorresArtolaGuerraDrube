@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
     templateUrl: './notificaciones.component.html',
     styleUrl: './notificaciones.component.css'
 })
+
 export class NotificacionesComponent {
     constructor (
         private router: Router,
@@ -16,8 +17,8 @@ export class NotificacionesComponent {
 
     openModalEnviarNotificacion(): void {
         const dialogRef = this.dialog.open(ModalEnviarNotificacionComponent, {
-          width: '500px',
-          data: {} // Puedes pasar datos adicionales aquí si lo necesitas
+            width: '500px',
+            data: {}
         });
     }
 }

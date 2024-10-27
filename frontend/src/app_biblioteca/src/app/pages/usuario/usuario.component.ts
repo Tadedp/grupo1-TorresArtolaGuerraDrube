@@ -32,4 +32,17 @@ export class UsuarioComponent {
                 this.usuario_datos = rta;
             });
     }
+
+    deleteUsuario(usuarioID: number){
+        this.usuariosService.deleteUsuario(usuarioID).subscribe({
+            next: (response) => {
+                console.log('Usuario eliminado exitosamente:', response);
+            }, error: (error) => {
+                console.error('Error al eliminar el usuario:', error);
+                alert('Error al eliminar el usuario');
+            }, complete: () => {
+                this.router.navigateByUrl('usuarios'); 
+            }
+        });
+    }
 }

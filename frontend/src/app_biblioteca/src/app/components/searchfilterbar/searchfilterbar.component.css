@@ -2,28 +2,20 @@
     font-size: 110%;
 }
 
-.input-group .btn-search {
-    background-color: #ffffff; 
-    border: 1px solid #dee2e6; 
-    border-left: none; 
-    color: #000000; 
-    font-size: 105%;
-}
-
-.input-group .dropdown-btn {
+.input-group .btn-remove-bar{
     background-color: #ffffff; 
     border: 1px solid #dee2e6;
     border-left: none;
-    border-right: none;
-    color: #000000; 
-    border-radius: 0; 
-    font-size: 105%;
+    color: #ff0000; 
+    border-top-left-radius: 0; 
+    border-bottom-left-radius: 0;
+    font-size: 110%;
+}
+
+.btn-search-bar {
+    font-size: 110%;
 }
 
 .btn-add-bar {
-    font-size: 105%;
-}
-
-.btn-remove-bar {
-    font-size: 105%;
+    font-size: 110%;
 }

@@ -14,8 +14,8 @@ export class FooterComponent {
         private router: Router,
     ) {}
 
-    isAdmin(): boolean {
-        return this.rolSesion === 'Admin';
+    isAdminBibliotecario(): boolean {
+        return this.rolSesion === 'Admin' || this.rolSesion === 'Bibliotecario';
     }
 
     isUser(): boolean {

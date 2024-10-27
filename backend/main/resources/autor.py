@@ -97,12 +97,17 @@ class Autor(Resource):
             autor = db.session.query(AutorModel).get_or_404(id)
         except:
             return "ID inexistente.", 404
+        
         data = request.get_json().items()
+        
         for key, value in data:
+            if key == "id" or key == "libros":
+                continue
             setattr(autor, key, value)
+        
         db.session.add(autor)
         db.session.commit()
-        return autor.to_json() , 201
+        return autor.to_json_complete() , 201
 
     @role_required(roles = ["Admin", "Bibliotecario"])
     def delete(self,id):

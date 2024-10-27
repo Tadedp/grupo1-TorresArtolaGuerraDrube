@@ -1,14 +1,14 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from main.models import ReseñaModel
+from main.models import ReseñaModel, UsuarioModel
 from .. import db
 from sqlalchemy import func, desc, asc
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
-class Reseña(Resource):
+class Reseñas(Resource):
     def get(self):   
         page = 1
-        per_page = 10
+        per_page = 6
         reseñas = db.session.query(ReseñaModel)
         
         args = ["page", "per_page", "id", "valoracion", "fecha", "id_usuario", "id_libro", "sortby_valoracion", "sortby_fecha"]
@@ -65,7 +65,7 @@ class Reseña(Resource):
                 
         reseñas = reseñas.paginate(page=page, per_page=per_page, error_out=True)
     
-        return jsonify({'reseñas': [reseña.to_json() for reseña in reseñas],
+        return jsonify({'reseñas': [reseña.to_json_complete() for reseña in reseñas],
                   'total': reseñas.total,
                   'pages': reseñas.pages,
                   'page': page
@@ -79,4 +79,22 @@ class Reseña(Resource):
             db.session.commit()
         except:
             return "Formato de datos incorrecto.", 400
-        return reseña.to_json(), 201
+        return reseña.to_json_complete(), 201
+    
+class Reseña(Resource):
+    @jwt_required()
+    def delete(self, id):
+        try:
+            reseña = db.session.query(ReseñaModel).get_or_404(id)
+        except:
+            return "ID inexistente.", 404
+        
+        jwt_identity = get_jwt_identity()
+        current_user = db.session.query(UsuarioModel).get_or_404(jwt_identity)        
+        
+        if current_user.rol == "Usuario" and current_user.id != reseña.id_usuario:
+            return "Permiso denegado.", 403
+        else: 
+            db.session.delete(reseña)
+            db.session.commit()
+            return reseña.to_json(), 204

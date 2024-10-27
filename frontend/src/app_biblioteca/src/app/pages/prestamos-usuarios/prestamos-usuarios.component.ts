@@ -8,14 +8,14 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class PrestamosUsuariosComponent {
     usuarioPrestamos: any[] = [];
-    librosImg: string[] = ['cienanosdesoledad.png', '1984.jpeg', 'orgulloyprejuicio.png', 'demian.png', 'harrypotter.jpg']
+    librosImg: string[] = ['cienaniosdesoledad.png', '1984.png', 'orgulloyprejuicio.png', 'demian.png', 'harrypotterylapiedrafilosofal.png']
     
     constructor(
         private usuariosService: UsuariosService,
     ) { }
 
     ngOnInit(): void {
-        this.usuariosService.getUsuario(parseInt(localStorage.getItem('id') || '1')).subscribe((usuario: any) => { 
+        this.usuariosService.getUsuario(parseInt(localStorage.getItem('id') || '0')).subscribe((usuario: any) => { 
                 this.usuarioPrestamos = usuario.prestamos;
         });   
     }

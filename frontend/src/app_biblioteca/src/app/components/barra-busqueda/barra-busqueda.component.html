@@ -3,7 +3,6 @@
     <input type="text" [(ngModel)]="searchText" (input)="buscarLibros()" class="form-control" id="exampleFormControlInput1" placeholder="¿Qué desea buscar?" autocomplete="off">
   </div>
   
-  <!-- Dropdown para los libros filtrados -->
   <ul class="dropdown-menu" [class.show]="librosFiltrados.length > 0" style="width: 100%; position: absolute; top: 100%; z-index: 1;">
     <li *ngFor="let libro of librosFiltrados" class="dropdown-item" (click)="verLibro(libro)">
       {{ libro.titulo }}

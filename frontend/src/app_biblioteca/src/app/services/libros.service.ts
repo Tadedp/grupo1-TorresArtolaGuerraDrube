@@ -11,7 +11,7 @@ export class LibrosService {
         private httpClient:HttpClient
     ) { }
 
-    getLibros(page: number, params?: { id?: string, titulo?: string, autor_id?: string, genero?: string, editorial?: string, estado?: string, stock?: string, isbn?: string, sortby_id?: string, sortby_titulo?: string, sortby_estado?: string, sortby_stock: string}) {
+    getLibros(page: number, params?: { per_page?: number, id?: string, titulo?: string, autor_id?: string, genero?: string, editorial?: string, estado?: string, stock?: string, isbn?: string, sortby_id?: string, sortby_titulo?: string, sortby_estado?: string, sortby_stock?: string}) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -22,6 +22,9 @@ export class LibrosService {
         let httpParams = new HttpParams().set('page', page.toString());
 
         if (params) {
+            if (params.per_page) {
+                httpParams = httpParams.set('per_page', params.per_page);
+            }
             if (params.id) {
                 httpParams = httpParams.set('id', params.id);
             }
@@ -41,7 +44,7 @@ export class LibrosService {
               httpParams = httpParams.set('estado', params.estado);
             }
             if (params.stock) {
-                httpParams = httpParams.set('stock', params.stock);
+                httpParams = httpParams.set('cantidad', params.stock);
             }
             if (params.isbn) {
                 httpParams = httpParams.set('isbn', params.isbn);
@@ -65,7 +68,7 @@ export class LibrosService {
         return this.httpClient.get(this.url + '/libros', requestOptions);
     }
 
-    postLibro() {
+    postLibro(body: any) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -73,10 +76,9 @@ export class LibrosService {
         'Authorization': `Bearer ${auth_token}` 
         })
 
-        //const body = 
         const requestOptions = {headers: headers}
         
-        return this.httpClient.post(this.url + '/libros', requestOptions);
+        return this.httpClient.post(this.url + '/libros', body, requestOptions);
     }
 
     getLibro(id: number) {
@@ -87,13 +89,12 @@ export class LibrosService {
         'Authorization': `Bearer ${auth_token}` 
         })
 
-        //const body =
         const requestOptions = {headers: headers}
 
         return this.httpClient.get(this.url + '/libro/' + id, requestOptions);
     }
 
-    putLibro(id: number) {
+    putLibro(id: number, body: any) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -103,7 +104,7 @@ export class LibrosService {
 
         const requestOptions = {headers: headers}
 
-        return this.httpClient.put(this.url + '/libro/' + id, requestOptions);
+        return this.httpClient.put(this.url + '/libro/' + id, body, requestOptions);
     }
 
     deleteLibro(id: number) {

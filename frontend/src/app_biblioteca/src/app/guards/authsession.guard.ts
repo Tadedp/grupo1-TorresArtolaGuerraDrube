@@ -6,13 +6,23 @@ export const authsessionGuard: CanActivateFn = (route, state) => {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        router.navigateByUrl('portada');
-        return false;
+        if (route.routeConfig?.path === 'portada' || route.routeConfig?.path === 'registrarse' ) {
+            return true; 
+            
+        } else {
+            router.navigateByUrl('portada'); 
+            return false;
+        }
 
     } else {
         const rolesPermitidos = route.data['rolesPermitidos'] as Array<string>;
         const rolSesion = localStorage.getItem('rol') || '';
         
+        if (route.routeConfig?.path === 'portada' || route.routeConfig?.path === 'registrarse') {
+            router.navigateByUrl('home'); 
+            return false;
+        }
+
         if (rolesPermitidos.includes(rolSesion)) {
             return true;
 

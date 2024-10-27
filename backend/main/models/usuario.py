@@ -14,7 +14,6 @@ class Usuario(db.Model):
     contraseña = db.Column(db.String,nullable = False)
     reseñas = db.relationship("Reseña", back_populates="usuario",cascade="all, delete-orphan")
     prestamos = db.relationship("Prestamo", back_populates="usuario",cascade="all, delete-orphan")
-    notificaciones = db.relationship("Notificacion", back_populates="usuario",cascade="all, delete-orphan")
 
     @property
     def plain_contraseña(self):
@@ -44,7 +43,7 @@ class Usuario(db.Model):
         return usuario_json
 
     def to_json_complete(self):
-        notificaciones = [notificacion.to_json() for notificacion in self.notificaciones]
+        notificaciones = [notificacion.to_json_complete() for notificacion in self.notificaciones]
         prestamos = [prestamo.to_json_complete() for prestamo in self.prestamos]
         reseñas = [reseña.to_json() for reseña in self.reseñas]
         usuario_json = {
@@ -83,6 +82,7 @@ class Usuario(db.Model):
         rol = usuario_json.get('rol')
         alias = usuario_json.get('alias')
         contraseña = usuario_json.get('contraseña')
+        
         return Usuario(id = id,
                        nombre = nombre,
                        apellido = apellido,

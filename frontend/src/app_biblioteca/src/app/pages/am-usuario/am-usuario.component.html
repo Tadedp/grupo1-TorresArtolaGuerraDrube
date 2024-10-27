@@ -13,8 +13,8 @@
     
     <ng-container *ngIf="tipo_op === 'agregar'">
         <app-formulario 
-        [titulos]="['Nombre', 'Apellido', 'Alias', 'Mail', 'DNI', 'Teléfono']" 
-        [placeholders]="['...', '...', '...', 'name@example.com', '...', '...']">
+        [titulos]="['Nombre', 'Apellido', 'Alias', 'Mail', 'DNI', 'Teléfono', 'Rol', 'Contraseña']" 
+        [placeholders]="['...', '...', '...', 'name@example.com', '...', '...', 'Usuario/Bibliotecario/Admin', '...']">
         </app-formulario>
     </ng-container>
 
@@ -25,12 +25,4 @@
         [values]="usuarioDatos">
         </app-formulario>
     </ng-container>
-
-    <div style="font-size: 125%;">
-        <label for="exampleFormControlInput" class="form-label"> Rol </label>
-        <div class="input-group">
-            <input type="" class="form-control" id="exampleFormControlInput" placeholder="Usuario/Bibliotecario/Admin" value="Usuario" readonly>
-            <button type="button" class="btn btn-link text-decoration-none" style="color: #ffffff; background-color: #893027">cambiar</button>
-        </div>
-    </div>
 </div>

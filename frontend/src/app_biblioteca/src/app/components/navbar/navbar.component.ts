@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalPerfilComponent } from '../modal-perfil/modal-perfil.component';
+import { ModalUsuarioNotificacionesComponent } from '../modal-usuario-notificaciones/modal-usuario-notificaciones.component';
 
 @Component({
   selector: 'app-navbar',
@@ -20,16 +21,23 @@ export class NavbarComponent{
     openModalPerfilDialog(): void {
         const dialogRef = this.dialog.open(ModalPerfilComponent, {
           width: '500px',
-          data: {} // Puedes pasar datos adicionales aquí si lo necesitas
+          data: {}
         });
     }
 
-    isAdmin(): boolean {
-        return this.rolSesion === 'Admin';
+    openModalUsuarioNotificaciones(): void {
+        const dialogRef = this.dialog.open(ModalUsuarioNotificacionesComponent, {
+          width: '500px',
+          data: {}
+        });
+    }
+    
+    isAdminBibliotecario(): boolean {
+        return this.rolSesion === "Admin" || this.rolSesion === "Bibliotecario";
     }
 
-    isUser(): boolean {
-        return this.rolSesion === 'Usuario';
+    isUsuario(): boolean {
+        return this.rolSesion === "Usuario";
     }
 
     isUserNoReg(): boolean {

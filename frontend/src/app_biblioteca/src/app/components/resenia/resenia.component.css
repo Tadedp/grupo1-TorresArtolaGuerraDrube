@@ -5,10 +5,21 @@
 }
 
 .review-header{
-    margin-right: 0.5rem;
-    display:flex;
+    display: flex;
     align-items: center;
-    font-size: 2px;
+}
+
+.review-date {
+    color: #666; /* Cambia el color según tu diseño */
+    margin-left: 0.5rem;
+    margin-bottom: 0%;
+    display: flex;
+    align-items: center;
+}
+.user-date {
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 .review-rating{
@@ -19,11 +30,10 @@
     margin-top: 0.5rem;
 }
 
-h5 {
-    margin: 0; 
-}
+
 
 .user-icon {
     font-size: 2rem;
     margin-right: 0.5rem; /* Espacio entre ícono y nombre */
 }
+

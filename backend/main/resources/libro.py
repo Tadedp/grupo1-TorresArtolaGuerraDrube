@@ -39,7 +39,7 @@ class Libros(Resource):
             libros=libros.filter(LibroModel.titulo.like("%"+request.args.get('titulo')+"%"))
                 
         if request.args.get('autor_id'):
-            libros=libros.join(LibroModel.autores).filter(AutorModel.id == request.args.get('autor_id'))     
+            libros=libros.filter(LibroModel.id_autor.like("%"+request.args.get('autor_id')+"%"))
                          
         if request.args.get('genero'):
             libros=libros.filter(LibroModel.genero.like("%"+request.args.get('genero')+"%"))
@@ -48,7 +48,7 @@ class Libros(Resource):
             libros=libros.filter(LibroModel.editorial.like("%"+request.args.get('editorial')+"%"))
 
         if request.args.get('estado'):
-            libros=libros.filter(LibroModel.estado.like("%"+request.args.get('estado')+"%"))
+            libros=libros.filter(LibroModel.estado == request.args.get('estado'))
                     
         if request.args.get('cantidad'):
             libros=libros.filter(LibroModel.cantidad.like("%"+request.args.get('cantidad')+"%"))
@@ -114,15 +114,7 @@ class Libros(Resource):
     
     @role_required(roles = ["Admin", "Bibliotecario"])
     def post(self): 
-        autores_ids = request.get_json().get('autores')
         libro = LibroModel.from_json(request.get_json())
-        
-        if autores_ids:
-            autores = AutorModel.query.filter(AutorModel.id.in_(autores_ids)).all()
-            libro.autores.extend(autores)
-        else:
-            return "Formato de datos incorrecto.", 400
-        
         try:
             db.session.add(libro)
             db.session.commit()
@@ -146,7 +138,7 @@ class Libro(Resource):
             return "ID inexistente.", 404
         db.session.delete(libro)
         db.session.commit()
-        return libro.to_json(), 204
+        return libro.to_json_short(), 204
     
     @role_required(roles = ["Admin", "Bibliotecario"])
     def put(self, id):
@@ -157,16 +149,11 @@ class Libro(Resource):
         
         data = request.get_json()
         
-        if "autor" in data:
-            autor_id = data["autores"]
-            autor = db.session.query(AutorModel).get_or_404(autor_id)
-            libro.autores = autor
-        
         for key, value in data.items():
-            if key == "id":
+            if key == "id" or key == "prestamos" or key == "reseñas":
                 continue
             setattr(libro, key, value)
             
         db.session.add(libro)
         db.session.commit()
-        return libro.to_json() , 201
+        return libro.to_json_complete() , 201

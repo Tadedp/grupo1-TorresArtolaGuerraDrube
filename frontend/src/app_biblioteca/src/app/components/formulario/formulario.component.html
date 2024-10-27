@@ -2,8 +2,46 @@
     <ng-container *ngFor="let titulo of titulos; let i = index">
         <div style="font-size: 125%;">
             <label for="{{ titulo }}" class="form-label"> {{ titulo }} </label>
-            <input type="titulo" class="form-control" formControlName="{{ titulo }}" id="{{ titulo }}" [placeholder]="placeholders[i]">
+            <input [type]="esCampoContrasena(titulo) ? 'password' : 'text'" 
+                class="form-control" 
+                formControlName="{{ titulo }}" 
+                id="{{ titulo }}" 
+                [placeholder]="placeholders[i]">
+            
+            <div *ngIf="esCampoEmail(titulo) && form.get(titulo)?.hasError('email') && form.get(titulo)?.touched" style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+                Por favor, introduce un email válido.
+            </div>
+
+            <div *ngIf="esCampoSoloLetras(titulo) && form.get(titulo)?.hasError('soloLetras') && form.get(titulo)?.touched" style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+                Por favor, introduce solo letras.
+            </div>
+
+            <div *ngIf="esCampoSoloNumeros(titulo) && form.get(titulo)?.hasError('soloNumeros') && form.get(titulo)?.touched" style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+                Por favor, introduce solo números.
+            </div>
+
+            <div *ngIf="esCampoFecha(titulo) && form.get(titulo)?.hasError('soloFecha') && form.get(titulo)?.touched" style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+                Por favor, introduce una fecha válida.
+            </div>
+
+            <div *ngIf="esCampoEstado(titulo) && form.get(titulo)?.hasError('soloEstado') && form.get(titulo)?.touched" style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+                El estado solo puede ser 'Disponible' o 'No Disponible'.
+            </div>
+
+            <div *ngIf="esCampoRol(titulo) && form.get(titulo)?.hasError('soloRol') && form.get(titulo)?.touched" style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+                El rol solo puede ser 'Usuario', 'Admin' o 'Bibliotecario'.
+            </div>
+
+            <div *ngIf="esCampoTelefono(titulo) && form.get(titulo)?.hasError('soloLargo') && form.get(titulo)?.touched" 
+            style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+            El teléfono debe tener 10 dígitos.
+            </div>
+
+            <div *ngIf="esCampoISBN(titulo) && form.get(titulo)?.hasError('soloLargo') && form.get(titulo)?.touched" 
+                style="font-family: Arial, Helvetica, sans-serif; margin-left: 1%; font-size: 10px; font-weight: bold; color: red;">
+                El ISBN debe tener 13 dígitos.
+            </div>
+
         </div>
-        <br>
-     </ng-container>    
+    </ng-container>    
 </form>

@@ -36,7 +36,49 @@ export class AmUsuarioComponent {
         const form = this.formularioComponent.form;  
 
         if (form.valid) {
-            this.router.navigateByUrl('/usuarios');
+            if (this.tipo_op == "agregar") {
+                const body = {
+                    nombre: form.value['Nombre'],
+                    apellido: form.value['Apellido'],
+                    mail: form.value['Mail'],
+                    dni: parseInt(form.value['DNI']),
+                    telefono: parseInt(form.value['Teléfono']),
+                    rol: form.value['Rol'],
+                    alias: form.value['Alias'],
+                    contraseña: form.value['Contraseña'],
+                };
+                
+                this.usuariosService.postUsuario(body).subscribe({
+                    next: (response) => {
+                        console.log('Usuario agregado exitosamente:', response);
+                    }, error: (error) => {
+                        console.error('Error al agregar el usuario:', error);
+                        alert('Error al agregar el usuario');
+                    }, complete: () => {
+                        this.router.navigateByUrl('/usuarios');
+                    }
+                });
+            } else {
+                const body = {
+                    nombre: form.value['Nombre'],
+                    apellido: form.value['Apellido'],
+                    mail: form.value['Mail'],
+                    dni: parseInt(form.value['DNI']),
+                    telefono: parseInt(form.value['Teléfono']),
+                    alias: form.value['Alias']
+                };
+                
+                this.usuariosService.putUsuario(parseInt(this.usuario_id), body).subscribe({
+                    next: (response) => {
+                        console.log('Usuario modificado exitosamente:', response);
+                    }, error: (error) => {
+                        console.error('Error al modificar el usuario:', error);
+                        alert('Error al modificar el usuario');
+                    }, complete: () => {
+                        this.router.navigateByUrl('/usuario/' + this.usuario_id);
+                    }
+                });
+            }
         } else {
             alert('Los valores son requeridos');
         }

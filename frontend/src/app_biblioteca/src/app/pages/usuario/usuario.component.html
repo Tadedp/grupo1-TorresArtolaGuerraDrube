@@ -1,13 +1,16 @@
 <app-navbar></app-navbar>
     <div class="container">
-        <div class="row align-items-start">
-            <div class="col-md-4 d-flex align-items-start" style="min-height: 100px;margin-top: 2rem;">
+        <div class="row">
+            <div class="col-md-4 d-flex" style="min-height: 100px;margin-top: 2rem;">
                 <div>
-                    <i class="bi bi-person-circle" style="font-size: 7rem;"></i>
-                    <div class="d-flex align-items-center">
-                        <p class="fs-3 fw-bold m-3" style="color: #0D0842;margin-left:0;">{{ usuario_datos.alias }}</p>
-                        <app-edit-delete-buttons [editarUrl]="'/usuario/' + usuario_datos.id + '/editar'"></app-edit-delete-buttons> 
+                    <div class="d-flex justify-content-center">
+                        <i class="bi bi-person-circle" style="font-size: 7rem;"></i>
                     </div>
+                    <p class="fs-3 fw-bold m-3 text-center" style="color: #0D0842;margin-left:0;">{{ usuario_datos.alias }}</p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <app-edit-delete-buttons [editarUrl]="'/usuario/' + usuario_datos.id + '/editar'" (clickEvent)="deleteUsuario(usuario_datos.id)"></app-edit-delete-buttons> 
+                    </div>
+                    
                     <p class="text-start m-2" style="color: #0D0842;"><strong>ID: </strong>{{ usuario_datos.id }}</p>
                     <p class="text-start m-2" style="color: #0D0842;"><strong>Nombre: </strong>{{ usuario_datos.nombre }}</p>
                     <p class="text-start m-2" style="color: #0D0842;"><strong>Apellido: </strong>{{ usuario_datos.apellido }}</p>
@@ -24,15 +27,13 @@
                     <p class="fs-3 fw-bold m-3" style="color: #0D0842;">Préstamos</p>
                     <div class="row text-center">
                         <div class="col-3 d-flex">
-                            <app-imagen-libro class="m-2" [urlImagen]="'1984.jpeg'" [titulo]="'1984'" [autor]="'George Orwell'"></app-imagen-libro>
-                            <app-imagen-libro class="m-2" [urlImagen]="'amantejapones.jpg'" [titulo]="'El Amante Japones'" [autor]="'Isabel Allende'"></app-imagen-libro>
-                            <app-imagen-libro class="m-2" [urlImagen]="'cienanosdesoledad.png'" [titulo]="'Cien Años de Soledad'" [autor]="'Gabriel Garcia Marquez'"></app-imagen-libro>
-
+                            <ng-container *ngFor="let prestamo of usuario_datos.prestamos">            
+                                <app-imagen-libro class="m-2" [urlImagen]="prestamo.libro.portada" [titulo]="prestamo.libro.titulo" [autor]="prestamo.libro.autor.nombre + ' ' + prestamo.libro.autor.apellido"></app-imagen-libro>
+                            </ng-container>
                         </div>
                     </div>
                 </div>
             </div>
         </div>    
     </div>
-
 <app-footer></app-footer>
