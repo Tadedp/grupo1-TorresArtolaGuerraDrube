@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +8,13 @@ import { Router } from '@angular/router';
 })
 
 export class SearchfilterbarComponent implements OnInit{
-  
     dropdownItems: string[] = [];
-    bars: number[] = [1];
-    nextBar: number = 2;
+    dropdownItemsBackUp: string[] = [];
+    filtrosSeleccionados: string[] = [];
+    barras: { filtro: string, valor: string }[] = [{ filtro: '', valor: '' }];
+    valores = [''];
+
+    @Output() search: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
         private router: Router
@@ -21,28 +24,59 @@ export class SearchfilterbarComponent implements OnInit{
         const currentRoute = this.router.url;
 
         if (currentRoute.includes('prestamos')) {
-            this.dropdownItems = ['ID', 'Libro', 'Usuario', 'Fecha de Inicio', 'Fecha de Fin'];
+            this.barras = [{ filtro: 'Usuario ID', valor: '' }];
+            this.dropdownItems = ['ID', 'Libro ID', 'Fecha Inicio', 'Fecha Fin'];
+            this.dropdownItemsBackUp = ['ID', 'Libro ID', 'Usuario ID', 'Fecha Inicio', 'Fecha Fin'];
         } else if (currentRoute.includes('usuarios')) {
-            this.dropdownItems = ['ID', 'Alias', 'Nombre', 'Apellido', 'Email', 'DNI', 'Teléfono'];
+            this.barras = [{ filtro: 'Nombre', valor: '' }];
+            this.dropdownItems = ['ID', 'Alias', 'Apellido', 'Mail', 'DNI', 'Telefono'];
+            this.dropdownItemsBackUp = ['ID', 'Alias', 'Nombre', 'Apellido', 'Mail', 'DNI', 'Telefono'];
         } else if (currentRoute.includes('libros')) {
-            this.dropdownItems = ['ID', 'Título', 'Autor', 'Género', 'Editorial', 'Estado', 'Stock'];
+            this.barras = [{ filtro: 'Titulo', valor: '' }];
+            this.dropdownItems = ['ID', 'Autor ID', 'Genero', 'Editorial', 'ISBN', 'Estado', 'Stock'];
+            this.dropdownItemsBackUp = ['ID', 'Titulo', 'Autor ID', 'Genero', 'Editorial', 'ISBN', 'Estado', 'Stock'];
         }
+
+        this.filtrosSeleccionados.push(this.barras[0].filtro)
     }
 
     get maxBars(): number {
-        return this.dropdownItems.length;
+        return this.dropdownItemsBackUp.length;
     }
 
-    addBar() {
-        if (this.bars.length < this.maxBars) {
-            this.bars.push(this.nextBar);
-            this.nextBar++;
+    removeBar(filtro: string) {
+        this.filtrosSeleccionados.splice(this.filtrosSeleccionados.indexOf(filtro), 1)
+        this.dropdownItems = []
+        for (let item of this.dropdownItemsBackUp) {
+            if (!this.filtrosSeleccionados.includes(item)){
+                this.dropdownItems.push(item)
+            }       
         }
+        this.barras = this.barras.filter(barra => barra.filtro !== filtro);
+        this.valores.pop()
     }
 
-    removeBar(index: number) {
-        if (this.bars.length > 1 && index != 1) {
-            this.bars = this.bars.filter(bar => bar !== index);
+    emitBusqueda() {
+        this.search.emit(this.barras);
+    }
+
+    seleccionarFiltro( filtro: string ) {
+        if (this.barras.length < this.maxBars) {
+            this.barras.push({ filtro: filtro, valor: '' });
+            this.valores.push('')
         }
+
+        this.barras[-1]
+        this.filtrosSeleccionados.push(filtro)
+        this.dropdownItems = []
+        for (let item of this.dropdownItemsBackUp) {
+            if (!this.filtrosSeleccionados.includes(item)){
+                this.dropdownItems.push(item)
+            }       
+        }
+    }
+    
+    inputIngresado(filtro: string, valor: string) {
+        //llamar a emitBusqueda por cada inputIngresado?
     }
 }

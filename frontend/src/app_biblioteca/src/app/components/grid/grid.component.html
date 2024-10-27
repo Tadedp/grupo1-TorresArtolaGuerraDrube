@@ -63,7 +63,7 @@
 
     <ng-container *ngIf="getRouter().includes('notificaciones')">
         <ng-container *ngFor="let fila of arrayFilas">
-            <div class="grid-item">{{ fila.fecha }}</div>
+            <div class="grid-item">{{ fila.fecha_inicio }}</div>
             <div class="grid-item">
                 {{ fila.libroTitulo }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">

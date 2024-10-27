@@ -12,7 +12,7 @@ export class AutoresService {
         private httpClient:HttpClient
     ) { }
 
-    getAutores(page: number, params?: { id?: string, nombre?: string, apellido?: string, sortby_nombre?: string, sortby_apellido?: string, sortby_nrLibros?: string}) {
+    getAutores(page: number, params?: { per_page?: number, id?: string, nombre?: string, apellido?: string, sortby_nombre?: string, sortby_apellido?: string, sortby_nrLibros?: string}) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -23,6 +23,9 @@ export class AutoresService {
         let httpParams = new HttpParams().set('page', page.toString());
 
         if (params) {
+            if (params.per_page) {
+                httpParams = httpParams.set('per_page', params.per_page);
+            }
             if (params.id) {
                 httpParams = httpParams.set('id', params.id);
             }

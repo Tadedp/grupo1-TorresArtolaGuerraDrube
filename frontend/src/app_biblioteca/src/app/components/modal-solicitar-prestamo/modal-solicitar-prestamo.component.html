@@ -9,7 +9,10 @@
         <div class="container_fecha" style="margin-top: 5%; margin-bottom: 2%;">
             <label for="fecha" class="form-label"> Ingrese la fecha en la que desea iniciar su préstamo </label>
             <input type="fecha" class="form-control" formControlName="fecha" id="fecha" placeholder="aaaa-mm-dd">
-        </div>
+            <div *ngIf="form.get('fecha')?.hasError('soloFecha') && form.get('fecha')?.touched" style="color: red; font-size: 12px;" >
+                El formato debe ser aaaa-mm-dd
+            </div>
+        </div>  
     </form>
 
     <p style="margin-bottom: 2%;">

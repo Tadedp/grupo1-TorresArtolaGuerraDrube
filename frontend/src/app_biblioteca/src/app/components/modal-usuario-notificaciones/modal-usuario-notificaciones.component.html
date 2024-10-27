@@ -3,6 +3,10 @@
 <mat-divider></mat-divider>
 
 <div mat-dialog-content>
+    <div *ngIf="notificaciones.length === 0" class="text-center fs-5">
+        <p>No tienes notificaciones nuevas.</p>
+    </div>
+
     <div *ngFor="let notificacion of notificaciones; let i = index" class="notificacion">
         
         <!-- Contenedor con la fecha y mensaje -->

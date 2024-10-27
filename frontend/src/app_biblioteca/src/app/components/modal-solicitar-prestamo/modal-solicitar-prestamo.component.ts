@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificacionesService } from '../../services/notificaciones.service';
 import { UsuariosService } from '../../services/usuarios.service';
@@ -42,7 +42,7 @@ export class ModalSolicitarPrestamoComponent {
 
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { this.form = this.formBuilder.group({
-            fecha: ['', Validators.required]
+            fecha: ['', this.soloFechaValidator]
     })}
     
     submit() {
@@ -84,5 +84,11 @@ export class ModalSolicitarPrestamoComponent {
         } else {
             alert('Los valores son requeridos');
         }
+    }
+
+    soloFechaValidator(control: AbstractControl): ValidationErrors | null {
+        const valor = control.value;
+        const soloFecha = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(valor);
+        return soloFecha ? null : { soloFecha: true };
     }
 }

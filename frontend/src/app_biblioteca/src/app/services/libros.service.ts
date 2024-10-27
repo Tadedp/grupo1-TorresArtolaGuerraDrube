@@ -44,7 +44,7 @@ export class LibrosService {
               httpParams = httpParams.set('estado', params.estado);
             }
             if (params.stock) {
-                httpParams = httpParams.set('stock', params.stock);
+                httpParams = httpParams.set('cantidad', params.stock);
             }
             if (params.isbn) {
                 httpParams = httpParams.set('isbn', params.isbn);

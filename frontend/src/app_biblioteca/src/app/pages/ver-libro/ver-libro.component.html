@@ -4,8 +4,11 @@
         <div class="col-md-4 d-flex">
             <div class="libro-image justify-content-center align-items-center">
                 <app-imagen-libro [urlImagen]="libro_datos.portada" [titulo]="libro_datos.titulo" [autor]="libro_autor"></app-imagen-libro>
-                <div *ngIf="isUser()" class="boton-solicitar-libro">
+                <div *ngIf="isUser() && libro_estado == 'Disponible'" class="boton-solicitar-libro">
                     <app-router-button [texto]="'SOLICITAR LIBRO'" [tipo]="'rojo'" (clickEvent)="openModalSolicitarPrestamo()"></app-router-button>  
+                </div>
+                <div *ngIf="isUser() && libro_estado == 'No Disponible'">
+                    <p class="fs-4 fw-bold text-center" style="color: #893027;">No Disponible</p>
                 </div>
                 <div *ngIf="isAdminBibliotecario()" class="m-0">
                     <div class="d-flex justify-content-center align-items-center">
@@ -20,18 +23,45 @@
                 <p>{{ libro_datos.sinopsis }}</p>
             </div>
 
+            <div *ngIf="usuarioTieneResenia()" >
+                <hr style="margin-top: 2rem; margin-bottom: 1rem;">
+
+                <div class="d-flex align-items-center justify-content-between mt-5">
+                    <p class="fs-4 fw-bold" style="color: #0D0842; margin-right: 2rem;">Tu reseña</p>
+                    <div class="btn d-flex p-0" style="color: inherit; text-decoration: none; border: 0rem;" (click)="deleteResenia(miResenia.id)">
+                        <p class="fs-5 fw-bold" style="color: #893027; margin-right: 1rem;">Eliminar Reseña</p>    
+                        <i class="bi bi-chevron-right mt-1" style="color: #893027;"></i>
+                    </div>
+                </div>
+
+                <div class="review">
+                    <app-resenia 
+                    [nombreUsuario]="miResenia.usuario.alias" 
+                    [resenia]="miResenia.comentario" 
+                    [valoracion]="miResenia.valoracion"
+                    [fecha]="miResenia.fecha">
+                </app-resenia>
+                </div>
+            </div>
+
+            <hr style="margin-top: 2rem; margin-bottom: 1rem;">
+        
             <div class="d-flex align-items-center justify-content-between mt-5">
-                <p class="fs-4 fw-bold" style="color: #0D0842; margin-right: 1rem;">Reseñas</p>
+                <p class="fs-4 fw-bold" style="color: #0D0842; margin-right: 2rem;">Reseñas</p>
                 <a class="d-flex btn p-0" style="color: inherit; text-decoration: none; border: 0rem;" *ngIf="isAdminBibliotecario()" (click)="openModalDatosLibro()">
                     <p class="fs-5 fw-bold" style="color: #0D0842; margin-right: 1rem;" >Más Información</p>
                     <i class="bi bi-chevron-right mt-1" style="color: #0D0842;"></i>
                 </a>
-                <a class="d-flex btn p-0" style="color: inherit; text-decoration: none; border: 0rem;" *ngIf="isUser()" (click)="openModalEnviarResenia()"> 
+                <a class="d-flex btn p-0" style="color: inherit; text-decoration: none; border: 0rem;" *ngIf="isUser() && !usuarioTieneResenia()" (click)="openModalEnviarResenia()"> 
                     <p class="fs-5 fw-bold" style="color: #0D0842; margin-right: 1rem;" >Publicar Reseña</p>
                     <i class="bi bi-chevron-right mt-1" style="color: #0D0842;"></i>
                 </a>
             </div>
             
+            <div *ngIf="libro_resenias.length === 0" class="mt-3 ms-3">
+                <p class="fs-5 fw-bold" style="color: #893027">No hay reseñas de otros usuarios para este libro.</p>
+            </div>
+
             <div *ngFor="let resenia of libro_resenias" class="review">
                 <app-resenia
                 [nombreUsuario]="resenia.usuario.alias"
@@ -40,6 +70,7 @@
                 [fecha]="resenia.fecha">
                 </app-resenia>
             </div>
+
         </div>
     </div>
 </div>
