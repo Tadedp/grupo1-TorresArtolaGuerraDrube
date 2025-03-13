@@ -1,32 +1,39 @@
-<h5 mat-dialog-title class="modal-title m-0" style="font-weight: bold; background-color: #F0EBD5;">
-    Publicar Reseña
-</h5>
-
-<mat-divider></mat-divider>
-
-<mat-dialog-content class="modal-content" style="background-color: #ffffff">
-    <form [formGroup]="form">
-        <div style="font-size: 125%; margin-top: 5%; margin-bottom: 2%;">
-            <label for="reseña" class="form-label"> Deje su reseña de este libro </label>
-            <input type="reseña" class="form-control" formControlName="reseña" id="reseña" placeholder="Mensaje...">
+<div class="modal-overlay" (click)="$event.stopPropagation()">
+    <h5 mat-dialog-title class="modal-header">
+        Publicar Reseña
+        <div>
+            <mat-icon (click)="dialogRef.close()" fontIcon="close-icon" class="icono-cerrar"></mat-icon>
         </div>
-    </form>
+    </h5>
     
-    <div class="star-rating" style="margin-top: 2%; font-size: large;">
-        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-            <i 
-                [ngClass]="{
-                    'bi-star-fill black-star': rating >= (i + 1),   
-                    'bi-star-half black-star': rating >= (i + 0.5) && rating < (i + 1), 
-                    'bi-star': rating < (i + 0.5)}"
-                class="bi"
-                (click)="rate(i + 1, $event)"
-                style="cursor: pointer;">
-            </i>
-        </ng-container>
-    </div>
-    <br>
-    <div class="d-flex mt-0 m-3 align-items-center justify-content-center">
-        <app-router-button [texto]="'CONFIRMAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
-    </div>
-</mat-dialog-content>
+    <mat-divider></mat-divider>
+    
+    <mat-dialog-content class="modal-content">
+        <div class="modal-content">
+            <form [formGroup]="form">
+                <div class="modal-form">
+                    <label for="reseña" class="form-label"> Deje su reseña de este libro </label>
+                    <input type="reseña" class="form-control" formControlName="reseña" id="reseña" placeholder="Mensaje...">
+                </div>
+            </form>
+            
+            <div class="star-rating">
+                <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                    <i 
+                        [ngClass]="{
+                            'bi-star-fill black-star': rating >= (i + 1),   
+                            'bi-star-half black-star': rating >= (i + 0.5) && rating < (i + 1), 
+                            'bi-star': rating < (i + 0.5)}"
+                        class="bi"
+                        (click)="rate(i + 1, $event)">
+                    </i>
+                </ng-container>
+            </div>
+        </div>
+
+        <br>
+        <div class="d-flex mt-0 m-3 align-items-center justify-content-center">
+            <app-router-button [texto]="'CONFIRMAR'" [tipo]="'rojo'" (clickEvent)="submit()"></app-router-button>
+        </div>
+    </mat-dialog-content>
+</div>

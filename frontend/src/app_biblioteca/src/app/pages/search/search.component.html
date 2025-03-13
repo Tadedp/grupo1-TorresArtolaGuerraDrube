@@ -1,3 +1,23 @@
 <app-navbar></app-navbar>
-<app-barra-busqueda></app-barra-busqueda>
+
+<div class="container mt-4">
+    <div class="row">
+        <app-searchfilterbar (search)="busquedaFiltrada($event)"></app-searchfilterbar>
+        
+        <div *ngIf="libros.length < 1" class="mensaje-sin-libros">
+            No existen libros para la búsqueda solicitada
+        </div>
+        
+        <div class="col-sm gap-3" *ngFor="let libro of libros">
+            <app-imagen-libro 
+                [urlImagen]="libro.portada" 
+                [titulo]="libro.titulo" 
+                [autor]="libro.autor.nombre + ' ' + libro.autor.apellido"
+                [idLibro]="libro.id">
+            </app-imagen-libro>
+        </div>
+        <app-paginado *ngIf="totalPaginas > 1" [total_paginas]="totalPaginas" [pagina_actual]="paginaActual" (cambio_pagina)="onPageChanged($event)"></app-paginado>
+    </div>
+</div>
+
 <app-footer></app-footer>

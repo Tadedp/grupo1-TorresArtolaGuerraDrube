@@ -1,39 +1,40 @@
 <app-navbar></app-navbar>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 d-flex" style="min-height: 100px;margin-top: 2rem;">
-                <div>
-                    <div class="d-flex justify-content-center">
-                        <i class="bi bi-person-circle" style="font-size: 7rem;"></i>
+<div class="container pb-5">
+    <div class="row">
+        <div class="col-md-4 d-flex" style="min-height: 100px;margin-top: 2rem;">
+            <div>
+                <div class="d-flex justify-content-center">
+                    <i class="bi bi-person-circle" style="font-size: 7rem;"></i>
+                </div>
+                <p class="fs-3 fw-bold m-3 text-center" style="color: #0D0842;margin-left:0;">{{ usuario_datos.alias }}</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <app-edit-delete-buttons [editarUrl]="'/usuario/' + usuario_datos.id + '/editar'" (clickEvent)="openDeleteModal(usuario_datos.id)"></app-edit-delete-buttons> 
+                </div>
+                
+                <p class="text-start m-2" style="color: #0D0842;"><strong>ID: </strong>{{ usuario_datos.id }}</p>
+                <p class="text-start m-2" style="color: #0D0842;"><strong>Nombre: </strong>{{ usuario_datos.nombre }}</p>
+                <p class="text-start m-2" style="color: #0D0842;"><strong>Apellido: </strong>{{ usuario_datos.apellido }}</p>
+                <p class="text-start m-2" style="color: #0D0842;"><strong>Mail: </strong>{{ usuario_datos.mail }}</p>
+                <p class="text-start m-2" style="color: #0D0842;"><strong>DNI: </strong>{{ usuario_datos.dni }}</p>
+                <p class="text-start m-2" style="color: #0D0842;"><strong>Teléfono: </strong>{{ usuario_datos.telefono }}</p>
+                <p class="text-start m-2" style="color: #0D0842;"><strong>Rol: </strong>{{ usuario_datos.rol }}</p>    
+                <p class="text-start m-2" style="color: #0D0842;"><strong>Estado: </strong>{{ usuario_datos.estado }}</p>    
+            </div>
+        </div>
+
+        <!-- Columna de libros -->
+        <div class="col-md-8 d-flex align-items-start" style="margin-top: 5%;margin-bottom: 5%;">
+            <div class="container">
+                <p class="fs-3 fw-bold m-3" style="color: #0D0842;">Préstamos</p>
+                <div class="row text-center overflow-auto">
+                    <div class="col-3 d-flex">
+                        <ng-container *ngFor="let prestamo of usuario_datos.prestamos">            
+                            <app-imagen-libro class="m-2" [urlImagen]="prestamo.libro.portada" [titulo]="prestamo.libro.titulo" [autor]="prestamo.libro.autor.nombre + ' ' + prestamo.libro.autor.apellido"></app-imagen-libro>
+                        </ng-container>
                     </div>
-                    <p class="fs-3 fw-bold m-3 text-center" style="color: #0D0842;margin-left:0;">{{ usuario_datos.alias }}</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <app-edit-delete-buttons [editarUrl]="'/usuario/' + usuario_datos.id + '/editar'" (clickEvent)="deleteUsuario(usuario_datos.id)"></app-edit-delete-buttons> 
-                    </div>
-                    
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>ID: </strong>{{ usuario_datos.id }}</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Nombre: </strong>{{ usuario_datos.nombre }}</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Apellido: </strong>{{ usuario_datos.apellido }}</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Mail: </strong>{{ usuario_datos.mail }}</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>DNI: </strong>{{ usuario_datos.dni }}</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Teléfono: </strong>{{ usuario_datos.telefono }}</p>
-                    <p class="text-start m-2" style="color: #0D0842;"><strong>Rol: </strong>{{ usuario_datos.rol }}</p>    
                 </div>
             </div>
-    
-            <!-- Columna de libros -->
-            <div class="col-md-8 d-flex align-items-start" style="margin-top: 5%;margin-bottom: 5%;">
-                <div class="container">
-                    <p class="fs-3 fw-bold m-3" style="color: #0D0842;">Préstamos</p>
-                    <div class="row text-center">
-                        <div class="col-3 d-flex">
-                            <ng-container *ngFor="let prestamo of usuario_datos.prestamos">            
-                                <app-imagen-libro class="m-2" [urlImagen]="prestamo.libro.portada" [titulo]="prestamo.libro.titulo" [autor]="prestamo.libro.autor.nombre + ' ' + prestamo.libro.autor.apellido"></app-imagen-libro>
-                            </ng-container>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-    </div>
+        </div>
+    </div>    
+</div>
 <app-footer></app-footer>

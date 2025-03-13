@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container-flex">
     <div class="row ms-1 me-1">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-10 offset-md-1 contenedor-grilla">
             <app-searchfilterbar (search)="busquedaFiltrada($event)"></app-searchfilterbar>
             <app-grid [url]="'usuario'" [filtros]="busqueda"></app-grid>
             <app-router-button [texto]="'AGREGAR USUARIO'" [tipo]="'rojo'" (clickEvent)="navigateToAgregarUsuario()"></app-router-button>  

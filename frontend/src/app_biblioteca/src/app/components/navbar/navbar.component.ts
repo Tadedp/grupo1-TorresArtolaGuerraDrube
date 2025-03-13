@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalPerfilComponent } from '../modal-perfil/modal-perfil.component';
 import { ModalUsuarioNotificacionesComponent } from '../modal-usuario-notificaciones/modal-usuario-notificaciones.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,21 +16,34 @@ export class NavbarComponent{
 
     constructor (
         private router: Router,
+        private authService: AuthService,
         private dialog: MatDialog
     ) {}
 
     openModalPerfilDialog(): void {
-        const dialogRef = this.dialog.open(ModalPerfilComponent, {
-          width: '500px',
-          data: {}
-        });
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            const dialogRef = this.dialog.open(ModalPerfilComponent, {
+            width: '500px',
+            data: {}
+            });
+        }
     }
 
     openModalUsuarioNotificaciones(): void {
-        const dialogRef = this.dialog.open(ModalUsuarioNotificacionesComponent, {
-          width: '500px',
-          data: {}
-        });
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            const dialogRef = this.dialog.open(ModalUsuarioNotificacionesComponent, {
+            width: '500px',
+            data: {}
+            });
+        }
     }
     
     isAdminBibliotecario(): boolean {
@@ -45,6 +59,12 @@ export class NavbarComponent{
     }
 
     navigateToNotifications() {
-        this.router.navigate(['/notificaciones']);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate(['/notificaciones']);
+        }
     }
 }

@@ -1,38 +1,60 @@
 <app-navbar></app-navbar>
-
-<div class="container" (click)="navigateToLibro()">
-    <div class="row">
+<div class="container">
+    <div class="mb-5">
+        <app-ingresos-favoritos
+        [titulo]="'Últimos Ingresos'"
+        [subtitulo]="'Libros recién agregados a la biblioteca'">
+        </app-ingresos-favoritos>
+        <div class="d-flex flex-row overflow-auto gap-3">
+            <app-imagen-libro *ngFor="let libro of ultimosIngresos" 
+                [urlImagen]="libro.portada" 
+                [titulo]="libro.titulo" 
+                [autor]="libro.autor.nombre + ' ' + libro.autor.apellido"
+                [idLibro]="libro.id">
+            </app-imagen-libro>
+        </div>
+    </div>
+    <div class="mb-5">
+        <app-ingresos-favoritos
+        [titulo]="'Mejor Valorados'"
+        [subtitulo]="'Los libros preferidos de los usuarios'">
+        </app-ingresos-favoritos>
+        <div class="d-flex flex-row overflow-auto gap-3">
+            <app-imagen-libro *ngFor="let libro of librosMejorReseniados" 
+                [urlImagen]="libro.portada" 
+                [titulo]="libro.titulo" 
+                [autor]="libro.autor.nombre + ' ' + libro.autor.apellido"
+                [idLibro]="libro.id">
+            </app-imagen-libro>
+        </div>
+    </div>
+    <div class="mb-5">
+        <app-ingresos-favoritos
+        [titulo]="'Novelas'"
+        [subtitulo]="'Novelas que ofrece la bilioteca'">
+        </app-ingresos-favoritos>
+        <div class="d-flex flex-row overflow-auto gap-3">
+            <app-imagen-libro *ngFor="let libro of librosNovela" 
+                [urlImagen]="libro.portada" 
+                [titulo]="libro.titulo" 
+                [autor]="libro.autor.nombre + ' ' + libro.autor.apellido"
+                [idLibro]="libro.id">
+            </app-imagen-libro>
+        </div>
+    </div>
+    <div *ngIf="!isUserNoReg()">
         <app-ingresos-favoritos 
-        [titulo]="'Libros Mejor Valorados'" 
-        [subtitulo]="'Los libros con las mejores valoraciones en la biblioteca'"
-        [rutas]="[librosMejorReseniados[0].portada, librosMejorReseniados[1].portada, librosMejorReseniados[2].portada, librosMejorReseniados[3].portada, librosMejorReseniados[4].portada ]"
-        [titulos]="[librosMejorReseniados[0].titulo, librosMejorReseniados[1].titulo, librosMejorReseniados[2].titulo, librosMejorReseniados[3].titulo, librosMejorReseniados[4].titulo]"
-        [autores]="[librosMejorReseniados[0].autor.nombre + ' ' + librosMejorReseniados[0].autor.apellido, librosMejorReseniados[1].autor.nombre + ' ' + librosMejorReseniados[1].autor.apellido, librosMejorReseniados[2].autor.nombre + ' ' + librosMejorReseniados[2].autor.apellido, librosMejorReseniados[3].autor.nombre + ' ' + librosMejorReseniados[3].autor.apellido, librosMejorReseniados[4].autor.nombre + ' ' + librosMejorReseniados[4].autor.apellido]"></app-ingresos-favoritos>
+        [titulo]="'Disponibles'"
+        [subtitulo]="'Libros disponibles para leer'">
+        </app-ingresos-favoritos>
+        <div class="d-flex flex-row overflow-auto gap-3">
+            <app-imagen-libro *ngFor="let libro of librosDisponibles" 
+                [urlImagen]="libro.portada" 
+                [titulo]="libro.titulo" 
+                [autor]="libro.autor.nombre + ' ' + libro.autor.apellido"
+                [idLibro]="libro.id">
+            </app-imagen-libro>
+        </div>
     </div>
 </div>
-
-<div class="container" (click)="navigateToLibro()">
-    <div class="row" *ngIf="!isUserNoReg()">
-        <app-ingresos-favoritos 
-        [titulo]="'Ultimos ingresos'" 
-        [subtitulo]="'Libros recien llegados'"
-        [rutas]="[ultimosIngresos[0].portada, ultimosIngresos[1].portada, ultimosIngresos[2].portada, ultimosIngresos[3].portada, ultimosIngresos[4].portada ]"
-        [titulos]="[ultimosIngresos[0].titulo, ultimosIngresos[1].titulo, ultimosIngresos[2].titulo, ultimosIngresos[3].titulo, ultimosIngresos[4].titulo]"
-        [autores]="[ultimosIngresos[0].autor.nombre +' '+ ultimosIngresos[0].autor.apellido, ultimosIngresos[1].autor.nombre +' '+ ultimosIngresos[1].autor.apellido, ultimosIngresos[2].autor.nombre +' '+ ultimosIngresos[2].autor.apellido, ultimosIngresos[3].autor.nombre +' '+ ultimosIngresos[3].autor.apellido, ultimosIngresos[4].autor.nombre +' '+ ultimosIngresos[4].autor.apellido]"></app-ingresos-favoritos>
-    </div>
-</div>
-
-<div class="container" (click)="navigateToLibro()">
-    <div class="row">
-        <app-ingresos-favoritos 
-        [titulo]="'Novelas'" 
-        [subtitulo]="'Las novelas que ofrece la biblioteca'"
-        [rutas]="[librosNovela[0].portada, librosNovela[1].portada, librosNovela[2].portada, librosNovela[3].portada, librosNovela[4].portada ]"
-        [titulos]="[librosNovela[0].titulo, librosNovela[1].titulo, librosNovela[2].titulo, librosNovela[3].titulo, librosNovela[4].titulo]"
-        [autores]="[librosNovela[0].autor.nombre +' '+ librosNovela[0].autor.apellido, librosNovela[1].autor.nombre +' '+ librosNovela[1].autor.apellido, librosNovela[2].autor.nombre +' '+ librosNovela[2].autor.apellido, librosNovela[3].autor.nombre +' '+ librosNovela[3].autor.apellido, librosNovela[4].autor.nombre +' '+ librosNovela[4].autor.apellido]"></app-ingresos-favoritos>
-    </div>
-</div>
-
 <app-footer></app-footer>
-
-

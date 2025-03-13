@@ -10,10 +10,11 @@ export class BackButtonComponent {
     @Input() texto: string = '';
     @Input() url: string = '';
 
-    constructor(private router: Router) {}
+    constructor(
+        private router: Router
+    ) {}
 
     navigate() {
-        console.log(this.url)
         this.router.navigate([this.url]);
     }
 }

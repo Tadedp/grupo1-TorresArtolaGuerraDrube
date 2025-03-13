@@ -1,4 +1,4 @@
-<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+<div class="contenedor-formulario">
     <div style="display:flex; justify-content:space-between; margin-bottom: 1.5%;">
         <ng-container *ngIf="tipo_op === 'agregar'">
             <app-back-button [texto]="'Agregar Libro'" [url]="'/libros'"></app-back-button>
@@ -25,4 +25,5 @@
         [values]="libroDatos">
         </app-formulario>
     </ng-container>
+    <div style="margin-bottom: 50px;"></div>
 </div>

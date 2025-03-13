@@ -1,24 +1,24 @@
-<ul class="pagination pagination-container justify-content-center m-3 page">
-    <li class="page-item" [class.disabled]="currentPage === 1">
-        <a class="page-link" aria-label="Previous" (click)="goToPage(1)">
+<ul class="pagination pagination-container justify-content-center mt-3 mb-3 page">
+    <li class="page-item" [class.disabled]="pagina_actual === 1" *ngIf="total_paginas > max_paginas_visibles">
+        <a class="page-link" aria-label="Previous" (click)="ir_a_pagina(1)">
             <span aria-hidden="true">&laquo;</span>
         </a>
     </li>
   
-    <li class="page-item disabled" *ngIf="showLeftEllipsis">
+    <li class="page-item disabled" *ngIf="mostrar_elipsis_izq">
         <span class="page-link">...</span>
     </li>
   
-    <li *ngFor="let page of visiblePages" class="page-item" [class.active]="page === currentPage">
-        <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+    <li *ngFor="let pagina of paginas_visibles" class="page-item" [class.active]="pagina === pagina_actual">
+        <a class="page-link" (click)="ir_a_pagina(pagina)">{{ pagina }}</a>
     </li>
 
-    <li class="page-item disabled" *ngIf="showRightEllipsis">
+    <li class="page-item disabled" *ngIf="mostrar_elipsis_der">
         <span class="page-link">...</span>
     </li>
 
-    <li class="page-item" [class.disabled]="currentPage === totalPages">
-        <a class="page-link" aria-label="Next" (click)="goToPage(totalPages)">
+    <li class="page-item" [class.disabled]="pagina_actual === total_paginas" *ngIf="total_paginas > max_paginas_visibles">
+        <a class="page-link" aria-label="Next" (click)="ir_a_pagina(total_paginas)">
             <span aria-hidden="true">&raquo;</span>
         </a>
     </li>

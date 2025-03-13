@@ -1,5 +1,5 @@
 import { Component, ViewChild  } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service'
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 
@@ -15,7 +15,6 @@ export class RegistrarseComponent {
     constructor(
         private authService: AuthService,
         private router: Router,
-        private route: ActivatedRoute
     ) {}
 
     navigateToPortada() {

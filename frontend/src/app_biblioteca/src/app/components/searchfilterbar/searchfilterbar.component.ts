@@ -29,12 +29,16 @@ export class SearchfilterbarComponent implements OnInit{
             this.dropdownItemsBackUp = ['ID', 'Libro ID', 'Usuario ID', 'Fecha Inicio', 'Fecha Fin'];
         } else if (currentRoute.includes('usuarios')) {
             this.barras = [{ filtro: 'Nombre', valor: '' }];
-            this.dropdownItems = ['ID', 'Alias', 'Apellido', 'Mail', 'DNI', 'Telefono'];
-            this.dropdownItemsBackUp = ['ID', 'Alias', 'Nombre', 'Apellido', 'Mail', 'DNI', 'Telefono'];
+            this.dropdownItems = ['ID', 'Alias', 'Apellido', 'Mail', 'DNI', 'Telefono', 'Estado'];
+            this.dropdownItemsBackUp = ['ID', 'Alias', 'Nombre', 'Apellido', 'Mail', 'DNI', 'Telefono','Estado'];
         } else if (currentRoute.includes('libros')) {
             this.barras = [{ filtro: 'Titulo', valor: '' }];
             this.dropdownItems = ['ID', 'Autor ID', 'Genero', 'Editorial', 'ISBN', 'Estado', 'Stock'];
             this.dropdownItemsBackUp = ['ID', 'Titulo', 'Autor ID', 'Genero', 'Editorial', 'ISBN', 'Estado', 'Stock'];
+        } else if (currentRoute.includes('search')) {
+            this.barras = [{ filtro: 'Titulo', valor: '' }];
+            this.dropdownItems = ['Autor Nombre', 'Autor Apellido', 'ISBN', 'Genero', 'Editorial'];
+            this.dropdownItemsBackUp = ['Autor Nombre', 'Autor Apellido', 'Titulo', 'ISBN', 'Genero', 'Editorial'];
         }
 
         this.filtrosSeleccionados.push(this.barras[0].filtro)
@@ -77,6 +81,6 @@ export class SearchfilterbarComponent implements OnInit{
     }
     
     inputIngresado(filtro: string, valor: string) {
-        //llamar a emitBusqueda por cada inputIngresado?
+        this.emitBusqueda();
     }
 }

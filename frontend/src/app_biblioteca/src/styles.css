@@ -1,6 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
 body{
     background-color:#F0EBD5; ;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.modal-abierto nav,
+.modal-abierto footer {
+    pointer-events: none;
+    opacity: 0.5;
+}

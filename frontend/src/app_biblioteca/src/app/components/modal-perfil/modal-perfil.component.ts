@@ -1,8 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UsuariosService } from '../../services/usuarios.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ModalConfirmacionComponent } from '../modal-confirmacion/modal-confirmacion.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-modal-perfil',
@@ -10,7 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     styleUrl: './modal-perfil.component.css'
 })
 
-export class ModalPerfilComponent {
+export class ModalPerfilComponent implements OnInit, OnDestroy{
     usuarioDatos:any[] = [];
     usuario_id!: number
 
@@ -19,39 +21,69 @@ export class ModalPerfilComponent {
         private usuariosService: UsuariosService,
         private authService: AuthService,
         private router: Router,
+        private renderer: Renderer2,
+        private dialog: MatDialog,
 
         @Inject(MAT_DIALOG_DATA) public data: any
     ) {}
 
     ngOnInit(): void {
-        this.usuario_id = parseInt(localStorage.getItem('id') || '0')
-        this.usuariosService.getUsuario(parseInt(localStorage.getItem('id') || '1')).subscribe((usuario: any) => { 
-                this.usuarioDatos = [usuario.alias, usuario.nombre, usuario.apellido];
-            });
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            this.dialogRef.close();
+            
+        } else {
+            this.usuario_id = parseInt(localStorage.getItem('id') || '0')
+            this.usuariosService.getUsuario(parseInt(localStorage.getItem('id') || '1')).subscribe((usuario: any) => { 
+                    this.usuarioDatos = [usuario.alias, usuario.nombre, usuario.apellido, usuario.estado];
+                });
+
+            this.renderer.addClass(document.body, 'modal-abierto');
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.renderer.removeClass(document.body, 'modal-abierto');
     }
 
     navigateToDetallesPerfil() {
-        this.router.navigate(['/detalles-perfil']);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate(['/detalles-perfil']);
+        }
+
         this.dialogRef.close();
     }
 
     navigateToFavoritos() {
-        this.router.navigate(['/home']);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate(['/home']);
+        }
+        
         this.dialogRef.close();
     }
 
-    deleteUsuario(){
-        this.usuariosService.deleteUsuario(this.usuario_id).subscribe({
-            error: (error: any) => {
-                console.error('Error al eliminar el usuario:', error);
-                alert('Error al eliminar el usuario');
-            }, complete: () => {
-                console.log('Usuario eliminado exitosamente');
-                this.router.navigateByUrl('portada'); 
-            }
-        });
-        this.authService.logout()
+    openDeleteModal(usuarioID: number) {
         this.dialogRef.close();
+
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            const dialogRef = this.dialog.open(ModalConfirmacionComponent, {
+                width: '500px',
+                data: { elemento: "self_usuario", id: usuarioID, mensaje: "¿Estás seguro de que deseas eliminar tu cuenta?" }
+            });
+        }
     }
 
     logout() {
@@ -62,10 +94,4 @@ export class ModalPerfilComponent {
     closeModal(): void {
         this.dialogRef.close()
     }
-
-    saveChanges(): void {
-        this.dialogRef.close()
-    }
 }
-
-

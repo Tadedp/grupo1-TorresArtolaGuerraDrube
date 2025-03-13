@@ -31,7 +31,6 @@ import { EditDeleteButtonsComponent } from './components/edit-delete-buttons/edi
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { PrestamosUsuariosComponent } from './pages/prestamos-usuarios/prestamos-usuarios.component';
 import { SearchComponent } from './pages/search/search.component';
-import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
 import { PortadaComponent } from './pages/portada/portada.component';
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
 import { GridComponent } from './components/grid/grid.component';
@@ -48,6 +47,7 @@ import { ModalEnviarReseniaComponent } from './components/modal-enviar-resenia/m
 import { ModalSolicitarPrestamoComponent } from './components/modal-solicitar-prestamo/modal-solicitar-prestamo.component';
 import { ModalDatosLibroComponent } from './components/modal-datos-libro/modal-datos-libro.component';
 import { ModalUsuarioNotificacionesComponent } from './components/modal-usuario-notificaciones/modal-usuario-notificaciones.component';
+import { ModalConfirmacionComponent } from './components/modal-confirmacion/modal-confirmacion.component';
 
 @NgModule({
     declarations: [
@@ -70,7 +70,6 @@ import { ModalUsuarioNotificacionesComponent } from './components/modal-usuario-
         FormularioComponent,
         PrestamosUsuariosComponent,
         SearchComponent,
-        BarraBusquedaComponent,
         PortadaComponent,
         RegistrarseComponent,
         LibrosComponent,
@@ -90,6 +89,7 @@ import { ModalUsuarioNotificacionesComponent } from './components/modal-usuario-
         ModalSolicitarPrestamoComponent,
         ModalDatosLibroComponent,
         ModalUsuarioNotificacionesComponent,
+        ModalConfirmacionComponent,
     ],
 
     imports: [

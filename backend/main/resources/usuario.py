@@ -14,7 +14,7 @@ class Usuarios(Resource):
         per_page = 6
         usuarios = db.session.query(UsuarioModel)
         
-        args = ["page", "per_page", "id", "rol", "alias", "nombre", "apellido", "dni", "mail", "telefono", "sortby_id", "sortby_alias", "sortby_apellido", "sortby_nombre", "sortby_nrPrestamos", "sortby_nrReseñas"]
+        args = ["page", "per_page", "id", "rol", "alias", "nombre", "apellido", "dni", "mail", "telefono", "estado", "sortby_id", "sortby_alias", "sortby_apellido", "sortby_nombre", "sortby_nrPrestamos", "sortby_nrReseñas"]
         
         for key in request.args.keys():
             if key not in args:
@@ -61,6 +61,9 @@ class Usuarios(Resource):
                     
         if request.args.get('telefono'):
             usuarios=usuarios.filter(UsuarioModel.telefono.like("%"+request.args.get('telefono')+"%"))
+                     
+        if request.args.get('estado'):
+            usuarios=usuarios.filter(UsuarioModel.estado.like("%"+request.args.get('estado')+"%"))
         
         if request.args.get('sortby_id'):
             if request.args.get('sortby_id') == "asc":
@@ -201,6 +204,7 @@ class Usuario(Resource):
         if current_user.rol == "Bibliotecario" and (usuario.rol == "Admin" or usuario.rol == "Bibliotecario"):
             return "Permiso denegado.", 403
         else:
+            
             db.session.delete(usuario)
             db.session.commit()
-            return usuario.to_json(), 204
+            return usuario.to_json(), 201

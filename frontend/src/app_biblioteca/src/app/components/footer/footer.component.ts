@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,6 +12,7 @@ export class FooterComponent {
     rolSesion = localStorage.getItem('rol')
 
     constructor (
+        private authService: AuthService,
         private router: Router,
     ) {}
 
@@ -27,15 +29,33 @@ export class FooterComponent {
     }
 
     navigateToLibros() {
-        this.router.navigate(['/libros']);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate(['/libros']);
+        }
     }
 
     navigateToUsuarios() {
-        this.router.navigate(['/usuarios']);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate(['/usuarios']);
+        }
     }
 
     navigateToPrestamos() {
-        this.router.navigate(['/prestamos']);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate(['/prestamos']);
+        }
     }
 
     navigateToBuscar(){
@@ -43,7 +63,13 @@ export class FooterComponent {
     }
 
     navigateToMisPrestamos(){
-        this.router.navigate(['/prestamos-usuarios']);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate(['/prestamos-usuarios']);
+        }
     }
 
     navigateToHome(){

@@ -30,7 +30,7 @@
             <div class="grid-item">{{ fila.fecha_inicio }}</div>
             <div class="grid-item">{{ fila.fecha_fin }}</div>
             <div class="grid-item" style="overflow: visible">
-                <app-edit-delete-buttons [editarUrl]="'/prestamo/' + fila.id + '/editar'" (clickEvent)="deletePrestamo(fila.id)"></app-edit-delete-buttons>
+                <app-edit-delete-buttons [editarUrl]="'/prestamo/' + fila.id + '/editar'" (clickEvent)="openDeleteModal(fila.id)"></app-edit-delete-buttons>
             </div>
         </ng-container>
     </ng-container>
@@ -63,20 +63,24 @@
 
     <ng-container *ngIf="getRouter().includes('notificaciones')">
         <ng-container *ngFor="let fila of arrayFilas">
-            <div class="grid-item">{{ fila.fecha_inicio }}</div>
-            <div class="grid-item">
-                {{ fila.libroTitulo }}
-                <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                    {{ fila.libroAutor }}
-                </p>
+            <div class="grid-item align-items-center d-flex justify-content-center">{{ fila.fecha_inicio }}</div>
+            <div class="grid-item align-items-center d-flex justify-content-center">
+                <div style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                    {{ fila.libroTitulo }}    
+                    <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                        {{ fila.libroAutor }}
+                    </p>
+                </div>
+                    
             </div>
             <div class="grid-item">
                 {{ fila.usuarioAlias }}
                 <p class="fs-6 fw-light mb-0" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
                     {{ fila.usuarioNombre }}
                 </p>
+                <p *ngIf="fila.usuarioEstado === 'None'" class="fs-6 fw-light mb-0" style="color: red">Habilitar</p>
             </div>
-            <div class="grid-item" style="overflow: visible">
+            <div class="grid-item align-items-center d-flex justify-content-center" style="overflow: visible">
                 <button class="btn btn-success btn-sm me-2" (click)="confirmNotificacion(fila)">
                     <i class="bi bi-check-lg"></i>
                 </button>                            
@@ -88,4 +92,4 @@
     </ng-container>
 </div>
 
-<app-paginado [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)"></app-paginado>
+<app-paginado [total_paginas]="totalPages" [pagina_actual]="currentPage" (cambio_pagina)="onPageChanged($event)"></app-paginado>

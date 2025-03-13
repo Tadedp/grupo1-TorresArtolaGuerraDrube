@@ -14,12 +14,13 @@ def login():
         data = {
             'id': str(usuario.id),
             'mail': usuario.mail,
+            'estado': usuario.estado,
             'access_token': access_token
         }
 
         return data, 200
     else:
-        return 'Contraseña incorrecta.', 401
+        return 'Credenciales incorrectas.', 401
 
 @auth.route('/register', methods=['POST'])
 def register():

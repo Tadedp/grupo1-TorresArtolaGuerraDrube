@@ -12,9 +12,10 @@ class Usuario(db.Model):
     rol = db.Column(db.String(100),nullable = False, server_default = "Usuario")
     alias = db.Column(db.String,nullable = False)
     contraseña = db.Column(db.String,nullable = False)
+    estado = db.Column(db.String(20),nullable = True)
     reseñas = db.relationship("Reseña", back_populates="usuario",cascade="all, delete-orphan")
     prestamos = db.relationship("Prestamo", back_populates="usuario",cascade="all, delete-orphan")
-
+    
     @property
     def plain_contraseña(self):
         raise AttributeError('La contraseña no puede ser leida.')
@@ -38,7 +39,8 @@ class Usuario(db.Model):
             'dni': self.dni,
             'telefono': self.telefono,
             'rol': str(self.rol),
-            'alias': str(self.alias)   
+            'alias': str(self.alias),
+            'estado': str(self.estado)
         }
         return usuario_json
 
@@ -55,6 +57,7 @@ class Usuario(db.Model):
             'telefono': self.telefono,
             'rol': str(self.rol),
             'alias': str(self.alias),
+            'estado': str(self.estado),
             'notificaciones':notificaciones,
             'prestamos':prestamos,
             'reseñas':reseñas  
@@ -67,7 +70,8 @@ class Usuario(db.Model):
             'nombre': str(self.nombre),
             'apellido': str(self.apellido),
             'alias': str(self.alias),
-            'mail': str(self.mail)
+            'mail': str(self.mail),
+            'estado': str(self.estado)
         }
         return usuario_json
 
@@ -81,6 +85,7 @@ class Usuario(db.Model):
         telefono = usuario_json.get('telefono')
         rol = usuario_json.get('rol')
         alias = usuario_json.get('alias')
+        estado = usuario_json.get('estado')
         contraseña = usuario_json.get('contraseña')
         
         return Usuario(id = id,
@@ -91,5 +96,6 @@ class Usuario(db.Model):
                        telefono = telefono,
                        rol = rol,
                        alias = alias,
+                       estado = estado,
                        plain_contraseña = contraseña  
                     )

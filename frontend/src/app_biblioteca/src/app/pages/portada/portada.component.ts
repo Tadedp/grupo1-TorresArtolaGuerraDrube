@@ -31,6 +31,7 @@ export class PortadaComponent {
             localStorage.setItem('id', rta.id);
             const tokenPayload = JSON.parse(atob(rta.access_token.split('.')[1]));
             localStorage.setItem('rol', tokenPayload.rol);
+            localStorage.setItem('estado', tokenPayload.estado);
             this.router.navigateByUrl('home');
         
         }, error: (err:any) => {
@@ -39,9 +40,7 @@ export class PortadaComponent {
             localStorage.removeItem('token');
             localStorage.removeItem('id');
             localStorage.removeItem('rol');
-       
-        }, complete: () => {
-            console.log('Éxito.');
+            localStorage.removeItem('estado');
         }
         })
     }

@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -13,6 +14,7 @@ export class FormularioComponent {
     form!: FormGroup;
 
     constructor(
+        private router: Router, 
         private formBuilder: FormBuilder
     ) { }
 
@@ -56,8 +58,12 @@ export class FormularioComponent {
                 validators.push(this.soloFechaValidator);
             }
 
-            if (this.esCampoEstado(titulo)) {
-                validators.push(this.soloEstadoValidator);
+            if (this.esCampoEstadoLibro(titulo)) {
+                validators.push(this.soloEstadoLibroValidator);
+            }
+
+            if (this.esCampoEstadoUsuario(titulo)) {
+                validators.push(this.soloEstadoUsuarioValidator);
             }
 
             if (this.esCampoRol(titulo)) {
@@ -91,7 +97,7 @@ export class FormularioComponent {
     }
 
     esCampoSoloNumeros(titulo: string): boolean {
-        return titulo.toLowerCase().includes('dni') || titulo.toLowerCase().includes('telefono') || titulo.toLowerCase().includes('teléfono') || titulo.toLowerCase().includes('isbn') || titulo.toLowerCase().includes('stock') || titulo.toLowerCase().includes('id');
+        return titulo.toLowerCase().includes('dni') || titulo.toLowerCase().includes('telefono') || titulo.toLowerCase().includes('teléfono') || titulo.toLowerCase().includes('isbn') || titulo.toLowerCase().includes('stock') || titulo.toLowerCase() === 'id';
     }
 
     esCampoISBN(titulo: string): boolean {
@@ -106,8 +112,22 @@ export class FormularioComponent {
         return titulo.toLowerCase().includes('fecha');
     }
 
-    esCampoEstado(titulo: string): boolean {
-        return titulo.toLowerCase().includes('estado');
+    esCampoEstadoLibro(titulo: string): boolean {
+        const currentRoute = this.router.url;
+        if (currentRoute.includes('libro')) {
+            return titulo.toLowerCase().includes('estado');
+        } else {
+            return false;
+        }
+    }
+
+    esCampoEstadoUsuario(titulo: string): boolean {
+        const currentRoute = this.router.url;
+        if (currentRoute.includes('usuario')) {
+            return titulo.toLowerCase().includes('estado');
+        } else {
+            return false;
+        }
     }
 
     esCampoRol(titulo: string): boolean {
@@ -132,15 +152,21 @@ export class FormularioComponent {
         return soloFecha ? null : { soloFecha: true };
     }
 
-    soloEstadoValidator(control: AbstractControl): ValidationErrors | null {
+    soloEstadoLibroValidator(control: AbstractControl): ValidationErrors | null {
         const valor = control.value;
-        const soloEstado = valor === 'disponible' || valor === 'no disponible';
-        return soloEstado ? null : { soloEstado: true };
+        const soloEstadoLibro = valor === 'Disponible' || valor === 'No Disponible';
+        return soloEstadoLibro ? null : { soloEstadoLibro: true };
+    }
+
+    soloEstadoUsuarioValidator(control: AbstractControl): ValidationErrors | null {
+        const valor = control.value;
+        const soloEstadoUsuario = valor === 'Habilitado' || valor === 'Suspendido';
+        return soloEstadoUsuario ? null : { soloEstadoUsuario: true };
     }
 
     soloRolValidator(control: AbstractControl): ValidationErrors | null {
         const valor = control.value;
-        const soloRol = valor === 'usuario' || valor === 'bibliotecario' || valor === 'admin';
+        const soloRol = valor === 'Usuario' || valor === 'Bibliotecario' || valor === 'Admin';
         return soloRol ? null : { soloRol: true };
     }
 

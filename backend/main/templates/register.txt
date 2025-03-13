@@ -1,8 +1,9 @@
-Bienvenido {{usuario.nombre}} {{usuario.apellido}}!
+Bienvenido/a {{usuario.nombre}} {{usuario.apellido}}!
 
 Gracias por registrarte en nuestro sistema.
 
-Con nuestro servicio podras:
+Con nuestro servicio podrás:
 
 - Ver los libros disponibles.
-- Ver tus prestamos.
+- Solicitar préstamos.
+- Ver tus préstamos activos.

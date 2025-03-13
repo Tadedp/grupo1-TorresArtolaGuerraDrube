@@ -1,39 +1,37 @@
-<h5 mat-dialog-title class="modal-title fw-bold">Perfil</h5>
-
-<mat-dialog-content class="mat-content">
-    <div class="profile-header">
-        <img src="cat.png" alt="Profile" class="profile-pic" />
-        <div class="profile-info">
-            <h3>{{ usuarioDatos[0] }}</h3>
-            <p>{{ usuarioDatos[1] }} {{ usuarioDatos[2] }}</p>
+<div class="modal-overlay" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+        <div class="profile-info modal-title text-center mb-3">
+            <h2>{{ usuarioDatos[0] }}</h2>
+            <h4>{{ usuarioDatos[1] }} {{ usuarioDatos[2] }}</h4>
+            <h4 *ngIf="usuarioDatos[3] === 'Suspendido'" style="color: red;">{{ usuarioDatos[3] }}</h4>
+        </div>
+        <div>
+            <mat-icon (click)="dialogRef.close()" fontIcon="close-icon" class="icono-cerrar"></mat-icon>
         </div>
     </div>
-
     <mat-divider></mat-divider>
+    
+    <mat-dialog-content class="mat-content">        
+        <div class="profile-options">
+            <button mat-button (click)="navigateToDetallesPerfil()">
+                <mat-icon>person</mat-icon>
+                <span>Detalles del Perfil</span>
+            </button>
 
-    <div class="profile-options">
-        <button mat-button (click)="navigateToDetallesPerfil()">
-            <mat-icon>person</mat-icon>
-            <span>Detalles del Perfil</span>
-        </button>
+        </div>
 
-        <button mat-button (click)="navigateToFavoritos()">
-            <mat-icon>star</mat-icon>
-            <span>Favoritos</span>
-        </button>
-    </div>
 
-    <mat-divider></mat-divider>
+        <div class="profile-options">
+            <button mat-button (click)="openDeleteModal(usuario_id)">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar Cuenta</span>
+            </button>
 
-    <div class="profile-options">
-        <button mat-button (click)="deleteUsuario()">
-        <mat-icon>delete</mat-icon>
-        <span>Eliminar Cuenta</span>
-        </button>
+            <button mat-button (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar Sesión</span>
+            </button>
+        </div>
+    </mat-dialog-content>
+</div>
 
-        <button mat-button (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Cerrar Sesión</span>
-        </button>
-    </div>
-</mat-dialog-content>

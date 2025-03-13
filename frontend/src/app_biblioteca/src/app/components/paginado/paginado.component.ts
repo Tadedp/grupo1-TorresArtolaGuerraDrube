@@ -1,71 +1,71 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+
 @Component({
-  selector: 'app-paginado',
+  selector: 'app-paginado',  
   templateUrl: './paginado.component.html',
   styleUrls: ['./paginado.component.css']
 })
 
-export class PaginadoComponent  {
-    @Input() totalPages!: number;
-    @Input() currentPage!: number;
-    @Output() pageChanged = new EventEmitter<number>();
-    maxVisiblePages: number = 5;
-
-    get visiblePages(): number[] {
-      const pages: number[] = [];
-      const halfRange = Math.floor(this.maxVisiblePages / 2);
-  
-      let start = Math.max(1, this.currentPage - halfRange);
-      let end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
-  
-      if (this.totalPages > this.maxVisiblePages && end === this.totalPages) {
-        start = this.totalPages - this.maxVisiblePages + 1;
-      }
-  
-      for (let i = start; i <= end; i++) {
-        pages.push(i);
-      }
-  
-      return pages;
+export class PaginadoComponent {
+    @Input() total_paginas!: number;
+    @Input() pagina_actual!: number;
+    @Output() cambio_pagina = new EventEmitter<number>();
+    max_paginas_visibles: number = 5;
+    
+    get paginas_visibles(): number[] {
+        const paginas: number[] = [];
+        const mitad_rango = Math.floor(this.max_paginas_visibles / 2);
+    
+        let inicio = Math.max(1, this.pagina_actual - mitad_rango);
+        let final = Math.min(this.total_paginas, inicio + this.max_paginas_visibles - 1);
+    
+        if (this.total_paginas >= this.max_paginas_visibles && final === this.total_paginas) {
+            inicio = this.total_paginas - this.max_paginas_visibles + 1;
+        }
+    
+        for (let i = inicio; i <= final; i++) {
+            paginas.push(i);
+        }
+    
+        return paginas;
     }
     
-    get showLeftEllipsis(): boolean {
-        return this.currentPage > Math.floor(this.maxVisiblePages / 2) + 1;
+    get mostrar_elipsis_izq(): boolean {
+        return this.pagina_actual > Math.floor(this.max_paginas_visibles / 2) + 1 && this.max_paginas_visibles < this.total_paginas;
     }
     
-    get showRightEllipsis(): boolean {
-        return this.currentPage < this.totalPages - Math.floor(this.maxVisiblePages / 2);
+    get mostrar_elipsis_der(): boolean {
+        return this.pagina_actual < this.total_paginas - Math.floor(this.max_paginas_visibles / 2) && this.max_paginas_visibles < this.total_paginas;
     }
    
-    goToPage(page: number) {
-      if (page >= 1 && page <= this.totalPages) {
-        this.pageChanged.emit(page);
-      }
+    ir_a_pagina(pagina: number) {
+        if (pagina >= 1 && pagina <= this.total_paginas) {
+            this.cambio_pagina.emit(pagina);
+        }
     }
   
-    nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.pageChanged.emit(this.currentPage + 1);
-      }
+    pagina_siguiente() {
+        if (this.pagina_actual < this.total_paginas) {
+            this.cambio_pagina.emit(this.pagina_actual + 1);
+        }
     }
   
-    prevPage() {
-      if (this.currentPage > 1) {
-        this.pageChanged.emit(this.currentPage - 1);
-      }
+    pagina_anterior() {
+        if (this.pagina_actual > 1) {
+            this.cambio_pagina.emit(this.pagina_actual - 1);
+        }
     }
   
-    goToFirstPage() {
-      if (this.currentPage !== 1) {
-        this.pageChanged.emit(1);
-      }
+    ir_a_primer_pagina() {
+        if (this.pagina_actual !== 1) {
+            this.cambio_pagina.emit(1);
+        }
     }
   
-    goToLastPage() {
-      if (this.currentPage !== this.totalPages) {
-        this.pageChanged.emit(this.totalPages);
-      }
+    ir_a_ultima_pagina() {
+        if (this.pagina_actual !== this.total_paginas) {
+            this.cambio_pagina.emit(this.total_paginas);
+        }
     }
 }
-

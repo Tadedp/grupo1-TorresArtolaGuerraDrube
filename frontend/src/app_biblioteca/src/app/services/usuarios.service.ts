@@ -11,7 +11,7 @@ export class UsuariosService {
         private httpClient:HttpClient
     ) { }
 
-    getUsuarios(page: number, params?: { per_page?: number, id?: string, alias?: string, nombre?: string, apellido?: string, dni?: string, telefono?: string, mail?: string, rol?: string, sortby_id?: string, sortby_alias?: string}) {
+    getUsuarios(page: number, params?: { per_page?: number, id?: string, alias?: string, nombre?: string, apellido?: string, dni?: string, telefono?: string, mail?: string, rol?: string, estado?: string, sortby_id?: string, sortby_alias?: string}) {
         let auth_token = localStorage.getItem('token');
 
         let headers = new HttpHeaders({
@@ -48,6 +48,9 @@ export class UsuariosService {
             }
             if (params.rol) {
                 httpParams = httpParams.set('rol', params.rol);
+            }
+            if (params.estado) {
+                httpParams = httpParams.set('estado', params.estado);
             }
             if (params.sortby_id) {
               httpParams = httpParams.set('sortby_id', params.sortby_id);

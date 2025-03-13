@@ -1,0 +1,37 @@
+.modal-abierto nav,
+.modal-abierto footer {
+    pointer-events: none; 
+    opacity: 0.5; 
+}
+
+.modal-header{
+    color: #0D0842;
+    font-size: 1.5em;
+    background-color: #F0EBD5;
+    margin: 0;
+    font-weight: bold;
+    display:flex;
+    padding: 1rem;
+}
+
+.icono-cerrar{
+    cursor: pointer;
+}
+
+.modal-content{
+    background-color: #ffffff
+}
+
+.container-fecha{
+    margin-top: 1rem; 
+    margin-bottom: 1rem;
+}
+
+.error{
+    color: red; 
+    font-size: small;
+}
+
+.confirmation-text{
+    margin-bottom: 1rem;
+}

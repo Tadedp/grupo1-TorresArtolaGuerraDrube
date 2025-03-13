@@ -1,0 +1,22 @@
+<div class="modal-overlay" (click)="$event.stopPropagation()">
+    <h5 mat-dialog-title class="modal-header">
+        Eliminar
+        <div>
+            <mat-icon (click)="dialogRef.close()" fontIcon="close-icon" class="icono-cerrar"></mat-icon>
+        </div>
+    </h5>
+    <mat-divider></mat-divider>
+
+    <mat-dialog-content class="modal-content">
+        <div class="modal-body">
+            <h6 style="margin-bottom: 2%; text-align: center;">
+                {{ mensaje }}
+            </h6>
+
+            <div class="modal-footer" style="justify-content: space-evenly;">
+                <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+                <button type="button" class="btn btn-danger"(click)="eliminar()">Eliminar</button>
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>

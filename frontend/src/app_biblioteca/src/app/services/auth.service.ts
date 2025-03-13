@@ -22,10 +22,19 @@ export class AuthService {
         return this.httpClient.post(this.url+'/auth/register', dataRegister).pipe(take(1));
     }
 
+    es_token_expirado() {
+        const token = localStorage.getItem('token') || '';
+        const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+        const tiempo_actual_segundos = Date.now() / 1000;
+
+        return (tokenPayload.exp < tiempo_actual_segundos)
+    }
+
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('rol');
         localStorage.removeItem('id');
+        localStorage.removeItem('estado');
         this.router.navigateByUrl('portada');
     }
 }

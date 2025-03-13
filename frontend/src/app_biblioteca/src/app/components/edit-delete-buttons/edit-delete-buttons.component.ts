@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-edit-delete-buttons',
@@ -12,15 +13,27 @@ export class EditDeleteButtonsComponent {
     @Output() clickEvent = new EventEmitter<void>();
     
     constructor(
+        private authService: AuthService,
         private router: Router,
-
     ) {}
 
     navigateToEditar() {
-        this.router.navigate([this.editarUrl]);
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.router.navigate([this.editarUrl]);    
+        }    
     }
 
     emitirClick() {
-        this.clickEvent.emit();
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.clickEvent.emit();
+        }
     }
 }

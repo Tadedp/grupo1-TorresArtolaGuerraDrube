@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-prestamos-usuarios',
@@ -8,15 +9,21 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class PrestamosUsuariosComponent {
     usuarioPrestamos: any[] = [];
-    librosImg: string[] = ['cienaniosdesoledad.png', '1984.png', 'orgulloyprejuicio.png', 'demian.png', 'harrypotterylapiedrafilosofal.png']
     
     constructor(
+        private authService: AuthService,
         private usuariosService: UsuariosService,
     ) { }
 
     ngOnInit(): void {
-        this.usuariosService.getUsuario(parseInt(localStorage.getItem('id') || '0')).subscribe((usuario: any) => { 
-                this.usuarioPrestamos = usuario.prestamos;
-        });   
+        if (this.authService.es_token_expirado()){
+            alert('Sesión expirada. Vuelva a iniciar sesión.');
+            this.authService.logout();
+            
+        } else {
+            this.usuariosService.getUsuario(parseInt(localStorage.getItem('id') || '0')).subscribe((usuario: any) => { 
+                    this.usuarioPrestamos = usuario.prestamos;
+            });   
+        }
     }
 }

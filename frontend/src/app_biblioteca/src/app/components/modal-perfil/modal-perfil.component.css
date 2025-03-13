@@ -1,17 +1,44 @@
-.modal-title {
+.modal-header{
+    display: flex;
     text-align: center;
-    color: black;
-    font-size: 1.5em;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
     background-color: #F0EBD5;
+    position: relative;
+}
+
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.profile-info h2 {
     margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+    max-height: 30px;
 }
 
-.modal-form {
-    width: 100%;
+.profile-info h4 {
+    margin: 0;
+    font-size: 15px;
+    color: gray;
+    max-height: 22px;
 }
 
-.full-width {
-    width: 100%;
+.modal-title {
+    color: #0D0842;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.icono-cerrar{
+    cursor: pointer;
 }
 
 button[mat-button] {
@@ -24,40 +51,7 @@ button[mat-button] {
 }
 
 .mat-content{
-    background-color: #F0EBD5;
-}
-
-.mat-footer{
-    background-color: #F0EBD5;
-}
-
-.form-img{
-    color: #F0EBD5;
-    padding: 20px;
-}
-
-.profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.profile-pic {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.profile-info h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.profile-info p {
-    margin: 0;
-    color: gray;
+    background-color:white;
 }
 
 .profile-options {
@@ -76,13 +70,3 @@ button[mat-button] {
 .profile-options mat-icon {
     margin-right: 10px;
 }
-
-.danger {
-    color: red;
-}
-
-.mat-footer {
-    display: flex;
-    justify-content: flex-end;
-}
-  

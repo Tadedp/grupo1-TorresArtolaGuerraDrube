@@ -1,4 +1,4 @@
-<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+<div class="contenedor-formulario">
     <div style="display:flex; justify-content:space-between; margin-bottom: 1.5%;">
         <ng-container *ngIf="tipo_op === 'agregar'">
             <app-back-button [texto]="'Agregar Préstamo'" [url]="'/prestamos'"></app-back-button>
@@ -14,14 +14,14 @@
     <ng-container *ngIf="tipo_op === 'agregar'">
         <app-formulario 
         [titulos]="['Usuario ID', 'Libro ID', 'Fecha de Inicio', 'Fecha de Fin']" 
-        [placeholders]="['...', '...', 'dd-mm-aaaa', 'dd-mm-aaaa']">
+        [placeholders]="['...', '...', 'aaaa-mm-dd', 'aaaa-mm-dd']">
         </app-formulario>
     </ng-container>
 
     <ng-container *ngIf="tipo_op === 'editar'">
         <app-formulario 
         [titulos]="['Usuario ID', 'Libro ID', 'Fecha de Inicio', 'Fecha de Fin']"
-        [placeholders]="['...', '...', 'dd-mm-aaaa', 'dd-mm-aaaa']"
+        [placeholders]="['...', '...', 'aaaa-mm-dd', 'aaaa-mm-dd']"
         [values]="prestamoDatos">
         </app-formulario>
     </ng-container>
